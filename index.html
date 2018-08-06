@@ -75,11 +75,11 @@
 
                     });
 
-                $('div#displayData').on('click', 'a.editUser', function() {
-                    alert('edit user!  id: ' + $(this).id)
+                $('div#dropdown-menu').on('click', 'a.editUser', function() {
+                    console.log('edit user!  id: ' + $(this).id)
                 });
-                $('div#displayData').on('click', 'a.deleteUser', function() {
-                    alert('delete user!  id: ' + $(this).id)
+                $('div#dropdown-menu').on('click', 'a.deleteUser', function() {
+                    console.log('delete user!  id: ' + $(this).id)
                 });
 
             });
