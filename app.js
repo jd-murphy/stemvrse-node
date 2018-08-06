@@ -43,6 +43,15 @@ io.on("connection", function (socket) {
         getDataFromFirebase();
         // getPinDataFromFirebase();
     });
+    socket.on("deleteUser", function (data) {  
+        deleteUser(data);
+    });
+    socket.on("editUser", function (data) {  
+        editUser(data);
+    });
+    socket.on("createUser", function (data) {  
+        createUser(data);
+    });
     // socket.on("loadRaidData", function (notification_request) {  
     //     getRaidDataFromFirebase();
     // });
@@ -94,3 +103,89 @@ function getDataFromFirebase() {
     });
 }
         
+
+
+function deleteUser(data) {
+
+    console.log("\n\n\nNOT IMPLEMENTED YET   deleteUser()\n\n")
+
+
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
+
+        });
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
+    });
+}
+        
+
+
+function editUser(data) {
+
+    console.log("\n\n\nNOT IMPLEMENTED YET    editUser()\n\n")
+
+
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
+
+        });
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
+    });
+}
+        
+
+
+function createUser(data) {
+
+    console.log("\n\n\nNOT IMPLEMENTED YET    createUser()\n\n")
+
+
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
+
+        });
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
+    });
+}
+        
+
+

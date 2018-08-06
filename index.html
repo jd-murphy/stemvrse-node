@@ -84,9 +84,11 @@
 
                 $('#displayData').on('click','div div strong div div a.editUser', function() {
                     console.log('edit user!  id: ' + this.id)
+                    socket.emit('loadData');
                 });
                 $('#displayData').on('click','div div strong div div a.deleteUser', function() {
                     console.log('delete user!  id: ' + this.id)
+                    socket.emit('loadData');
                 });
 
             console.log("from html page -> emit loadData")
