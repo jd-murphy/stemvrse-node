@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/dashboard', (req, res) => {
+    getDataFromFirebase();
     res.sendFile('index.html',{root: __dirname});
 });
 
@@ -94,7 +95,6 @@ function getDataFromFirebase() {
             console.log(data[key]);
 
         });
-        return JSON.stringify(data)
         io.emit('newData', JSON.stringify(data));
         console.log("io.emit notify!!!!      ( app.js )    ->")
     });
