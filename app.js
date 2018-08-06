@@ -83,10 +83,10 @@ function getDataFromFirebase() {
         console.log(data)
         Object.keys(data).forEach(function (key) {
             // do something with data[key]
-            console.log("key");
-            console.log(key);
-            console.log("data[key]");
-            console.log(data[key]);
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
 
         });
         io.emit('newData', JSON.stringify(data));
