@@ -81,7 +81,7 @@ function setUpFirebase() {
 function getDataFromFirebase() {
     var db = admin.database();
     var ref = db.ref("testdata");
-    console.log("getLogDataFromFirebase()");
+    console.log("getDataFromFirebase()");
     ref.on("value", function(snapshot) {
         console.log("SNAPSHOT   getDataFromFirebase() ->  ");
         data = snapshot.val()
