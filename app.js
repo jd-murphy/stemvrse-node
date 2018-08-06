@@ -67,7 +67,7 @@ io.on("connection", function (socket) {
 server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
     setUpFirebase();
-    getDataFromFirebase();
+    // getDataFromFirebase();
 });
 
 
