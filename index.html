@@ -75,10 +75,10 @@
 
                     });
 
-                $('.editUser').on('click', function() {
+                $('body').on('click', 'a.editUser', function() {
                     alert('edit user!  id: ' + $(this).id)
                 });
-                $('.deleteUser').on('click', function() {
+                $('body').on('click', 'a.deleteUser', function() {
                     alert('delete user!  id: ' + $(this).id)
                 });
 
