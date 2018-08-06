@@ -39,9 +39,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/dashboard', (req, res) => {
-    getDataFromFirebase().then(function(result){
-        res.sendFile('index.html',{root: __dirname});
-    });
+    res.sendFile('index.html',{root: __dirname});
 });
 
 
@@ -80,27 +78,25 @@ function setUpFirebase() {
 
 
 function getDataFromFirebase() {
-    return new Promise(function(resolve, reject) {
-        var db = admin.database();
-        var ref = db.ref("testdata");
-        console.log("getLogDataFromFirebase()");
-        ref.on("value", function(snapshot) {
-            console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-            data = snapshot.val()
-            console.log("snapshot.val()       data ->")
-            console.log(data)
-            Object.keys(data).forEach(function (key) {
-                // do something with data[key]
-                console.log("key");
-                console.log(key);
-                console.log("data[key]");
-                console.log(data[key]);
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getLogDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            console.log("key");
+            console.log(key);
+            console.log("data[key]");
+            console.log(data[key]);
 
-            });
-            resolve(JSON.stringify(data));
-            io.emit('newData', JSON.stringify(data));
-            console.log("io.emit notify!!!!      ( app.js )    ->")
         });
+        return JSON.stringify(data)
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
     });
 }
         
