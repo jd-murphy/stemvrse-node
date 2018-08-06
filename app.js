@@ -40,6 +40,8 @@ app.get('/', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
+    io.emit('newData', JSON.stringify(data));
+    console.log("io.emit notify!!!!      ( app.js )    ->")
 });
 
 
