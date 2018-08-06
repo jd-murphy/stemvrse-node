@@ -7,7 +7,7 @@ const server = require('http').createServer(app);
 const admin = require('firebase-admin');
 const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
-// const io = require('socket.io')(server);
+const io = require('socket.io')(server);
 
 // var querystring = require('querystring');
 // var https = require('https');
@@ -45,15 +45,16 @@ app.get('/dashboard', (req, res) => {
 });
 
 
-// io.on("connection", function (socket) {
-//     socket.on("loadLogData", function (notification_request) {
-//         getLogDataFromFirebase();
-//         getPinDataFromFirebase();
-//     });
-//     socket.on("loadRaidData", function (notification_request) {  
-//         getRaidDataFromFirebase();
-//     });
-// });
+io.on("connection", function (socket) {
+    socket.on("newData", function (notification_request) {
+        console.log("new data event from socket.io!");
+        // getLogDataFromFirebase();
+        // getPinDataFromFirebase();
+    });
+    // socket.on("loadRaidData", function (notification_request) {  
+    //     getRaidDataFromFirebase();
+    // });
+});
 
 
 // app.get('/api/bot-report', (req, res) => {
@@ -97,8 +98,8 @@ function getDataFromFirebase() {
 
             });
             resolve(JSON.stringify(data));
-            // io.emit('notify', JSON.stringify(data));
-            // console.log("io.emit notify!!!!      ( app.js )    ->")
+            io.emit('newData', JSON.stringify(data));
+            console.log("io.emit notify!!!!      ( app.js )    ->")
         });
     });
 }
