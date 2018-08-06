@@ -52,8 +52,8 @@
             socket.on('newData', function (notification) {
                 console.log('SOCKET on newData!      ( index.html )   ')
                 var data = JSON.parse(notification); //process notication array
-                $('#displayData div div strong div div a.editUser').unbind('click')
-                $('#displayData div div strong div div a.deleteUser').unbind('click')
+                // $('#displayData div div strong div div a.editUser').unbind('click')
+                // $('#displayData div div strong div div a.deleteUser').unbind('click')
                 $("#displayData div").remove(); 
 
                 Object.keys(data).forEach(function (key) {
@@ -78,16 +78,16 @@
 
                     });
 
+                
+
+            });
+
                 $('#displayData').on('click','div div strong div div a.editUser', function() {
                     console.log('edit user!  id: ' + this.id)
                 });
                 $('#displayData').on('click','div div strong div div a.deleteUser', function() {
                     console.log('delete user!  id: ' + this.id)
                 });
-
-            });
-
-
 
             console.log("from html page -> emit loadData")
             socket.emit('loadData');
