@@ -52,7 +52,10 @@
             socket.on('newData', function (notification) {
                 console.log('SOCKET on newData!      ( index.html )   ')
                 var data = JSON.parse(notification); //process notication array
+                $('#displayData div div strong div div a.editUser').unbind('click')
+                $('#displayData div div strong div div a.deleteUser').unbind('click')
                 $("#displayData div").remove(); 
+
                 Object.keys(data).forEach(function (key) {
                         
                         dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
