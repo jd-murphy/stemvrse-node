@@ -25,7 +25,7 @@
   </head>
   <body>
 
-        <div class="container" id="displayData">
+        <div class="container" id="displayData" style="padding: 5rem;">
 
             
 
@@ -66,7 +66,7 @@
                                 '<div class="card-header">' + data[key].username + '</div>' + 
                                 '<div class="card-body">' + 
                                    ' <h4 class="card-title">Account Info</h4>' + 
-                                    '<p class="card-text">' + data[key].account + "<br />" + data[key].email + "<br />" + data[key].phone + "<br />" + data[key].username + '</p>' + 
+                                    '<p class="card-text">User: ' + data[key].username + "<br />Email: " + data[key].email + "<br />Phone: " + data[key].phone + "<br />Account: " + data[key].account + '</p>' + 
                                '</div>' + 
                             '</div>');
                     });
