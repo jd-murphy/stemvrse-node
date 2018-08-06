@@ -40,14 +40,14 @@ app.get('/', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
     getDataFromFirebase().then(function(result){
-        res.send(result);
+        res.sendFile('index.html',{root: __dirname});
     });
 });
 
 
 io.on("connection", function (socket) {
-    socket.on("newData", function (notification_request) {
-        console.log("new data event from socket.io!");
+    socket.on("loadData", function (notification_request) {
+        console.log("loadData event from socket.io!");
         // getLogDataFromFirebase();
         // getPinDataFromFirebase();
     });
