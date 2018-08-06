@@ -42,7 +42,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="modalTitle">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -113,10 +113,11 @@
                     // console.log('edit user!  id: ' + this.id)
                     // socket.emit('loadData');
                     // alert('edit user!  id: ' + this.id)
-                    clientUserName = this.id.substring(7);
+                    clientUserName = this.id.substring(8);
 
-                    $("#modalDataDiv").append("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
+                    $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
                     $("#decisionModalButton").html("Edit");
+                    $("#modalTitle").html("Edit User: " + clientUserName);
                     $("#modalDialog").modal();
                    
                 });
@@ -126,8 +127,9 @@
                     // alert('delete user!  id: ' + this.id)
                     clientUserName = this.id.substring(10);
 
-                    $("#modalDataDiv").append("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? The action is irreversible.");
+                    $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? The action is irreversible.");
                     $("#decisionModalButton").html("Confirm DELETE");
+                    $("#modalTitle").html("Delete User: " + clientUserName);
                     $("#modalDialog").modal()
 
                 });
