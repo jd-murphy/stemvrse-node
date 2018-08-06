@@ -62,7 +62,13 @@
                         // console.log(data[key].date)
                         // console.log("data[key].info")
                         // console.log(data[key].info)
-                        $('#displayData').append('<div><p>' + data[key].account + " " + data[key].email + " " + data[key].phone + " " + data[key].username + '</p></div>');
+                        $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
+                                '<div class="card-header">' + data[key].username + '</div>' + 
+                                '<div class="card-body">' + 
+                                   ' <h4 class="card-title">Account Info</h4>' + 
+                                    '<p class="card-text">' + data[key].account + "<br />" + data[key].email + "<br />" + data[key].phone + "<br />" + data[key].username + '</p>' + 
+                               '</div>' + 
+                            '</div>');
                     });
             });
 
