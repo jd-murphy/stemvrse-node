@@ -62,8 +62,19 @@
                         // console.log(data[key].date)
                         // console.log("data[key].info")
                         // console.log(data[key].info)
+                        settings = '<div class="dropdown" style="float: right;">' + 
+                                        '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' + 
+                                            '<span class="glyphicon glyphicon-cog"></span>' + 
+                                        '</button>' + 
+                                        '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">' + 
+                                            '<li><a href="#" id="editUserButton">Edit User</a></li>' + 
+                                            '<li><a href="#" id="deleteUserButton">Delete User</a></li>' + 
+                                        '</ul>' + 
+                                        '</div>'
+
+
                         $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-                                '<div class="card-header">' + data[key].username + '</div>' + 
+                                '<div class="card-header">' + data[key].username + settings + '</div>' + 
                                 '<div class="card-body">' + 
                                    ' <h4 class="card-title">Account Info</h4>' + 
                                     '<p class="card-text"><strong>User:</strong> ' + data[key].username + "<br /><strong>Email:</strong> " + data[key].email + "<br /><strong>Phone:</strong> " + data[key].phone + "<br /><strong>Account:</strong> " + data[key].account + '</p>' + 
