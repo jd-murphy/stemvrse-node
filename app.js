@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/dashboard', (req, res) => {
+    getDataFromFirebase();
     res.send("this is the other page for the node app");
 });
 
@@ -62,31 +63,31 @@ app.get('/dashboard', (req, res) => {
 
 server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
-    // setUpFirebase();
+    setUpFirebase();
 });
 
 
-// function setUpFirebase() {
-//     console.log("setUpFirebase()")
-//             admin.initializeApp({
-//                 credential: admin.credential.cert(JSON.parse(serviceAccount)),
-//                 databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
-//                 });
-//             console.log("firebase initialized!");
-//         }
+function setUpFirebase() {
+    console.log("setUpFirebase()")
+            admin.initializeApp({
+                credential: admin.credential.cert(serviceAccount),
+                databaseURL: "https://stemvrse-node.firebaseio.com"
+            });
+            console.log("firebase initialized!");
+        }
 
 
-// function getLogDataFromFirebase() {
-//             var db = admin.database();
-//             var ref = db.ref("logs");
-//             console.log("getLogDataFromFirebase()");
-//             ref.on("value", function(snapshot) {
-//                 console.log("SNAPSHOT   getLogDataFromFirebase() ->  ");
-//                 data = snapshot.val()
-//                 // console.log("snapshot.val()       data ->")
-//                 // console.log(data)
-//                 io.emit('notify', JSON.stringify(data));
-//                 console.log("io.emit notify!!!!      ( app.js )    ->")
-//             });
-//         }
+function getDataFromFirebase() {
+            var db = admin.database();
+            var ref = db.ref("testdata");
+            console.log("getLogDataFromFirebase()");
+            ref.on("value", function(snapshot) {
+                console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+                data = snapshot.val()
+                console.log("snapshot.val()       data ->")
+                console.log(data)
+                // io.emit('notify', JSON.stringify(data));
+                // console.log("io.emit notify!!!!      ( app.js )    ->")
+            });
+        }
         
