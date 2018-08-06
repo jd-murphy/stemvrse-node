@@ -62,15 +62,15 @@
                         // console.log(data[key].date)
                         // console.log("data[key].info")
                         // console.log(data[key].info)
-                        settings = '<div class="btn-group" dropdown>' + 
-                                        '<button type="button" class="btn dropdown-toggle" dropdown-toggle><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>' + 
-                                            '<span class="sr-only">Split button!</span>' + 
+                        settings = '<div class="dropdown" style="float: right;">' + 
+                                        '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' + 
+                                            '<span class="glyphicon glyphicon-cog"></span>' + 
                                         '</button>' + 
-                                        '<ul class="dropdown-menu" role="menu">' + 
-                                            '<li><a href="#">Edit User</a></li>' + 
-                                            '<li><a href="#">Delete User</a></li>' + 
+                                        '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">' + 
+                                            '<li><a href="#" id="editUserButton">Edit User</a></li>' + 
+                                            '<li><a href="#" id="deleteUserButton">Delete User</a></li>' + 
                                         '</ul>' + 
-                                    '</div>'
+                                        '</div>'
 
 
                         $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
