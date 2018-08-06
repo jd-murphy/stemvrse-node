@@ -39,8 +39,8 @@ app.get('/', (req, res) => {
 
 
 app.get('/dashboard', (req, res) => {
-    getDataFromFirebase();
-    res.send("this is the other page for the node app");
+    data = getDataFromFirebase();
+    res.send(data);
 });
 
 
@@ -96,7 +96,7 @@ function getDataFromFirebase() {
 
 
                 });
-
+                return JSON.stringify(data);
                 // io.emit('notify', JSON.stringify(data));
                 // console.log("io.emit notify!!!!      ( app.js )    ->")
             });
