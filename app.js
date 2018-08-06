@@ -24,31 +24,23 @@ const config = {
     "serviceAccount": process.env.SERVICEACCOUNT 
   }
 
-
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/images/', express.static('./images'));
-
 
 app.get('/', (req, res) => {
     res.send("welcome to stemvrse node app! server is live");
 });
 
-
 app.get('/dashboard', (req, res) => {
+    console.log("\n\nGET /dashboard \n\n")
     res.sendFile('index.html',{root: __dirname});
-    io.emit('newData', JSON.stringify(data));
-    console.log("io.emit notify!!!!      ( app.js )    ->")
 });
-
 
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
-        // getLogDataFromFirebase();
+        getDataFromFirebase();
         // getPinDataFromFirebase();
     });
     // socket.on("loadRaidData", function (notification_request) {  
