@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const server = require('http').createServer(app);
 const admin = require('firebase-admin');
-// const serviceAccount = process.env.SERVICEACCOUNT
+const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 // const io = require('socket.io')(server);
 
