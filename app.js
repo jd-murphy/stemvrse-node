@@ -70,7 +70,7 @@ server.listen(PORT, () => {
 function setUpFirebase() {
     console.log("setUpFirebase()")
             admin.initializeApp({
-                credential: admin.credential.cert(serviceAccount),
+                credential: admin.credential.cert(JSON.parse(serviceAccount)),
                 databaseURL: "https://stemvrse-node.firebaseio.com"
             });
             console.log("firebase initialized!");
