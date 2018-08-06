@@ -56,12 +56,12 @@
                 Object.keys(data).forEach(function (key) {
                         
                         dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
-                                           ' <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
-                                            '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                            '<a class="dropdown-item" href="#editUser' + data[key].username + '" class="editUser" id="editUser' + data[key].username + '">Edit User</a>' + 
-                                            '<a class="dropdown-item" href="#deleteUser' + data[key].username + '" class="deleteUser" id="deleteUser' + data[key].username + '">Delete User</a>' + 
-                                            '</div>' + 
-                                        '</div>'
+                                                '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
+                                                '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
+                                                    '<a class="dropdown-item editUser" href="#editUser' + data[key].username + '" id="editUser' + data[key].username + '">Edit User</a>' + 
+                                                    '<a class="dropdown-item deleteUser" href="#deleteUser' + data[key].username + '" id="deleteUser' + data[key].username + '">Delete User</a>' + 
+                                                '</div>' + 
+                                            '</div>'
 
                         $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
                                 '<div class="card-header"><strong>' + data[key].username + dropdownOptions + '</strong></div>' + 
@@ -75,10 +75,10 @@
 
                     });
 
-                $('a.editUser').click(function(element) {
+                $('#displayData').on('click','div div strong div div a.editUser', function(element) {
                     console.log('edit user!  id: ' + $(element).id)
                 });
-                $('a.deleteUser').click(function(element) {
+                $('#displayData').on('click','div div strong div div a.deleteUser', function(element) {
                     console.log('delete user!  id: ' + $(element).id)
                 });
 
