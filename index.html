@@ -75,11 +75,11 @@
 
                     });
 
-                $('#displayData').on('click','div div strong div div a.editUser', function(element) {
-                    console.log('edit user!  id: ' + $(element).id)
+                $('#displayData').on('click','div div strong div div a.editUser', function() {
+                    console.log('edit user!  id: ' + $(this).id)
                 });
-                $('#displayData').on('click','div div strong div div a.deleteUser', function(element) {
-                    console.log('delete user!  id: ' + $(element).id)
+                $('#displayData').on('click','div div strong div div a.deleteUser', function() {
+                    console.log('delete user!  id: ' + $(this).id)
                 });
 
             });
