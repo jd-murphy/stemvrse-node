@@ -40,7 +40,7 @@ app.get('/dashboard', (req, res) => {
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
-        // getDataFromFirebase();
+        getDataFromFirebase();
         // getPinDataFromFirebase();
     });
     socket.on("deleteUser", function (data) {  
@@ -67,7 +67,7 @@ io.on("connection", function (socket) {
 server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
     setUpFirebase();
-    getDataFromFirebase();
+    // getDataFromFirebase();
 });
 
 

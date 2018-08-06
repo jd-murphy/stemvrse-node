@@ -83,12 +83,14 @@
             });
 
                 $('#displayData').on('click','div div strong div div a.editUser', function() {
-                    console.log('edit user!  id: ' + this.id)
-                    socket.emit('loadData');
+                    // console.log('edit user!  id: ' + this.id)
+                    // socket.emit('loadData');
+                    alert('edit user!  id: ' + this.id)
                 });
                 $('#displayData').on('click','div div strong div div a.deleteUser', function() {
-                    console.log('delete user!  id: ' + this.id)
-                    socket.emit('loadData');
+                    // console.log('delete user!  id: ' + this.id)
+                    // socket.emit('loadData');
+                    alert('delete user!  id: ' + this.id)
                 });
 
             console.log("from html page -> emit loadData")
