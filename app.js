@@ -86,6 +86,17 @@ function getDataFromFirebase() {
                 data = snapshot.val()
                 console.log("snapshot.val()       data ->")
                 console.log(data)
+                Object.keys(data).forEach(function (key) {
+                    // do something with data[key]
+                    console.log("key");
+                    console.log(key);
+                    console.log("data[key]");
+                    console.log(data[key]);
+
+
+
+                });
+
                 // io.emit('notify', JSON.stringify(data));
                 // console.log("io.emit notify!!!!      ( app.js )    ->")
             });
