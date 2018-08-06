@@ -31,6 +31,33 @@
    
         </div>
 
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDialog">
+            Launch demo modal
+        </button> -->
+
+  
+            <!-- Modal -->
+            <div class="modal fade" id="modalDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body" id="modalDataDiv">
+                    
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="decisionModalButton">Continue</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -85,12 +112,24 @@
                 $('#displayData').on('click','div div strong div div a.editUser', function() {
                     // console.log('edit user!  id: ' + this.id)
                     // socket.emit('loadData');
-                    alert('edit user!  id: ' + this.id)
+                    // alert('edit user!  id: ' + this.id)
+                    clientUserName = this.id.substring(7);
+
+                    $("#modalDataDiv").append("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
+                    $("#decisionModalButton").html("Edit");
+                    $("#modalDialog").modal();
+                   
                 });
                 $('#displayData').on('click','div div strong div div a.deleteUser', function() {
                     // console.log('delete user!  id: ' + this.id)
                     // socket.emit('loadData');
-                    alert('delete user!  id: ' + this.id)
+                    // alert('delete user!  id: ' + this.id)
+                    clientUserName = this.id.substring(10);
+
+                    $("#modalDataDiv").append("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? The action is irreversible.");
+                    $("#decisionModalButton").html("Confirm DELETE");
+                    $("#modalDialog").modal()
+
                 });
 
             console.log("from html page -> emit loadData")
