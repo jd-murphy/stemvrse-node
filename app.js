@@ -43,9 +43,15 @@ io.on("connection", function (socket) {
         getDataFromFirebase();
         // getPinDataFromFirebase();
     });
-    // socket.on("loadRaidData", function (notification_request) {  
-    //     getRaidDataFromFirebase();
-    // });
+    socket.on("deleteUser", function (data) {  
+        deleteUser(data);
+    });
+    socket.on("editUser", function (data) {  
+        editUser(data);
+    });
+    socket.on("createUser", function (data) {  
+        createUser(data);
+    });
 });
 
 
@@ -94,3 +100,77 @@ function getDataFromFirebase() {
     });
 }
         
+
+function deleteUser(data) {
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
+
+        });
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
+    });
+}
+        
+
+
+function editUser(data) {
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
+
+        });
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
+    });
+}
+        
+
+
+function createUser(data) {
+    var db = admin.database();
+    var ref = db.ref("testdata");
+    console.log("getDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+        data = snapshot.val()
+        console.log("snapshot.val()       data ->")
+        console.log(data)
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            // console.log("key");
+            // console.log(key);
+            // console.log("data[key]");
+            // console.log(data[key]);
+
+        });
+        io.emit('newData', JSON.stringify(data));
+        console.log("io.emit notify!!!!      ( app.js )    ->")
+    });
+}
+        
+
+
+
