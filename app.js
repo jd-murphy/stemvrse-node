@@ -39,7 +39,6 @@ app.get('/', (req, res) => {
 
 
 app.get('/dashboard', (req, res) => {
-    getDataFromFirebase();
     res.sendFile('index.html',{root: __dirname});
 });
 
@@ -65,6 +64,7 @@ io.on("connection", function (socket) {
 server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
     setUpFirebase();
+    getDataFromFirebase();
 });
 
 
