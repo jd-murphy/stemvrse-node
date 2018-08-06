@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 // const fs = require('fs');
 const app = express();
 const server = require('http').createServer(app);
-// const admin = require('firebase-admin');
+const admin = require('firebase-admin');
 // const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 // const io = require('socket.io')(server);
@@ -14,15 +14,18 @@ const PORT = process.env.PORT || 3000;
 // var path = require('path');
 // var request = require("request");
 
-// const config = {
-//     "apiKey": process.env.FIREBASEAPIKEY,
-//     "authDomain": process.env.AUTHDOMAIN,
-//     "databaseURL": process.env.DATABASEURL,
-//     "projectId": process.env.PROJECTID,
-//     "storageBucket": process.env.STORAGEBUCKET,
-//     "messagingSenderId": process.env.MESSAGINGSENDERID,
-//     "serviceAccount": process.env.SERVICEACCOUNT 
-//   }
+const config = {
+    "apiKey": process.env.FIREBASEAPIKEY,
+    "authDomain": process.env.AUTHDOMAIN,
+    "databaseURL": process.env.DATABASEURL,
+    "projectId": process.env.PROJECTID,
+    "storageBucket": process.env.STORAGEBUCKET,
+    "messagingSenderId": process.env.MESSAGINGSENDERID,
+    "serviceAccount": process.env.SERVICEACCOUNT 
+  }
+
+
+
 
 
 app.use(bodyParser.json());
