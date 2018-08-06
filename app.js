@@ -26,7 +26,7 @@ const config = {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('/images/', express.static('./images'));
+app.use('/assets/', express.static('./assets'));
 
 app.get('/', (req, res) => {
     res.send("welcome to stemvrse node app! server is live");
