@@ -57,15 +57,33 @@
                         // console.log(data[key].date)
                         // console.log("data[key].info")
                         // console.log(data[key].info)
-                        settings = '<div class="dropdown" style="float: right;">' + 
-                                        // '<button class="btn btn-default dropdown-toggle card-header" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' + 
-                                            '<a href="#" data-toggle="dropdown" id="toggleDrop"><span style="float: right;"><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
-                                        // '</button>' + 
-                                        '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">' + 
-                                            '<li><a href="#" id="editUserButton">Edit User</a></li>' + 
-                                            '<li><a href="#" id="deleteUserButton">Delete User</a></li>' + 
-                                        '</ul>' + 
+
+
+
+                        // settings = '<div class="dropdown" style="float: right;">' + 
+                        //                 // '<button class="btn btn-default dropdown-toggle card-header" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' + 
+                        //                     '<a href="#" data-toggle="dropdown" id="toggleDrop"><span style="float: right;"><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
+                        //                 // '</button>' + 
+                        //                 <
+                        //                 '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">' + 
+                        //                     '<li><a href="#" id="editUserButton">Edit User</a></li>' + 
+                        //                     '<li><a href="#" id="deleteUserButton">Delete User</a></li>' + 
+                        //                 '</ul>' + 
+                        //                 '</div>'
+
+
+
+
+
+                        settings =  '<div class="nav-item dropdown">' + 
+                                           ' <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span style="float: right;"><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
+                                            '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
+                                            '<a class="dropdown-item" href="#" id="editUserButton">Edit User</a>' + 
+                                            '<a class="dropdown-item" href="#" id="deleteUserButton">Delete User</a>' + 
+                                            '</div>' + 
                                         '</div>'
+
+
 
 
                         $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
