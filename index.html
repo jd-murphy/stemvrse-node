@@ -121,6 +121,8 @@
                 $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
                 console.log('clientUserName is ' + clientUserName);
                 document.getElementById('hiddenUsername').value = clientUserName;
+                console.log("$('#hiddenUsername').val() -> ");
+                console.log($('#hiddenUsername').val());    
                 $("#modalDialog").modal();
                 
             });
@@ -137,6 +139,8 @@
                 $("#decisionModalButton").addClass("btn-outline-danger");
                 console.log('clientUserName is ' + clientUserName);
                 document.getElementById('hiddenUsername').value = clientUserName;
+                console.log("$('#hiddenUsername').val() -> ");
+                console.log($('#hiddenUsername').val());
                 $("#modalDialog").modal()
 
             });
