@@ -55,10 +55,11 @@
 
 
 
+
+
+
         <div class="container" id="displayData" style="padding: 5rem;">
 
-           
-   
         </div>
 
        
@@ -86,6 +87,7 @@
                 </div>
                 </div>
             </div>
+
 
 
 
@@ -124,8 +126,6 @@
                 </div>
             </div>
             </div>
-
-
 
 
 
@@ -174,6 +174,9 @@
 
 
 
+
+                    
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -185,10 +188,6 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         $(document).ready(function(){
-            console.log("document ready")
-            
-         
-
            
             var socket = io();
             socket.on('newData', function (data) {
@@ -196,10 +195,6 @@
                 $("#displayData div").remove(); 
                 if (data != null) {
                     var data = JSON.parse(data); //process notication array
-                    // $('#displayData div div strong div div a.editUser').unbind('click')
-                    // $('#displayData div div strong div div a.deleteUser').unbind('click')
-                  
-
 
                     Object.keys(data).forEach(function (username) {
                             
@@ -222,72 +217,43 @@
                                     
                                 '</div>' + 
                                 '</div>');
-
-                            
-
                     });
                 }
-               
-
-                
-
             });
 
             $('#displayData').on('click','div div strong div div a.editUser', function() {
-                // console.log('edit user!  id: ' + this.id)
-                // socket.emit('loadData');
-                // alert('edit user!  id: ' + this.id)
                 clientUserName = this.id.substring(8);
-
                 $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
                 $("#decisionModalButton").html("EDIT");
                 $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
                 $("#decisionModalButton").removeClass("btn-outline-danger");
                 $("#decisionModalButton").addClass("btn-outline-success");
-                console.log('clientUserName is ' + clientUserName);
                 document.getElementById('hiddenUsername').value = clientUserName;
-                console.log("$('#hiddenUsername').val() -> ");
-                console.log($('#hiddenUsername').val());    
                 $("#modalDialog").modal();
                 
             });
-            $('#displayData').on('click','div div strong div div a.deleteUser', function() {
-                // console.log('delete user!  id: ' + this.id)
-                // socket.emit('loadData');
-                // alert('delete user!  id: ' + this.id)
-                clientUserName = this.id.substring(10);
 
+            $('#displayData').on('click','div div strong div div a.deleteUser', function() {
+                clientUserName = this.id.substring(10);
                 $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
                 $("#decisionModalButton").html("DELETE");
                 $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
                 $("#decisionModalButton").removeClass("btn-outline-success");
                 $("#decisionModalButton").addClass("btn-outline-danger");
-                console.log('clientUserName is ' + clientUserName);
                 document.getElementById('hiddenUsername').value = clientUserName;
-                console.log("$('#hiddenUsername').val() -> ");
-                console.log($('#hiddenUsername').val());
                 $("#modalDialog").modal()
 
             });
+
             $("#decisionModalButton").on('click', function() {
-                console.log("$('#hiddenUsername').val() -> ");
-                console.log($('#hiddenUsername').val());
                 action = $("#decisionModalButton").text();
                 username = $('#hiddenUsername').val();
-                // console.log("The modal action is -> " + action);
-                // console.log("perform " + action + " on " + username);
                 switch (action) {
                     case "EDIT":
-                        console.log("The modal action is -> " + action);
-                        console.log("perform " + action + " on " + username);
                         $("#modalDialog").modal('hide');
                         email = $('#hiddenEmail' + username).val();
                         phone = $('#hiddenPhone' + username).val();
                         account = $('#hiddenAccount' + username).val();
-                        console.log("hidden user values are: ");
-                        console.log($('#hiddenEmail' + username).val());
-                        console.log($('#hiddenPhone' + username).val());
-                        console.log($('#hiddenAccount' + username).val());
                         $('#modalEDIT-account').val(account);
                         $('#modalEDIT-email').val(email);
                         $('#modalEDIT-phone').val(phone);    
@@ -295,8 +261,6 @@
                         $("#modalEDIT").modal();
                         break;
                     case "DELETE":
-                        console.log("The modal action is -> " + action);
-                        console.log("perform " + action + " on " + username);
                         socket.emit('deleteUser', username);
                         $("#modalDialog").modal('hide');
                         break;
@@ -306,20 +270,12 @@
                         
                 }
             });
+
             $("#submitEditModalButton").on('click', function() {
-                console.log('from #submitEditModalButton -> ');
                 username = $('#modalEDIT-username').text()
-                console.log('username');
-                console.log(username);
                 account = $('#modalEDIT-account').val();
-                console.log('account');
-                console.log(account);
                 email = $('#modalEDIT-email').val();
-                console.log('email');
-                console.log(email);
                 phone = $('#modalEDIT-phone').val(); 
-                console.log('phone');
-                console.log(phone);
                 userInfo = {
                     "username": username,
                     "account": account,
@@ -331,19 +287,10 @@
             });
 
             $("#submitAddNewClientModal").on('click', function() {
-                console.log('from #submitAddNewClientModal -> ');
                 username = $('#addNewClientModal-username').val()
-                console.log('username');
-                console.log(username);
                 account = $('#addNewClientModal-account').val();
-                console.log('account');
-                console.log(account);
                 email = $('#addNewClientModal-email').val();
-                console.log('email');
-                console.log(email);
                 phone = $('#addNewClientModal-phone').val(); 
-                console.log('phone');
-                console.log(phone);
                 userInfo = {
                     "username": username,
                     "account": account,
@@ -360,12 +307,13 @@
 
 
 
-            console.log("from html page -> emit loadData")
+           
             socket.emit('loadData');
-            console.log("$('#hiddenUsername').val() -> ");
-            console.log($('#hiddenUsername').val());
         });
 
+
+
+        // functions
         function addNewClient() {
             cleanseNewUserModal();
             $("#addNewClientModal").modal();

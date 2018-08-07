@@ -1,7 +1,6 @@
 // stemvrse node app 
 const express = require('express');
 const bodyParser = require('body-parser');
-// const fs = require('fs');
 const app = express();
 const server = require('http').createServer(app);
 const admin = require('firebase-admin');
@@ -9,10 +8,6 @@ const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(server);
 
-// var querystring = require('querystring');
-// var https = require('https');
-// var path = require('path');
-// var request = require("request");
 
 const config = {
     "apiKey": process.env.FIREBASEAPIKEY,
@@ -41,7 +36,6 @@ io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
         getDataFromFirebase();
-        // getPinDataFromFirebase();
     });
     socket.on("deleteUser", function (username) {  
         console.log("username is " + username)
@@ -59,16 +53,9 @@ io.on("connection", function (socket) {
 });
 
 
-// app.get('/api/bot-report', (req, res) => {
-//     io.emit('botAlert', req.query);
-//     res.send("/api/bot-report has received your request!");
-// });
-
-
 server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
     setUpFirebase();
-    // getDataFromFirebase();
 });
 
 
@@ -87,27 +74,12 @@ function getDataFromFirebase() {
     var ref = db.ref("testdata");
     console.log("getDataFromFirebase()");
     ref.on("value", function(snapshot) {
-        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
         data = snapshot.val()
         if (data) {
-            console.log("snapshot.val()       data ->")
-            console.log(data)
-            Object.keys(data).forEach(function (key) {
-                // do something with data[key]
-                // console.log("key");
-                // console.log(key);
-                // console.log("data[key]");
-                // console.log(data[key]);
-    
-            });
             io.emit('newData', JSON.stringify(data));
-            console.log("io.emit notify!!!!      ( app.js )    ->")
         } else {
-            console.log("snapshot.val()       data is NULL, no entries in DB")
             io.emit('newData', null);
-            console.log("io.emit notify!!!!      ( app.js )    ->")
         }
-        
     });
 }
         
@@ -123,40 +95,29 @@ function deleteUser(username) {
 
 
 function editUser(userInfo) {
-
     var db = admin.database();
-    var ref = db.ref("testdata/" + userInfo.username); // testing
-    console.log("editUser(" + userInfo.username + ")"); // testing
-    // var ref = db.ref("testdata/" + userInfo.username);
-    // console.log("editUser(" + userInfo.username + ")");
+    var ref = db.ref("testdata/" + userInfo.username); 
+    console.log("editUser(" + userInfo.username + ")"); 
     updatedUserData = { 
             account: userInfo.account,
             email: userInfo.email,
             phone: userInfo.phone
          }
-
     ref.update(updatedUserData)
-    
-    
 }
         
 
 
 function createUser(userInfo) {
-
     var db = admin.database();
-    var ref = db.ref("testdata/" + userInfo.username); // testing
-    console.log("createUser(" + userInfo.username + ")"); // testing
-    // var ref = db.ref("testdata/" + userInfo.username);
-    // console.log("editUser(" + userInfo.username + ")");
+    var ref = db.ref("testdata/" + userInfo.username); 
+    console.log("createUser(" + userInfo.username + ")");
     updatedUserData = { 
             account: userInfo.account,
             email: userInfo.email,
             phone: userInfo.phone
          }
-
     ref.set(updatedUserData);
-  
 }
         
 
