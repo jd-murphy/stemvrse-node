@@ -48,7 +48,7 @@
                     </button>
                     </div>
                     <div class="modal-body" id="modalDataDiv">
-                            <input type="hidden" name="hiddenUsername" id="hiddenUsername" value="">
+                            <input type="hidden" name="hiddenUsername" id="hiddenUsername" value="neutral value">
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
@@ -149,6 +149,7 @@
 
             console.log("from html page -> emit loadData")
             socket.emit('loadData');
+            console.log($('#hiddenUsername').val());
         });
     </script>
   </body>
