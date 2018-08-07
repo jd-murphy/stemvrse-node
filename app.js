@@ -43,8 +43,9 @@ io.on("connection", function (socket) {
         getDataFromFirebase();
         // getPinDataFromFirebase();
     });
-    socket.on("deleteUser", function (data) {  
-        deleteUser(data);
+    socket.on("deleteUser", function (username) {  
+        console.log("username is " + username)
+        deleteUser(username);
     });
     socket.on("editUser", function (data) {  
         editUser(data);
@@ -105,32 +106,13 @@ function getDataFromFirebase() {
         
 
 
-function deleteUser(data) {
-
-    console.log("\n\n\nNOT IMPLEMENTED YET   deleteUser()\n\n")
+function deleteUser(username) {
 
 
     var db = admin.database();
-    var ref = db.ref("testdata/" + data);
-    console.log("deleteUser(" + data + ")");
-
-    ref.remove();
-
-    // ref.once("value", function(snapshot) {
-    //     console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-    //     data = snapshot.val()
-    //     console.log("snapshot.val()       data ->")
-    //     console.log(data)
-    //     Object.keys(data).forEach(function (key) {
-    //         // do something with data[key]
-    //         // console.log("key");
-    //         // console.log(key);
-    //         // console.log("data[key]");
-    //         // console.log(data[key]);
-
-    //     });
-    io.emit('newData', JSON.stringify(data));
-    console.log("io.emit notify!!!!      ( app.js )    ->")
+    var ref = db.ref("testdata/" + username);
+    console.log("deleteUser(" + username + ")");
+    // ref.remove();
 
 }
         

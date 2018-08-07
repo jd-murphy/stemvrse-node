@@ -158,12 +158,12 @@
                     case "EDIT":
                         console.log("The modal action is -> " + action);
                         console.log("perform " + action + " on " + username);
-                        socket.emit('editUser');
+                        socket.emit('editUser', username);
                         break;
                     case "DELETE":
                         console.log("The modal action is -> " + action);
                         console.log("perform " + action + " on " + username);
-                        socket.emit('deleteUser');
+                        socket.emit('deleteUser', username);
                         break;
                     default:
                         alert("switch default.... something went wrong... ")
