@@ -48,7 +48,7 @@
                     </button>
                     </div>
                     <div class="modal-body" id="modalDataDiv">
-                    
+                            <input type="hidden" name="username" id="username" value="">
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
@@ -119,6 +119,7 @@
                 $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
                 $("#decisionModalButton").html("EDIT");
                 $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
+                $('#username').val(username);
                 $("#modalDialog").modal();
                 
             });
@@ -133,12 +134,15 @@
                 $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
                 $("#decisionModalButton").removeClass("btn-outline-success");
                 $("#decisionModalButton").addClass("btn-outline-danger");
+                $('#username').val(username);
                 $("#modalDialog").modal()
 
             });
             $("#decisionModalButton").on('click', function() {
                 action = this.text();
+                username = $('#username').val();
                 console.log("The modal action is -> " + action);
+                console.log("perform " + action + " on " + username);
             });
 
 
