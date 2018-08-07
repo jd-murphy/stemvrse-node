@@ -123,9 +123,9 @@ function editUser(userInfo) {
     // var ref = db.ref("testdata/" + userInfo.username);
     // console.log("editUser(" + userInfo.username + ")");
     updatedUserData = { 
-            account: 'testing update!!!!!',
-            email: 'testingUPdateEmail@hotmail.com',
-            phone: '555-000-0000'
+            account: userInfo.account,
+            email: userInfo.email,
+            phone: userInfo.phone
          }
 
     ref.update(updatedUserData)
