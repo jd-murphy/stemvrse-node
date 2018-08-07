@@ -118,8 +118,8 @@ function deleteUser(username) {
 function editUser(userInfo) {
 
     var db = admin.database();
-    var ref = db.ref("testdata/" + userInfo); // testing
-    console.log("editUser(" + userInfo + ")"); // testing
+    var ref = db.ref("testdata/" + userInfo.username); // testing
+    console.log("editUser(" + userInfo.username + ")"); // testing
     // var ref = db.ref("testdata/" + userInfo.username);
     // console.log("editUser(" + userInfo.username + ")");
     updatedUserData = { 
