@@ -159,16 +159,16 @@
                         console.log("The modal action is -> " + action);
                         console.log("perform " + action + " on " + username);
                         socket.emit('editUser', username);
-                        $("#modalDialog").modal();
+                        $("#modalDialog").modal('hide');
                         break;
                     case "DELETE":
                         console.log("The modal action is -> " + action);
                         console.log("perform " + action + " on " + username);
                         socket.emit('deleteUser', username);
-                        $("#modalDialog").modal();
+                        $("#modalDialog").modal('hide');
                         break;
                     default:
-                        $("#modalDialog").modal();    
+                        $("#modalDialog").modal('hide');    
                         alert("switch default.... something went wrong... ");
                         
                 }
