@@ -120,6 +120,8 @@
                 $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
                 $("#decisionModalButton").html("EDIT");
                 $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
+                $("#decisionModalButton").removeClass("btn-outline-danger");
+                $("#decisionModalButton").addClass("btn-outline-success");
                 console.log('clientUserName is ' + clientUserName);
                 document.getElementById('hiddenUsername').value = clientUserName;
                 console.log("$('#hiddenUsername').val() -> ");
@@ -152,6 +154,14 @@
                 username = $('#hiddenUsername').val();
                 console.log("The modal action is -> " + action);
                 console.log("perform " + action + " on " + username);
+                switch (action) {
+                    case "EDIT":
+                    console.log("IMPLEMENT SWITCH FOR " + action);
+                        break;
+                    case "DELETE":
+                    console.log("IMPLEMENT SWITCH FOR " + action);
+                        break;
+                }
             });
 
 
