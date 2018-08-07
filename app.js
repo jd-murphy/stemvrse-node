@@ -138,7 +138,7 @@ function editUser(userInfo) {
 function createUser(userInfo) {
 
     var db = admin.database();
-    var ref = db.ref("testdata/" + userInfo.username); // testing
+    var ref = db.ref("testdata"); // testing
     console.log("createUser(" + userInfo.username + ")"); // testing
     // var ref = db.ref("testdata/" + userInfo.username);
     // console.log("editUser(" + userInfo.username + ")");
@@ -148,7 +148,7 @@ function createUser(userInfo) {
             phone: userInfo.phone
          }
 
-    ref.push(updatedUserData)
+    ref.child(userInfo.username).setValue(updatedUserData);
   
 }
         
