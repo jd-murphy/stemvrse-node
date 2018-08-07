@@ -88,19 +88,26 @@ function getDataFromFirebase() {
     console.log("getDataFromFirebase()");
     ref.on("value", function(snapshot) {
         console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-        data = snapshot.val()
-        console.log("snapshot.val()       data ->")
-        console.log(data)
-        Object.keys(data).forEach(function (key) {
-            // do something with data[key]
-            // console.log("key");
-            // console.log(key);
-            // console.log("data[key]");
-            // console.log(data[key]);
-
-        });
-        io.emit('newData', JSON.stringify(data));
-        console.log("io.emit notify!!!!      ( app.js )    ->")
+        if (snapshot != null) {
+            data = snapshot.val()
+            console.log("snapshot.val()       data ->")
+            console.log(data)
+            Object.keys(data).forEach(function (key) {
+                // do something with data[key]
+                // console.log("key");
+                // console.log(key);
+                // console.log("data[key]");
+                // console.log(data[key]);
+    
+            });
+            io.emit('newData', JSON.stringify(data));
+            console.log("io.emit notify!!!!      ( app.js )    ->")
+        } else {
+            console.log("snapshot.val()       data is NULL, no entries in DB")
+            io.emit('newData', null);
+            console.log("io.emit notify!!!!      ( app.js )    ->")
+        }
+        
     });
 }
         
