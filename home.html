@@ -21,7 +21,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDxBymEDvCuIrqgA8Qr7XYVsrhJcZnOQW8",
+        authDomain: "stemvrse-node.firebaseapp.com",
+        databaseURL: "https://stemvrse-node.firebaseio.com",
+        projectId: "stemvrse-node",
+        storageBucket: "stemvrse-node.appspot.com",
+        messagingSenderId: "348626998212"
+      };
+      firebase.initializeApp(config);
+
+    </script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
     <script type="text/javascript">
         initApp = function() {
           firebase.auth().onAuthStateChanged(function(user) {
