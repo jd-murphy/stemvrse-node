@@ -352,6 +352,7 @@
                 } 
                 $("#addNewClientModal").modal('hide');
                 socket.emit('createUser', userInfo);
+                cleanseNewUserModal();
             });
 
 
@@ -366,7 +367,14 @@
         });
 
         function addNewClient() {
+            cleanseNewUserModal();
             $("#addNewClientModal").modal();
+        }
+        function cleanseNewUserModal(){
+            $('#addNewClientModal-username').val("");
+            $('#addNewClientModal-account').val("");
+            $('#addNewClientModal-email').val("");
+            $('#addNewClientModal-phone').val("");
         }
 
     </script>
