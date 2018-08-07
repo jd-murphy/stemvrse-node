@@ -248,6 +248,7 @@
                     "email": email,
                     "phone": phone 
                 } 
+                $("#modalEDIT").modal('hide');
                 socket.emit('editUser', userInfo);
             });
 
