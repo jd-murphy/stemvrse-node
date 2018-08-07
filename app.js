@@ -88,8 +88,8 @@ function getDataFromFirebase() {
     console.log("getDataFromFirebase()");
     ref.on("value", function(snapshot) {
         console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-        if (snapshot) {
-            data = snapshot.val()
+        data = snapshot.val()
+        if (data) {
             console.log("snapshot.val()       data ->")
             console.log(data)
             Object.keys(data).forEach(function (key) {
