@@ -18,6 +18,7 @@ const config = {
     "messagingSenderId": process.env.MESSAGINGSENDERID,
     "serviceAccount": process.env.SERVICEACCOUNT 
   }
+  
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
