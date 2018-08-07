@@ -37,7 +37,7 @@
         </button> -->
 
   
-            <!-- Modal -->
+            <!-- Modal (Edit and Delete confirmation) -->
             <div class="modal fade" id="modalDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -58,6 +58,45 @@
                     </div>
                 </div>
                 </div>
+            </div>
+
+
+
+            <!-- Modal (Edit User after confirmation) -->
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
+
+            <div class="modal fade" id="modalEDIT" tabindex="-1" role="dialog" aria-labelledby="modalEDITLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEDITLabel">Edit User Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="modalEDIT-account" class="col-form-label">Account:</label>
+                        <input type="text" class="form-control" id="modalEDIT-account">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEDIT-email" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="modalEDIT-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEDIT-phone" class="col-form-label">Phone:</label>
+                        <input type="text" class="form-control" id="modalEDIT-phone">
+                    </div>
+                   
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
+                </div>
+                </div>
+            </div>
             </div>
 
 
@@ -85,21 +124,25 @@
                 // $('#displayData div div strong div div a.deleteUser').unbind('click')
                 $("#displayData div").remove(); 
 
-                Object.keys(data).forEach(function (key) {
+                Object.keys(data).forEach(function (username) {
                         
                         dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
                                                 '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
                                                 '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                                    '<a class="dropdown-item editUser" href="#editUser' + key + '" id="editUser' + key + '">Edit User</a>' + 
-                                                    '<a class="dropdown-item deleteUser" href="#deleteUser' + key + '" id="deleteUser' + key + '">Delete User</a>' + 
+                                                    '<a class="dropdown-item editUser" href="#editUser' + username + '" id="editUser' + username + '">Edit User</a>' + 
+                                                    '<a class="dropdown-item deleteUser" href="#deleteUser' + username + '" id="deleteUser' + username + '">Delete User</a>' + 
                                                 '</div>' + 
                                             '</div>'
 
                         $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-                                '<div class="card-header"><strong>' + key + dropdownOptions + '</strong></div>' + 
+                                '<div class="card-header"><strong>' + username + dropdownOptions + '</strong></div>' + 
                                 '<div class="card-body">' + 
                                    ' <h4 class="card-title">Account Info</h4>' + 
-                                    '<p class="card-text"><strong>User:</strong> ' + key + "<br /><strong>Email:</strong> " + data[key].email + "<br /><strong>Phone:</strong> " + data[key].phone + "<br /><strong>Account:</strong> " + data[key].account + '</p>' + 
+                                    '<p class="card-text"><strong>User:</strong> ' + username + "<br /><strong>Email:</strong> " + data[username].email + "<br /><strong>Phone:</strong> " + data[username].phone + "<br /><strong>Account:</strong> " + data[username].account + '</p>' + 
+                                    '<input type="hidden" name="hiddenEmail' + username + '" id="hiddenEmail' + username + '" value="' + data[username].email + '">' +
+                                    '<input type="hidden" name="hiddenPhone' + username + '" id="hiddenPhone' + username + '" value="' + data[username].phone + '">' +
+                                    '<input type="hidden" name="hiddenAccount' + username + '" id="hiddenAccount' + username + '" value="' + data[username].account + '">' +
+                                  
                                '</div>' + 
                             '</div>');
 
@@ -160,6 +203,17 @@
                         console.log("perform " + action + " on " + username);
                         socket.emit('editUser', username);
                         $("#modalDialog").modal('hide');
+                        email = $('#hiddenEmail' + username).val();
+                        phone = $('#hiddenPhone' + username).val();
+                        account = $('#hiddenAccount' + username).val();
+                        console.log("hidden user values are: ");
+                        console.log($('#hiddenEmail' + username).val());
+                        console.log($('#hiddenPhone' + username).val());
+                        console.log($('#hiddenAccount' + username).val());
+                        $('#modalEDIT-account').val(account);
+                        $('#modalEDIT-email').val(email);
+                        $('#modalEDIT-phone').val(phone);    
+                        $("#modalEDIT").modal();
                         break;
                     case "DELETE":
                         console.log("The modal action is -> " + action);
