@@ -243,12 +243,12 @@
                 console.log('phone');
                 console.log(phone);
                 userInfo = {
-                    username,
-                    account,
-                    email,
-                    phone 
+                    "username": username,
+                    "account": account,
+                    "email": email,
+                    "phone": phone 
                 } 
-                // socket.emit('editUser', userInfo);
+                socket.emit('editUser', userInfo);
             });
 
 
