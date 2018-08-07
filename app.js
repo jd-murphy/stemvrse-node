@@ -88,7 +88,7 @@ function getDataFromFirebase() {
     console.log("getDataFromFirebase()");
     ref.on("value", function(snapshot) {
         console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-        if (snapshot != null) {
+        if (snapshot != null && snapshot != undefined) {
             data = snapshot.val()
             console.log("snapshot.val()       data ->")
             console.log(data)
