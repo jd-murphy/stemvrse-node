@@ -120,7 +120,7 @@
                 $("#decisionModalButton").html("EDIT");
                 $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
                 console.log('clientUserName is ' + clientUserName);
-                $('input[name=hiddenUsername]').val(clientUserName);
+                document.getElementById('hiddenUsername').value = clientUserName;
                 $("#modalDialog").modal();
                 
             });
@@ -136,7 +136,7 @@
                 $("#decisionModalButton").removeClass("btn-outline-success");
                 $("#decisionModalButton").addClass("btn-outline-danger");
                 console.log('clientUserName is ' + clientUserName);
-                $('input[name=hiddenUsername]').val(clientUserName);
+                document.getElementById('hiddenUsername').value = clientUserName;
                 $("#modalDialog").modal()
 
             });
