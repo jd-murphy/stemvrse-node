@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 
 app.get('/home', (req, res) => {
     console.log("\n\nGET /home   - user login \n\n")
-    res.sendFile('index.html',{root: __dirname});
+    res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/dashboard', (req, res) => {
