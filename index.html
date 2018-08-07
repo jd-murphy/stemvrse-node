@@ -110,32 +110,38 @@
 
             });
 
-                $('#displayData').on('click','div div strong div div a.editUser', function() {
-                    // console.log('edit user!  id: ' + this.id)
-                    // socket.emit('loadData');
-                    // alert('edit user!  id: ' + this.id)
-                    clientUserName = this.id.substring(8);
+            $('#displayData').on('click','div div strong div div a.editUser', function() {
+                // console.log('edit user!  id: ' + this.id)
+                // socket.emit('loadData');
+                // alert('edit user!  id: ' + this.id)
+                clientUserName = this.id.substring(8);
 
-                    $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
-                    $("#decisionModalButton").html("Edit");
-                    $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
-                    $("#modalDialog").modal();
-                   
-                });
-                $('#displayData').on('click','div div strong div div a.deleteUser', function() {
-                    // console.log('delete user!  id: ' + this.id)
-                    // socket.emit('loadData');
-                    // alert('delete user!  id: ' + this.id)
-                    clientUserName = this.id.substring(10);
+                $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
+                $("#decisionModalButton").html("EDIT");
+                $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
+                $("#modalDialog").modal();
+                
+            });
+            $('#displayData').on('click','div div strong div div a.deleteUser', function() {
+                // console.log('delete user!  id: ' + this.id)
+                // socket.emit('loadData');
+                // alert('delete user!  id: ' + this.id)
+                clientUserName = this.id.substring(10);
 
-                    $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
-                    $("#decisionModalButton").html("Confirm DELETE");
-                    $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
-                    $("#decisionModalButton").removeClass("btn-outline-success");
-                    $("#decisionModalButton").removeClass("btn-outline-danger");
-                    $("#modalDialog").modal()
+                $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
+                $("#decisionModalButton").html("DELETE");
+                $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
+                $("#decisionModalButton").removeClass("btn-outline-success");
+                $("#decisionModalButton").addClass("btn-outline-danger");
+                $("#modalDialog").modal()
 
-                });
+            });
+            $("#decisionModalButton").on('click', function() {
+                action = this.html();
+                console.log("The modal action is -> " + action);
+            });
+
+
 
             console.log("from html page -> emit loadData")
             socket.emit('loadData');
