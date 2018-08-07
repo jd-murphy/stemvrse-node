@@ -50,8 +50,8 @@ io.on("connection", function (socket) {
     socket.on("editUser", function (userInfo) {  
         editUser(userInfo);
     });
-    socket.on("createUser", function (data) {  
-        createUser(data);
+    socket.on("createUser", function (userInfo) {  
+        createUser(userInfo);
     });
     // socket.on("loadRaidData", function (notification_request) {  
     //     getRaidDataFromFirebase();
@@ -135,7 +135,7 @@ function editUser(userInfo) {
         
 
 
-function createUser(data) {
+function createUser(userInfo) {
 
     var db = admin.database();
     var ref = db.ref("testdata/" + userInfo.username); // testing
