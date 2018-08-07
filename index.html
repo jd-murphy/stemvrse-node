@@ -78,9 +78,9 @@
 
            
             var socket = io();
-            socket.on('newData', function (notification) {
+            socket.on('newData', function (data) {
                 console.log('SOCKET on newData!      ( index.html )   ')
-                var data = JSON.parse(notification); //process notication array
+                var data = JSON.parse(data); //process notication array
                 // $('#displayData div div strong div div a.editUser').unbind('click')
                 // $('#displayData div div strong div div a.deleteUser').unbind('click')
                 $("#displayData div").remove(); 
@@ -90,16 +90,16 @@
                         dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
                                                 '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
                                                 '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                                    '<a class="dropdown-item editUser" href="#editUser' + data[key].username + '" id="editUser' + data[key].username + '">Edit User</a>' + 
-                                                    '<a class="dropdown-item deleteUser" href="#deleteUser' + data[key].username + '" id="deleteUser' + data[key].username + '">Delete User</a>' + 
+                                                    '<a class="dropdown-item editUser" href="#editUser' + key + '" id="editUser' + key + '">Edit User</a>' + 
+                                                    '<a class="dropdown-item deleteUser" href="#deleteUser' + key + '" id="deleteUser' + key + '">Delete User</a>' + 
                                                 '</div>' + 
                                             '</div>'
 
                         $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-                                '<div class="card-header"><strong>' + data[key].username + dropdownOptions + '</strong></div>' + 
+                                '<div class="card-header"><strong>' + key + dropdownOptions + '</strong></div>' + 
                                 '<div class="card-body">' + 
                                    ' <h4 class="card-title">Account Info</h4>' + 
-                                    '<p class="card-text"><strong>User:</strong> ' + data[key].username + "<br /><strong>Email:</strong> " + data[key].email + "<br /><strong>Phone:</strong> " + data[key].phone + "<br /><strong>Account:</strong> " + data[key].account + '</p>' + 
+                                    '<p class="card-text"><strong>User:</strong> ' + key + "<br /><strong>Email:</strong> " + data[key].email + "<br /><strong>Phone:</strong> " + data[key].phone + "<br /><strong>Account:</strong> " + data[key].account + '</p>' + 
                                '</div>' + 
                             '</div>');
 
