@@ -228,10 +228,19 @@
                 }
             });
             $("#submitEditModalButton").on('click', function() {
+                console.log('from #submitEditModalButton -> ');
                 username = $('#modalEDIT-username').text()
+                console.log('username');
+                console.log(username);
                 account = $('#modalEDIT-account').val();
+                console.log('account');
+                console.log(account);
                 email = $('#modalEDIT-email').val();
+                console.log('email');
+                console.log(email);
                 phone = $('#modalEDIT-phone').val(); 
+                console.log('phone');
+                console.log(phone);
                 userInfo = {
                     username,
                     account,
