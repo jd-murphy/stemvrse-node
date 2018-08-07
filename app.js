@@ -7,8 +7,6 @@ const admin = require('firebase-admin');
 const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(server);
-// var firebase = require('firebase');
-// var firebaseui = require('firebaseui');
 
 
 const config = {
@@ -30,7 +28,6 @@ app.use('/assets/', express.static('./assets'));
 
 app.get('/', (req, res) => {     
     res.sendFile('login.html',{root: __dirname});
-    // res.send("welcome to stemvrse node app! server is live");
 });
 
 app.get('/home', (req, res) => {
@@ -42,6 +39,8 @@ app.get('/dashboard', (req, res) => {
     console.log("\n\nGET /dashboard   - admin login \n\n")
     res.sendFile('index.html',{root: __dirname});
 });
+
+
 
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {

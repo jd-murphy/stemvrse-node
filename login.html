@@ -33,6 +33,7 @@
         messagingSenderId: "348626998212"
       };
       firebase.initializeApp(config);
+
     </script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
@@ -40,10 +41,15 @@
     </head>
     <body>
         
+        <div class="container">
+            <div class="row">
+                    <h1>Welcome to the STEM-VRSE App</h1>
+                    <div id="firebaseui-auth-container"></div>
+                    <div id="loader">Loading...</div>
+            </div>
+        </div>
         
-            <h1>Welcome to the STEM-VRSE App</h1>
-            <div id="firebaseui-auth-container"></div>
-            <div id="loader">Loading...</div>
+            
 
 
 

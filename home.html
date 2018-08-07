@@ -22,10 +22,84 @@
     <![endif]-->
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script type="text/javascript">
+        initApp = function() {
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var uid = user.uid;
+              var phoneNumber = user.phoneNumber;
+              var providerData = user.providerData;
+              user.getIdToken().then(function(accessToken) {
+                document.getElementById('sign-in-status').textContent = 'Signed in';
+                document.getElementById('sign-in').textContent = 'Sign out';
+                document.getElementById('account-details').textContent = JSON.stringify({
+                  displayName: displayName,
+                  email: email,
+                  emailVerified: emailVerified,
+                  phoneNumber: phoneNumber,
+                  photoURL: photoURL,
+                  uid: uid,
+                  accessToken: accessToken,
+                  providerData: providerData
+                }, null, '  ');
+              });
+            } else {
+              // User is signed out.
+              document.getElementById('sign-in-status').textContent = 'Signed out';
+              document.getElementById('sign-in').textContent = 'Sign in';
+              document.getElementById('account-details').textContent = 'null';
+            }
+          }, function(error) {
+            console.log(error);
+          });
+        };
+  
+        window.addEventListener('load', function() {
+          initApp()
+        });
+      </script>
     </head>
     <body>
-        
-        
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">STEM-VRSE | Home</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Content</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Billing</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#" onclick="logout();">Logout</a>
+                        </li>
+                      </ul>
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                    </div>
+                  </nav>
+
+
+
+            <div id="sign-in-status"></div>
+            <div id="sign-in"></div>
+            <div id="account-details"></div>
+
             <h1>Welcome to the STEM-VRSE App</h1>
             <h3>You are successfully logged in.</h3>
           
@@ -49,6 +123,16 @@
                     // Initialize the FirebaseUI Widget using Firebase.
        
         });
+        function logout() {
+            firebase.auth().signOut()
+                .then(function() {
+                    // Sign-out successful.
+                    window.location.replace('/login');
+                })
+                .catch(function(error) {
+                    // An error happened
+                });
+        }
     </script>
   </body>
 </html>
