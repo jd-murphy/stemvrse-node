@@ -137,28 +137,19 @@ function editUser(userInfo) {
 
 function createUser(data) {
 
-    console.log("\n\n\nNOT IMPLEMENTED YET    createUser()\n\n")
-
-
     var db = admin.database();
-    var ref = db.ref("testdata");
-    console.log("getDataFromFirebase()");
-    ref.once("value", function(snapshot) {
-        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-        data = snapshot.val()
-        console.log("snapshot.val()       data ->")
-        console.log(data)
-        Object.keys(data).forEach(function (key) {
-            // do something with data[key]
-            // console.log("key");
-            // console.log(key);
-            // console.log("data[key]");
-            // console.log(data[key]);
+    var ref = db.ref("testdata/" + userInfo.username); // testing
+    console.log("createUser(" + userInfo.username + ")"); // testing
+    // var ref = db.ref("testdata/" + userInfo.username);
+    // console.log("editUser(" + userInfo.username + ")");
+    updatedUserData = { 
+            account: userInfo.account,
+            email: userInfo.email,
+            phone: userInfo.phone
+         }
 
-        });
-        io.emit('newData', JSON.stringify(data));
-        console.log("io.emit notify!!!!      ( app.js )    ->")
-    });
+    ref.push(updatedUserData)
+  
 }
         
 
