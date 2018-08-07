@@ -139,7 +139,7 @@
 
             });
             $("#decisionModalButton").on('click', function() {
-                action = this.text();
+                action = $("#decisionModalButton").text();
                 username = $('#username').val();
                 console.log("The modal action is -> " + action);
                 console.log("perform " + action + " on " + username);
