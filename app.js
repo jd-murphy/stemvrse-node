@@ -112,7 +112,7 @@ function deleteUser(username) {
     var db = admin.database();
     var ref = db.ref("testdata/" + username);
     console.log("deleteUser(" + username + ")");
-    // ref.remove();
+    ref.remove();
 
 }
         
