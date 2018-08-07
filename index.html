@@ -119,7 +119,7 @@
                 $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
                 $("#decisionModalButton").html("EDIT");
                 $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
-                document.getElementById('#username').value = clientUserName;
+                $('input[name=username]').val(clientUserName);
                 $("#modalDialog").modal();
                 
             });
@@ -134,7 +134,7 @@
                 $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
                 $("#decisionModalButton").removeClass("btn-outline-success");
                 $("#decisionModalButton").addClass("btn-outline-danger");
-                document.getElementById('#username').value = clientUserName;
+                $('input[name=username]').val(clientUserName);
                 $("#modalDialog").modal()
 
             });
