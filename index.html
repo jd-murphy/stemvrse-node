@@ -152,15 +152,21 @@
                 console.log($('#hiddenUsername').val());
                 action = $("#decisionModalButton").text();
                 username = $('#hiddenUsername').val();
-                console.log("The modal action is -> " + action);
-                console.log("perform " + action + " on " + username);
+                // console.log("The modal action is -> " + action);
+                // console.log("perform " + action + " on " + username);
                 switch (action) {
                     case "EDIT":
-                    console.log("IMPLEMENT SWITCH FOR " + action);
+                        console.log("The modal action is -> " + action);
+                        console.log("perform " + action + " on " + username);
+                        socket.emit('editUser');
                         break;
                     case "DELETE":
-                    console.log("IMPLEMENT SWITCH FOR " + action);
+                        console.log("The modal action is -> " + action);
+                        console.log("perform " + action + " on " + username);
+                        socket.emit('deleteUser');
                         break;
+                    default:
+                        alert("switch default.... something went wrong... ")
                 }
             });
 

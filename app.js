@@ -111,24 +111,27 @@ function deleteUser(data) {
 
 
     var db = admin.database();
-    var ref = db.ref("testdata");
-    console.log("getDataFromFirebase()");
-    ref.on("value", function(snapshot) {
-        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-        data = snapshot.val()
-        console.log("snapshot.val()       data ->")
-        console.log(data)
-        Object.keys(data).forEach(function (key) {
-            // do something with data[key]
-            // console.log("key");
-            // console.log(key);
-            // console.log("data[key]");
-            // console.log(data[key]);
+    var ref = db.ref("testdata/" + data);
+    console.log("deleteUser(" + data + ")");
 
-        });
-        io.emit('newData', JSON.stringify(data));
-        console.log("io.emit notify!!!!      ( app.js )    ->")
-    });
+    ref.remove();
+
+    // ref.once("value", function(snapshot) {
+    //     console.log("SNAPSHOT   getDataFromFirebase() ->  ");
+    //     data = snapshot.val()
+    //     console.log("snapshot.val()       data ->")
+    //     console.log(data)
+    //     Object.keys(data).forEach(function (key) {
+    //         // do something with data[key]
+    //         // console.log("key");
+    //         // console.log(key);
+    //         // console.log("data[key]");
+    //         // console.log(data[key]);
+
+    //     });
+    io.emit('newData', JSON.stringify(data));
+    console.log("io.emit notify!!!!      ( app.js )    ->")
+
 }
         
 
@@ -141,7 +144,7 @@ function editUser(data) {
     var db = admin.database();
     var ref = db.ref("testdata");
     console.log("getDataFromFirebase()");
-    ref.on("value", function(snapshot) {
+    ref.once("value", function(snapshot) {
         console.log("SNAPSHOT   getDataFromFirebase() ->  ");
         data = snapshot.val()
         console.log("snapshot.val()       data ->")
@@ -169,7 +172,7 @@ function createUser(data) {
     var db = admin.database();
     var ref = db.ref("testdata");
     console.log("getDataFromFirebase()");
-    ref.on("value", function(snapshot) {
+    ref.once("value", function(snapshot) {
         console.log("SNAPSHOT   getDataFromFirebase() ->  ");
         data = snapshot.val()
         console.log("snapshot.val()       data ->")
