@@ -88,7 +88,7 @@
                         <label for="modalEDIT-phone" class="col-form-label">Phone:</label>
                         <input type="text" class="form-control" id="modalEDIT-phone">
                     </div>
-                   
+                    
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -228,12 +228,14 @@
                 }
             });
             $("#submitEditModalButton").on('click', function() {
+                username = $('#modalEDIT-username').html()
                 account = $('#modalEDIT-account').val();
                 email = $('#modalEDIT-email').val();
                 phone = $('#modalEDIT-phone').val(); 
                 userInfo = {
                     username,
                     account,
+                    email,
                     phone 
                 } 
                 socket.emit('editUser', userInfo);
