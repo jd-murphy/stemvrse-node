@@ -47,8 +47,8 @@ io.on("connection", function (socket) {
         console.log("username is " + username)
         deleteUser(username);
     });
-    socket.on("editUser", function (data) {  
-        editUser(data);
+    socket.on("editUser", function (userInfo) {  
+        editUser(userInfo);
     });
     socket.on("createUser", function (data) {  
         createUser(data);
@@ -107,41 +107,30 @@ function getDataFromFirebase() {
 
 
 function deleteUser(username) {
-
-
     var db = admin.database();
     var ref = db.ref("testdata/" + username);
     console.log("deleteUser(" + username + ")");
     ref.remove();
-
 }
         
 
 
-function editUser(data) {
-
-    console.log("\n\n\nNOT IMPLEMENTED YET    editUser()\n\n")
-
+function editUser(userInfo) {
 
     var db = admin.database();
-    var ref = db.ref("testdata");
-    console.log("getDataFromFirebase()");
-    ref.once("value", function(snapshot) {
-        console.log("SNAPSHOT   getDataFromFirebase() ->  ");
-        data = snapshot.val()
-        console.log("snapshot.val()       data ->")
-        console.log(data)
-        Object.keys(data).forEach(function (key) {
-            // do something with data[key]
-            // console.log("key");
-            // console.log(key);
-            // console.log("data[key]");
-            // console.log(data[key]);
+    var ref = db.ref("testdata/" + userInfo); // testing
+    console.log("editUser(" + userInfo + ")"); // testing
+    // var ref = db.ref("testdata/" + userInfo.username);
+    // console.log("editUser(" + userInfo.username + ")");
+    updatedUserData = { 
+            account: 'testing update!!!!!',
+            email: 'testingUPdateEmail@hotmail.com',
+            phone: '555-000-0000'
+         }
 
-        });
-        io.emit('newData', JSON.stringify(data));
-        console.log("io.emit notify!!!!      ( app.js )    ->")
-    });
+    ref.update(updatedUserData)
+    
+    
 }
         
 
