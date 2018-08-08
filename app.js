@@ -10,8 +10,17 @@ const io = require('socket.io')(server);
 var firebase = require('firebase');
 require('firebase/auth');
 require('firebase/database');
-var exphbs  = require('express-handlebars');
 
+var path = require('path');
+
+
+var handlebars = require('express-handlebars').create({
+    layoutsDir: path.join(__dirname, "views/layouts"),
+    partialsDir: path.join(__dirname, "views/partials"),
+    defaultLayout: 'main',
+    extname: 'hbs'
+  });
+  
 
 
 const config = {
@@ -28,9 +37,19 @@ firebase.initializeApp(config);
 
 
 
-app.engine('.hbs',  exphbs({extname: '.hbs', defaultLayout: 'main'}));
-app.set('view engine', '.hbs');
-app.set('views', path.join(__dirname, "views"));
+// app.engine('.hbs',  exphbs({extname: '.hbs', defaultLayout: 'main'}));
+// app.set('view engine', '.hbs');
+// app.set('views', path.join(__dirname, "views"));
+
+
+
+  app.engine('hbs', handlebars.engine);
+  app.set('view engine', 'hbs');
+  app.set('views', path.join(__dirname, "views"));
+  
+
+
+
 
 
 app.use(bodyParser.json());
