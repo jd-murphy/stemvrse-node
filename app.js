@@ -147,7 +147,7 @@ function createUser(userInfo) {
 
 function isAuthenticated(req, res, next){
    var user = firebase.auth().currentUser;
-      if (user !== null) {
+      if (user) {
         req.user = user;
         next();
       } else {
