@@ -30,12 +30,12 @@ app.get('/', (req, res) => {
     res.sendFile('login.html',{root: __dirname});
 });
 
-app.get('/home', (req, res) => {
+app.get('/home', isAuthenticated, (req, res) => {
     console.log("\n\nGET /home   - user login \n\n")
     res.sendFile('home.html',{root: __dirname});
 });
 
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard', isAuthenticated, (req, res) => {
     console.log("\n\nGET /dashboard   - admin login \n\n")
     res.sendFile('index.html',{root: __dirname});
 });
@@ -132,3 +132,12 @@ function createUser(userInfo) {
         
 
 
+function isAuthenticated(req, res, next){
+    if (req.user){
+        console.log('user is authenticated! woooohooo');
+        return next();
+    } else {
+        console.log('user is not authenticated.... booooooooo');
+        res.redirect('/');
+    }
+}
