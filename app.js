@@ -43,12 +43,12 @@ app.get('/', (req, res) => {
 //     });
 // });
 
-app.get('/home', isAuthenticated, (req, res) => {
+app.get('/home', (req, res) => {
     console.log("\n\nGET /home   - user login \n\n")
     res.sendFile('home.html',{root: __dirname});
 });
 
-app.get('/dashboard', isAuthenticated, (req, res) => {
+app.get('/dashboard', (req, res) => {
     console.log("\n\nGET /dashboard   - admin login \n\n")
     res.sendFile('index.html',{root: __dirname});
 });
@@ -145,18 +145,18 @@ function createUser(userInfo) {
         
 
 
-function isAuthenticated(req, res, next){
-    console.log("calling middleware isAuthenticated... ")
-    var user = firebase.auth().currentUser;
-    console.log("user")
-    console.log(user)
-    if (user) {
-        console.log("user is VALID")
-        req.user = user;
-        next();
-    } else {
-        console.log("user is NOT VALID")
-        console.log("redirecting...")
-        res.redirect('/');
-    }
-}
+// function isAuthenticated(req, res, next){
+//     console.log("calling middleware isAuthenticated... ")
+//     var user = firebase.auth().currentUser;
+//     console.log("user")
+//     console.log(user)
+//     if (user) {
+//         console.log("user is VALID")
+//         req.user = user;
+//         next();
+//     } else {
+//         console.log("user is NOT VALID")
+//         console.log("redirecting...")
+//         res.redirect('/');
+//     }
+// }
