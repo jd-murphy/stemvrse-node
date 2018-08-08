@@ -1,5 +1,5 @@
 $(document).ready(function(){
-           
+           console.log("\n\nTHE SCRIPT WAS LOADED!!!!\n\n")
     var socket = io();
     socket.on('newData', function (data) {
         console.log('SOCKET on newData!      ( index.html )   ')

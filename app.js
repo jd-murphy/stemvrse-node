@@ -76,9 +76,9 @@ app.get('/home', (req, res) => {
 app.get('/dashboard', (req, res) => {
     // res.render('dashboard');
     res.render('dashboard', {
+        customScripts,
         title: 'Admin Dashboard',
-        nav: 'admin-nav',
-        customScripts
+        nav: 'admin-nav'
     })
     // res.sendFile('index.html',{root: __dirname});
 });
