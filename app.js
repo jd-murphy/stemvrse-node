@@ -76,7 +76,64 @@ app.get('/home', (req, res) => {
     // res.sendFile('home.html',{root: __dirname});
 });
 
-app.get('/dashboard', (req, res) => {
+app.get('/favorites', (req, res) => {
+    // res.render('home');
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
+    // res.sendFile('home.html',{root: __dirname});
+});
+
+app.get('/where-in-the-world', (req, res) => {
+    // res.render('home');
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
+    // res.sendFile('home.html',{root: __dirname});
+});
+
+app.get('/researchers', (req, res) => {
+    // res.render('home');
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
+    // res.sendFile('home.html',{root: __dirname});
+});
+
+app.get('/faq', (req, res) => {
+    // res.render('home');
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
+    // res.sendFile('home.html',{root: __dirname});
+});
+
+app.get('/account', (req, res) => {
+    // res.render('home');
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
+    // res.sendFile('home.html',{root: __dirname});
+});
+
+
+
+
+
+
+
+
+
+
+
+///////////// ADMIN ROUTES //////////////
+
+app.get('/admin-home', (req, res) => {
     // res.render('dashboard');
     res.render('dashboard', {
         customScripts: true,
@@ -86,6 +143,50 @@ app.get('/dashboard', (req, res) => {
     })
     // res.sendFile('index.html',{root: __dirname});
 });
+
+app.get('/admin-dashboard', (req, res) => {
+    // res.render('dashboard');
+    res.render('dashboard', {
+        customScripts: true,
+        admin: true,
+        title: 'Admin Dashboard',
+        nav: 'admin-nav'
+    })
+    // res.sendFile('index.html',{root: __dirname});
+});
+
+app.get('/admin-content', (req, res) => {
+    // res.render('dashboard');
+    res.render('dashboard', {
+        customScripts: true,
+        admin: true,
+        title: 'Admin Dashboard',
+        nav: 'admin-nav'
+    })
+    // res.sendFile('index.html',{root: __dirname});
+});
+
+app.get('/admin-billing', (req, res) => {
+    // res.render('dashboard');
+    res.render('dashboard', {
+        customScripts: true,
+        admin: true,
+        title: 'Admin Dashboard',
+        nav: 'admin-nav'
+    })
+    // res.sendFile('index.html',{root: __dirname});
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 
