@@ -18,7 +18,7 @@ var handlebars = require('express-handlebars').create({
     layoutsDir: path.join(__dirname, "views/layouts"),
     partialsDir: path.join(__dirname, "views/partials"),
     defaultLayout: 'main',
-    extname: 'hbs'
+    extname: '.hbs'
   });
   
 
@@ -43,8 +43,8 @@ firebase.initializeApp(config);
 
 
 
-app.engine('hbs', handlebars.engine);
-app.set('view engine', 'hbs');
+app.engine('.hbs', handlebars.engine);
+app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, "views"));
   
 
@@ -65,19 +65,21 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.render('home', {
-        title: "Home",
-        nav: 'nav'
-    })
+    res.render('home');
+    // res.render('home', {
+    //     title: "Home",
+    //     nav: 'nav'
+    // })
     // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard', {
-        title: 'Admin Dashboard',
-        nav: 'admin-nav',
-        customScripts
-    })
+    res.render('dashboard');
+    // res.render('dashboard', {
+    //     title: 'Admin Dashboard',
+    //     nav: 'admin-nav',
+    //     customScripts
+    // })
     // res.sendFile('index.html',{root: __dirname});
 });
 
