@@ -33,12 +33,12 @@ app.get('/', (req, res) => {
     res.sendFile('login.html',{root: __dirname});
 });
 
-app.get('/home', isAuthenticated, (req, res) => {
+app.get('/home', (req, res) => {
     console.log("\n\nGET /home   - user login \n\n")
     res.sendFile('home.html',{root: __dirname});
 });
 
-app.get('/dashboard', isAuthenticated, (req, res) => {
+app.get('/dashboard', (req, res) => {
     console.log("\n\nGET /dashboard   - admin login \n\n")
     res.sendFile('index.html',{root: __dirname});
 });
@@ -135,14 +135,14 @@ function createUser(userInfo) {
         
 
 
-function isAuthenticated(req, res, next){
-    admin.auth().verifyIdToken(req.idToken)
-    .then(function(decodedToken) {
-      var uid = decodedToken.uid;
-      next()
-      // ...
-    }).catch(function(error) {
-      // Handle error
-      res.redirect('/');
-    });
-}
+// function isAuthenticated(req, res, next){
+//     admin.auth().verifyIdToken(req.idToken)
+//     .then(function(decodedToken) {
+//       var uid = decodedToken.uid;
+//       next()
+//       // ...
+//     }).catch(function(error) {
+//       // Handle error
+//       res.redirect('/');
+//     });
+// }
