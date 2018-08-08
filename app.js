@@ -65,21 +65,21 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.render('home');
-    // res.render('home', {
-    //     title: "Home",
-    //     nav: 'nav'
-    // })
+    // res.render('home');
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
     // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard');
-    // res.render('dashboard', {
-    //     title: 'Admin Dashboard',
-    //     nav: 'admin-nav',
-    //     customScripts
-    // })
+    // res.render('dashboard');
+    res.render('dashboard', {
+        title: 'Admin Dashboard',
+        nav: 'admin-nav',
+        customScripts
+    })
     // res.sendFile('index.html',{root: __dirname});
 });
 
