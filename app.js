@@ -66,7 +66,11 @@ app.get('/dashboard', (req, res) => {
 
 
 app.use(function(req, res, next) {
-    return res.status(404).send("Error 404 - Page Not Found");
+    res.render('fourOhFour', {
+        title: "Error: 404",
+        nav: 'nav'
+    })
+    // return res.status(404).send("Error 404 - Page Not Found");
   });
   
   // 500 - Any server error
