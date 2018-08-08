@@ -133,11 +133,16 @@ function createUser(userInfo) {
 
 
 function isAuthenticated(req, res, next){
-    if (req.user){
-        console.log('user is authenticated! woooohooo');
-        return next();
-    } else {
-        console.log('user is not authenticated.... booooooooo');
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            return next();
+        } else {
+          // User is signed out.
+          res.redirect('/');
+        }
+      }, function(error) {
+        console.log(error);
         res.redirect('/');
-    }
+      });
+   
 }
