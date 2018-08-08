@@ -10,6 +10,8 @@ const io = require('socket.io')(server);
 var firebase = require('firebase');
 require('firebase/auth');
 require('firebase/database');
+var exphbs  = require('express-handlebars');
+
 
 
 const config = {
@@ -25,6 +27,10 @@ const config = {
 firebase.initializeApp(config); 
 
 
+
+app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/assets/', express.static('./assets'));
@@ -37,11 +43,20 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.sendFile('home.html',{root: __dirname});
+    res.render('home', {
+        title: "Home",
+        nav: 'nav'
+    })
+    // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/dashboard', (req, res) => {
-    res.sendFile('index.html',{root: __dirname});
+    res.render('dashboard', {
+        title: 'Admin Dashboard',
+        nav: 'admin-nav',
+        customScripts
+    })
+    // res.sendFile('index.html',{root: __dirname});
 });
 
 
