@@ -28,7 +28,7 @@ firebase.initializeApp(config);
 
 
 
-app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.engine('.hbs', exphbs({extname: '.hbs',  defaultLayout: 'main', partialsDir: ['views/partials/']}));
 app.set('view engine', '.hbs');
 
 app.use(bodyParser.json());
