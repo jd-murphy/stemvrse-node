@@ -76,7 +76,7 @@ app.get('/home', (req, res) => {
 app.get('/dashboard', (req, res) => {
     // res.render('dashboard');
     res.render('dashboard', {
-        customScripts,
+        customScripts: true,
         title: 'Admin Dashboard',
         nav: 'admin-nav'
     })
