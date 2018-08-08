@@ -33,6 +33,16 @@ app.get('/', (req, res) => {
     res.sendFile('login.html',{root: __dirname});
 });
 
+app.post("/firebase-login", function(req, res){
+    admin.auth().verifyIdToken(req.body.idToken)
+    .then(function(decodedToken) {
+        console.log(JSON.stringify(decodedToken));
+        
+    }).catch(function(error) {
+        res.json(error);
+    });
+});
+
 app.get('/home', isAuthenticated, (req, res) => {
     console.log("\n\nGET /home   - user login \n\n")
     res.sendFile('home.html',{root: __dirname});

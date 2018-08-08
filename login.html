@@ -128,11 +128,19 @@
             var uiConfig = {
                 callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                    // User successfully signed in.
-                    // Return type determines whether we continue the redirect automatically
-                    // or whether we leave that to developer to handle.
-                   
-                    return true;
+                    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+                        var form = document.body.appendChild(document.createElement("form"));
+                        form.action = "/firebase-login";
+                        form.method = "POST";
+                        var input = form.appendChild(document.createElement("input"));
+                        input.type = "hidden";
+                        input.name = "idToken";
+                        input.value = idToken;
+                        form.submit();
+                    }).catch(function(error) {
+                        console.error(error);
+                    });
+                    return false;
                 },
                 uiShown: function() {
                     // The widget is rendered.
