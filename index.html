@@ -105,6 +105,9 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#" onclick="addNewClient();">Add New Client</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" onclick="logout();">Logout</a>
+                    </li>
                   </ul>
                   <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -389,6 +392,16 @@
             $('#addNewClientModal-account').val("");
             $('#addNewClientModal-email').val("");
             $('#addNewClientModal-phone').val("");
+        }
+        function logout() {
+            firebase.auth().signOut()
+                .then(function() {
+                    // Sign-out successful.
+                    window.location.replace('/login');
+                })
+                .catch(function(error) {
+                    // An error happened
+                });
         }
 
     </script>
