@@ -146,11 +146,17 @@ function createUser(userInfo) {
 
 
 function isAuthenticated(req, res, next){
-   var user = firebase.auth().currentUser;
-      if (user) {
+    console.log("calling middleware isAuthenticated... ")
+    var user = firebase.auth().currentUser;
+    console.log("user")
+    console.log(user)
+    if (user) {
+        console.log("user is VALID")
         req.user = user;
         next();
-      } else {
+    } else {
+        console.log("user is NOT VALID")
+        console.log("redirecting...")
         res.redirect('/');
-      }
+    }
 }
