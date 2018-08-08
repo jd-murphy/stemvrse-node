@@ -80,6 +80,7 @@ app.get('/dashboard', (req, res) => {
     // res.render('dashboard');
     res.render('dashboard', {
         customScripts: true,
+        admin: true,
         title: 'Admin Dashboard',
         nav: 'admin-nav'
     })
