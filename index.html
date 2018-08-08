@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>STEM-VRSE Admin Console</title>
-    <style type="text/css">body {visibility: hidden;}</style>
+  
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <!-- OLD ONE, WAS WORKING, <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
@@ -22,7 +22,7 @@
     <![endif]-->
 
     <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> -->
-
+    <link rel="stylesheet" href="/auth.css"/>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -44,7 +44,7 @@
         initApp = function() {
           firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                document.write('<style type="text/css">body {visibility: visible;}</style>');
+                document.body.removeClass('noAuth');
               // User is signed in.
               var displayName = user.displayName;
               var email = user.email;
@@ -85,7 +85,7 @@
         });
       </script>
   </head>
-  <body>
+  <body class="noAuth">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">STEM-VRSE Admin Console</a>
