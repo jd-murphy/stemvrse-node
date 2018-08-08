@@ -33,15 +33,15 @@ app.get('/', (req, res) => {
     res.sendFile('login.html',{root: __dirname});
 });
 
-app.post("/firebase-login", function(req, res){
-    admin.auth().verifyIdToken(req.body.idToken)
-    .then(function(decodedToken) {
-        console.log(JSON.stringify(decodedToken));
-        
-    }).catch(function(error) {
-        res.json(error);
-    });
-});
+// app.post("/firebase-login", function(req, res){
+//     admin.auth().verifyIdToken(req.body.idToken)
+//     .then(function(decodedToken) {
+//         console.log(JSON.stringify(decodedToken));
+
+//     }).catch(function(error) {
+//         res.json(error);
+//     });
+// });
 
 app.get('/home', isAuthenticated, (req, res) => {
     console.log("\n\nGET /home   - user login \n\n")
@@ -146,16 +146,11 @@ function createUser(userInfo) {
 
 
 function isAuthenticated(req, res, next){
-    console.log("\n\nHERE IS THE REQUEST\n\n")
-    console.log(req)
-    return next();
-    // admin.auth().verifyIdToken(req.idToken)
-    // .then(function(decodedToken) {
-    //   var uid = decodedToken.uid;
-    //   next()
-    //   // ...
-    // }).catch(function(error) {
-    //   // Handle error
-    //   res.redirect('/');
-    // });
+   var user = firebase.auth().currentUser;
+      if (user !== null) {
+        req.user = user;
+        next();
+      } else {
+        res.redirect('/login');
+      }
 }
