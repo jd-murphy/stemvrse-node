@@ -59,18 +59,18 @@
               var phoneNumber = user.phoneNumber;
               var providerData = user.providerData;
               user.getIdToken().then(function(accessToken) {
-                document.getElementById('sign-in-status').textContent = 'Signed in';
-                document.getElementById('sign-in').textContent = 'Sign out';
-                document.getElementById('account-details').textContent = JSON.stringify({
-                  displayName: displayName,
-                  email: email,
-                  emailVerified: emailVerified,
-                  phoneNumber: phoneNumber,
-                  photoURL: photoURL,
-                  uid: uid,
-                  accessToken: accessToken,
-                  providerData: providerData
-                }, null, '  ');
+                // document.getElementById('sign-in-status').textContent = 'Signed in';
+                // document.getElementById('sign-in').textContent = 'Sign out';
+                // document.getElementById('account-details').textContent = JSON.stringify({
+                //   displayName: displayName,
+                //   email: email,
+                //   emailVerified: emailVerified,
+                //   phoneNumber: phoneNumber,
+                //   photoURL: photoURL,
+                //   uid: uid,
+                //   accessToken: accessToken,
+                //   providerData: providerData
+                // }, null, '  ');
               });
             } else {
               // User is signed out.
@@ -129,9 +129,9 @@
 
 
 
-              <div id="sign-in-status"></div>
+              <!-- <div id="sign-in-status"></div>
               <div id="sign-in"></div>
-              <div id="account-details"></div>
+              <div id="account-details"></div> -->
 
         <div class="container" id="displayData" style="padding: 5rem;">
 
