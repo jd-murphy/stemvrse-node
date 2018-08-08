@@ -51,7 +51,7 @@ app.get('/dashboard', (req, res) => {
 
 
 app.use(function(req, res, next) {
-    return res.status(404).send({ message: 'The page '+req.url+' was not found.' });
+    return res.status(404).send("Error 404 - Page not found");
   });
   
   // 500 - Any server error
