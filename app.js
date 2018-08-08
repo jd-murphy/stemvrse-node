@@ -48,12 +48,19 @@ app.get('/dashboard', (req, res) => {
 
 
 
+
+
+app.use(function(req, res, next) {
+    return res.status(404).send({ message: 'The page '+req.url+' was not found.' });
+  });
+  
+  // 500 - Any server error
 app.use(function(err, req, res, next) {
-    res.status(500);
-    res.render('error', { error: err });
+    return res.status(500).send({ error: err });
   });
 
-  
+
+
 
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
