@@ -7,6 +7,8 @@ const admin = require('firebase-admin');
 const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(server);
+var firebase = require('firebase');
+require('firebase/auth');
 
 
 const config = {
