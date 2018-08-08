@@ -49,8 +49,11 @@ app.get('/dashboard', (req, res) => {
 
 
 app.use(function(err, req, res, next) {
-    res.sendFile('error.html');
+    res.status(500);
+    res.render('error', { error: err });
   });
+
+  
 
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
