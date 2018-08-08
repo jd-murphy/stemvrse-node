@@ -51,12 +51,12 @@ app.get('/dashboard', (req, res) => {
 
 
 app.use(function(req, res, next) {
-    return res.status(404).send("Error 404 - Page not found");
+    return res.status(404).send("Error 404 - Page Not Found");
   });
   
   // 500 - Any server error
 app.use(function(err, req, res, next) {
-    return res.status(500).send({ error: err });
+    return res.status(500).send("Error 500 - Internal Server Error");
   });
 
 
