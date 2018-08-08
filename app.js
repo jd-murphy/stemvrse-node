@@ -138,6 +138,7 @@ function createUser(userInfo) {
 function isAuthenticated(req, res, next){
     console.log("\n\nHERE IS THE REQUEST\n\n")
     console.log(req)
+    return next();
     // admin.auth().verifyIdToken(req.idToken)
     // .then(function(decodedToken) {
     //   var uid = decodedToken.uid;
