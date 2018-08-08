@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(server);
 var firebase = require('firebase');
 require('firebase/auth');
+require('firebase/database');
 
 
 const config = {
@@ -21,7 +22,7 @@ const config = {
     "serviceAccount": process.env.SERVICEACCOUNT 
   }
 
-
+firebase.initializeApp(config); 
 
 
 app.use(bodyParser.json());
