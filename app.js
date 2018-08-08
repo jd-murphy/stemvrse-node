@@ -30,10 +30,13 @@ firebase.initializeApp(config);
 
 app.engine('.hbs',  exphbs({extname: '.hbs', defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, "views"));
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/assets/', express.static('./assets'));
+
 
 app.get('/', (req, res) => {     
     res.sendFile('login.html',{root: __dirname});
