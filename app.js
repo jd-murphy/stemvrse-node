@@ -58,6 +58,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/assets/', express.static('./assets'));
 app.use('/scripts/', express.static('./scripts'));
 
+
+
 app.get('/', (req, res) => {     
     res.sendFile('login.html',{root: __dirname});
 });
