@@ -35,27 +35,23 @@ app.get('/', (req, res) => {
 
 
 
-// app.post("/firebase-login", function(req, res){
-//     admin.auth().verifyIdToken(req.body.idToken)
-//     .then(function(decodedToken) {
-//         console.log(JSON.stringify(decodedToken));
-
-//     }).catch(function(error) {
-//         res.json(error);
-//     });
-// });
 
 app.get('/home', (req, res) => {
-    console.log("\n\nGET /home   - user login \n\n")
     res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/dashboard', (req, res) => {
-    console.log("\n\nGET /dashboard   - admin login \n\n")
     res.sendFile('index.html',{root: __dirname});
 });
 
 
+
+
+
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.sendFile('error.html');
+  });
 
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
@@ -147,18 +143,3 @@ function createUser(userInfo) {
         
 
 
-// function isAuthenticated(req, res, next){
-//     console.log("calling middleware isAuthenticated... ")
-//     var user = firebase.auth().currentUser;
-//     console.log("user")
-//     console.log(user)
-//     if (user) {
-//         console.log("user is VALID")
-//         req.user = user;
-//         next();
-//     } else {
-//         console.log("user is NOT VALID")
-//         console.log("redirecting...")
-//         res.redirect('/');
-//     }
-// }
