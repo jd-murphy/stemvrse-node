@@ -136,17 +136,13 @@ function createUser(userInfo) {
 
 
 function isAuthenticated(req, res, next){
-    user = req.user;
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            return next();
-        } else {
-          // User is signed out.
-          res.redirect('/');
-        }
-      }, function(error) {
-        console.log(error);
-        res.redirect('/');
-      });
-   
+    admin.auth().verifyIdToken(req.idToken)
+    .then(function(decodedToken) {
+      var uid = decodedToken.uid;
+      next()
+      // ...
+    }).catch(function(error) {
+      // Handle error
+      res.redirect('/');
+    });
 }
