@@ -387,8 +387,8 @@ function verifyAdmin(req, res) {
 }
 
 function checkAdminSecret(req, res, next) {
-    console.log('Authenticating Admin secret.            [ checkAdminSecret()   (app.js) ]')
-    retrievedSecret = getAdminSecret(req.email)
+    console.log('Authenticating Admin secret.            [ checkAdminSecret(' + req.body.email + ')   (app.js) ]')
+    retrievedSecret = getAdminSecret(req.body.email)
     if (req.body.secret === retrievedSecret){
         console.log("Success, secret is VALID.")
         return next(); 
