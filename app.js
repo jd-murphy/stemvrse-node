@@ -320,8 +320,8 @@ function verifyAdmin(req, res, next) {
     // }
     // res.redirect('/home');
     console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
-    console.log(req.query.idToken)
-    admin.auth().verifyIdToken(req.query.idToken)
+    console.log(req.body.idToken)
+    admin.auth().verifyIdToken(req.body.idToken)
         .then(function(decodedToken) {
             var uid = decodedToken.uid;
             var email = decodedToken.email;
