@@ -64,6 +64,8 @@
                     console.log(email);
                     $('body').append('<input id="authAccessToken" type="hidden" value="' + accessToken + '">')
                     
+            
+                    
                 // document.getElementById('sign-in-status').textContent = 'Signed in';
                 // document.getElementById('sign-in').textContent = 'Sign out';
                 // document.getElementById('account-details').textContent = JSON.stringify({
@@ -146,6 +148,7 @@
   
 
     <script>
+      
         
         function logout() {
             firebase.auth().signOut()
