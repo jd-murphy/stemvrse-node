@@ -358,8 +358,8 @@ function verifyAdmin(req, res, next) {
     try {
         console.log('Authenticating Admin status.')
         console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
-        console.log(req.body.idToken)
-        admin.auth().verifyIdToken(req.body.idToken)
+        console.log(req.headers.idToken)
+        admin.auth().verifyIdToken(req.headers.idToken)
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;

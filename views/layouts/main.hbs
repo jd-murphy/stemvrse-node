@@ -63,7 +63,7 @@
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
                     console.log(email);
                     $('body').append('<input id="authAccessToken" type="hidden" value="' + accessToken + '">')
-                    
+                    request.headers["Authorization"] = accessToken;
             
                     
                 // document.getElementById('sign-in-status').textContent = 'Signed in';
@@ -161,33 +161,6 @@
                     // An error happened
                 });
         }
-
-        function adminNavigate(path) {
-            token = $('#authAccessToken').val();
-            console.log("POST to /verify-token from adminNavigate()  (main.hbs)");
-
-            var request = $.ajax({
-              url: path,
-              method: "POST",
-              data: { idToken : token}
-            });
-            
-           // request.done(function(result) {
-             // console.log("result from admin verification")
-              //console.log(result)
-              //if (result["verified"] == true) {
-                  //window.location.href = path;
-              //} else {
-                  //window.location.href = '/home';
-              //}
-              
-            //});
-            
-            request.fail(function() {
-              alert( "Request failed");
-              window.location.href = '/home';
-            });
-         
 
 
 
