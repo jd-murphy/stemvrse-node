@@ -63,7 +63,8 @@
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
                     console.log(email);
                     $('body').append('<input id="authAccessToken" type="hidden" value="' + accessToken + '">')
-                    request.headers["Authorization"] = accessToken;
+                    
+                    sessionStorage.setItem("authAccessToken", accessToken)
             
                     
                 // document.getElementById('sign-in-status').textContent = 'Signed in';
@@ -165,10 +166,7 @@
 
 
 
-            
 
-            
-        }
 
     </script>
   </body>
