@@ -355,7 +355,7 @@ function checkAdminSecret(req, res, next) {
     console.log('For testing and development assume user is Admin secret is valid and return true.')
     return next(); // simply assume user is admin for testing now
 }
-}
+
 
 
 
