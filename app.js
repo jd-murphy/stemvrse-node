@@ -364,7 +364,7 @@ function verifyAdmin(req, res) {
                             var newSecret = buffer.toString('hex');
 
                             // need to store in firebase! to check in   checkAdminSecret()
-                            createAdminSecret(email, secret);
+                            createAdminSecret(email, newSecret);
 
                             res.redirect( path, { "email": email, "secret": newSecret }); 
                           });
