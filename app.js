@@ -315,7 +315,7 @@ function verifyAdmin(req, res, next) {
     //     return next();
     // }
     // res.redirect('/home');
-    admin.auth().verifyIdToken(idToken)
+    admin.auth().verifyIdToken(req.idToken)
         .then(function(decodedToken) {
             var uid = decodedToken.uid;
             var email = decodedToken.email;
