@@ -89,7 +89,7 @@
 
                     console.log('signInSuccessWithAuthResult -> SUCCESS   should redirect to /home');
                     console.log("authResult -> ")
-                    console.log(authResult)
+                    console.log(firebase.auth().currentUser)
                     return true;
                 },
                 uiShown: function() {
