@@ -70,6 +70,7 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
     // res.render('home');
     res.render('home', {
+        youtube: true,
         title: "Home",
         nav: 'nav'
     })
@@ -136,7 +137,6 @@ app.get('/account', (req, res) => {
 app.get('/admin-home', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-home', {
-        customScripts: false,
         admin: true,
         title: 'Admin | Home',
         nav: 'admin-nav'
@@ -147,7 +147,7 @@ app.get('/admin-home', verifyAdmin, (req, res) => {
 app.get('/admin-dashboard', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-dashboard', {
-        customScripts: true,
+        dashboard: true,
         admin: true,
         title: 'Admin | Dashboard',
         nav: 'admin-nav'
@@ -158,7 +158,6 @@ app.get('/admin-dashboard', verifyAdmin, (req, res) => {
 app.get('/admin-content', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-content', {
-        customScripts: false,
         admin: true,
         title: 'Admin | Content',
         nav: 'admin-nav'
@@ -169,7 +168,6 @@ app.get('/admin-content', verifyAdmin, (req, res) => {
 app.get('/admin-billing', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-billing', {
-        customScripts: false,
         admin: true,
         title: 'Admin | Billing',
         nav: 'admin-nav'

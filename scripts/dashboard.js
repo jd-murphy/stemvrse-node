@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    console.log("\n\nTHE SCRIPT WAS LOADED!!!!\n\n")
-var socket = io();
-socket.on('newData', function (data) {
- console.log('SOCKET on newData!      ( index.html )   ')
- $("#displayData div").remove(); 
- if (data != null) {
-     var data = JSON.parse(data); //process notication array
+    console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (dashboard.js)\n\n")
+    var socket = io();
+    socket.on('newData', function (data) {
+    console.log('SOCKET on newData!      ( index.html )   ')
+    $("#displayData div").remove(); 
+    if (data != null) {
+        var data = JSON.parse(data); //process notication array
 
      Object.keys(data).forEach(function (username) {
              
@@ -28,124 +28,125 @@ socket.on('newData', function (data) {
                      
                  '</div>' + 
                  '</div>');
-     });
- }
-});
+        });
+    }
+    });
 
-$('#displayData').on('click','div div strong div div a.editUser', function() {
- clientUserName = this.id.substring(8);
- $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
- $("#decisionModalButton").html("EDIT");
- $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
- $("#decisionModalButton").removeClass("btn-outline-danger");
- $("#decisionModalButton").addClass("btn-outline-success");
- document.getElementById('hiddenUsername').value = clientUserName;
- $("#modalDialog").modal();
+    $('#displayData').on('click','div div strong div div a.editUser', function() {
+    clientUserName = this.id.substring(8);
+    $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
+    $("#decisionModalButton").html("EDIT");
+    $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
+    $("#decisionModalButton").removeClass("btn-outline-danger");
+    $("#decisionModalButton").addClass("btn-outline-success");
+    document.getElementById('hiddenUsername').value = clientUserName;
+    $("#modalDialog").modal();
 
-});
+    });
 
-$('#displayData').on('click','div div strong div div a.deleteUser', function() {
- clientUserName = this.id.substring(10);
- $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
- $("#decisionModalButton").html("DELETE");
- $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
- $("#decisionModalButton").removeClass("btn-outline-success");
- $("#decisionModalButton").addClass("btn-outline-danger");
- document.getElementById('hiddenUsername').value = clientUserName;
- $("#modalDialog").modal()
+    $('#displayData').on('click','div div strong div div a.deleteUser', function() {
+    clientUserName = this.id.substring(10);
+    $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
+    $("#decisionModalButton").html("DELETE");
+    $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
+    $("#decisionModalButton").removeClass("btn-outline-success");
+    $("#decisionModalButton").addClass("btn-outline-danger");
+    document.getElementById('hiddenUsername').value = clientUserName;
+    $("#modalDialog").modal()
 
-});
+    });
 
-$("#decisionModalButton").on('click', function() {
- action = $("#decisionModalButton").text();
- username = $('#hiddenUsername').val();
- switch (action) {
-     case "EDIT":
-         $("#modalDialog").modal('hide');
-         email = $('#hiddenEmail' + username).val();
-         phone = $('#hiddenPhone' + username).val();
-         account = $('#hiddenAccount' + username).val();
-         $('#modalEDIT-account').val(account);
-         $('#modalEDIT-email').val(email);
-         $('#modalEDIT-phone').val(phone);    
-         $('#modalEDIT-username').html(username)
-         $("#modalEDIT").modal();
-         break;
-     case "DELETE":
-         socket.emit('deleteUser', username);
-         $("#modalDialog").modal('hide');
-         break;
-     default:
-         $("#modalDialog").modal('hide');    
-         alert("switch default.... something went wrong... ");
-         
- }
-});
+    $("#decisionModalButton").on('click', function() {
+    action = $("#decisionModalButton").text();
+    username = $('#hiddenUsername').val();
+    switch (action) {
+        case "EDIT":
+            $("#modalDialog").modal('hide');
+            email = $('#hiddenEmail' + username).val();
+            phone = $('#hiddenPhone' + username).val();
+            account = $('#hiddenAccount' + username).val();
+            $('#modalEDIT-account').val(account);
+            $('#modalEDIT-email').val(email);
+            $('#modalEDIT-phone').val(phone);    
+            $('#modalEDIT-username').html(username)
+            $("#modalEDIT").modal();
+            break;
+        case "DELETE":
+            socket.emit('deleteUser', username);
+            $("#modalDialog").modal('hide');
+            break;
+        default:
+            $("#modalDialog").modal('hide');    
+            alert("switch default.... something went wrong... ");
+            
+    }
+    });
 
-$("#submitEditModalButton").on('click', function() {
- username = $('#modalEDIT-username').text()
- account = $('#modalEDIT-account').val();
- email = $('#modalEDIT-email').val();
- phone = $('#modalEDIT-phone').val(); 
- userInfo = {
-     "username": username,
-     "account": account,
-     "email": email,
-     "phone": phone 
- } 
- $("#modalEDIT").modal('hide');
- socket.emit('editUser', userInfo);
-});
+    $("#submitEditModalButton").on('click', function() {
+        username = $('#modalEDIT-username').text()
+        account = $('#modalEDIT-account').val();
+        email = $('#modalEDIT-email').val();
+        phone = $('#modalEDIT-phone').val(); 
+        userInfo = {
+            "username": username,
+            "account": account,
+            "email": email,
+            "phone": phone 
+        } 
+        $("#modalEDIT").modal('hide');
+        socket.emit('editUser', userInfo);
+    });
 
-$("#submitAddNewClientModal").on('click', function() {
- username = $('#addNewClientModal-username').val()
- account = $('#addNewClientModal-account').val();
- email = $('#addNewClientModal-email').val();
- phone = $('#addNewClientModal-phone').val(); 
- userInfo = {
-     "username": username,
-     "account": account,
-     "email": email,
-     "phone": phone 
- } 
- $("#addNewClientModal").modal('hide');
- socket.emit('createUser', userInfo);
- cleanseNewUserModal();
-});
-
-
-$('#addNewClientModal-username').keyup(function(){
-str = $(this).val();
-str = str.replace(/\s/g,'');
-$(this).val(str); 
-});
+    $("#submitAddNewClientModal").on('click', function() {
+        username = $('#addNewClientModal-username').val()
+        account = $('#addNewClientModal-account').val();
+        email = $('#addNewClientModal-email').val();
+        phone = $('#addNewClientModal-phone').val(); 
+        userInfo = {
+            "username": username,
+            "account": account,
+            "email": email,
+            "phone": phone 
+        } 
+        $("#addNewClientModal").modal('hide');
+        socket.emit('createUser', userInfo);
+        cleanseNewUserModal();
+    });
 
 
+    $('#addNewClientModal-username').keyup(function(){
+        str = $(this).val();
+        str = str.replace(/\s/g,'');
+        $(this).val(str); 
+    });
 
 
-socket.emit('loadData');
+
+
+    socket.emit('loadData');
 });
 
 
 
 // functions
 function addNewClient() {
-cleanseNewUserModal();
-$("#addNewClientModal").modal();
+    cleanseNewUserModal();
+    $("#addNewClientModal").modal();
+    }
+    function cleanseNewUserModal(){
+    $('#addNewClientModal-username').val("");
+    $('#addNewClientModal-account').val("");
+    $('#addNewClientModal-email').val("");
+    $('#addNewClientModal-phone').val("");
 }
-function cleanseNewUserModal(){
-$('#addNewClientModal-username').val("");
-$('#addNewClientModal-account').val("");
-$('#addNewClientModal-email').val("");
-$('#addNewClientModal-phone').val("");
-}
-function logout() {
-firebase.auth().signOut()
- .then(function() {
-     // Sign-out successful.
-     window.location.replace('/login');
- })
- .catch(function(error) {
-     // An error happened
- });
-}
+
+// function logout() {
+//     firebase.auth().signOut()
+//     .then(function() {
+//         // Sign-out successful.
+//         window.location.replace('/login');
+//     })
+//     .catch(function(error) {
+//         // An error happened
+//     });
+// }
