@@ -129,7 +129,13 @@ app.get('/account', isAccountHolder, (req, res) => {
 //     verifyAdmin(req, res);
 //     console.log('hit /verify-token route')
 // });
-
+app.get('/admin-home', verifyAdmin, (req, res) => {
+    res.render('admin-home', {
+        admin: true,
+        title: 'Admin | Home',
+        nav: 'admin-nav'
+    })
+});
 
 app.post('/admin-home', verifyAdmin, (req, res) => {
     res.render('admin-home', {
