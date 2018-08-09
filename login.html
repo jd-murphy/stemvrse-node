@@ -40,67 +40,17 @@
 
 
 
-     <!-- <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-     <script type="text/javascript">
-         initApp = function() {
-           firebase.auth().onAuthStateChanged(function(user) {
-             if (user) {
-               // User is signed in.
-               var displayName = user.displayName;
-               var email = user.email;
-               var emailVerified = user.emailVerified;
-               var photoURL = user.photoURL;
-               var uid = user.uid;
-               var phoneNumber = user.phoneNumber;
-               var providerData = user.providerData;
-               user.getIdToken().then(function(accessToken) {
-                 document.getElementById('sign-in-status').textContent = 'Signed in';
-                 document.getElementById('sign-in').textContent = 'Sign out';
-                 document.getElementById('account-details').textContent = JSON.stringify({
-                   displayName: displayName,
-                   email: email,
-                   emailVerified: emailVerified,
-                   phoneNumber: phoneNumber,
-                   photoURL: photoURL,
-                   uid: uid,
-                   accessToken: accessToken,
-                   providerData: providerData
-
-
-                 }, null, '  ');
-               });
-             } else {
-               // User is signed out.
-               document.getElementById('sign-in-status').textContent = 'Signed out';
-               document.getElementById('sign-in').textContent = 'Sign in';
-               document.getElementById('account-details').textContent = 'null';
-               window.location.replace('/');
-             }
-           }, function(error) {
-             console.log(error);
-           });
-         };
-   
-         window.addEventListener('load', function() {
-           initApp()
-         });
-       </script>
-
- -->
-
-
-
-
 
     <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
     </head>
     <body>
-            <!-- <div id="sign-in-status"></div>
-            <div id="sign-in"></div>
-            <div id="account-details"></div> -->
+           
+          <noscript>Sorry, your must have JavaScript enabled in order to access this site. 
+              <a href="https://www.enable-javascript.com/" target="_blank">
+            Here are instructions on how to enable JavaScript in your web browser.</a>
+          </noscript>
 
 
         <div class="container" style="padding: 15rem;">
@@ -132,19 +82,7 @@
             var uiConfig = {
                 callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                    // firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-                    //     var form = document.body.appendChild(document.createElement("form"));
-                    //     form.action = "/firebase-login";
-                    //     form.method = "POST";
-                    //     var input = form.appendChild(document.createElement("input"));
-                    //     input.type = "hidden";
-                    //     input.name = "idToken";
-                    //     input.value = idToken;
-                    //     form.submit();
-                    // }).catch(function(error) {
-                    //     console.error(error);
-                    // });
-                    // return false;
+                    
                     console.log('signInSuccessWithAuthResult -> SUCCESS   should redirect to /home')
                     return true;
                 },
