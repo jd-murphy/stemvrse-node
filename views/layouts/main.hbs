@@ -165,20 +165,20 @@
             var request = $.ajax({
               url: '/verify-token',
               method: "POST",
-              data: { idToken : token },
+              data: { idToken : token, path : path},
               dataType: "json"
             });
             
-            request.done(function(result) {
-              console.log("result from admin verification")
-              console.log(result)
-              if (result["verified"] == true) {
-                  window.location.href = path;
-              } else {
-                  window.location.href = '/home';
-              }
+           // request.done(function(result) {
+             // console.log("result from admin verification")
+              //console.log(result)
+              //if (result["verified"] == true) {
+                  //window.location.href = path;
+              //} else {
+                  //window.location.href = '/home';
+              //}
               
-            });
+            //});
             
             request.fail(function() {
               alert( "Request failed");

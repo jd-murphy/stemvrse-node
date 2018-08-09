@@ -125,7 +125,8 @@ app.get('/account', isAccountHolder, (req, res) => {
 
 
 ///////////// ADMIN ROUTES //////////////
-app.post('/verify-token',verifyAdmin, (req, res) => {
+app.post('/verify-token', (req, res) => {
+    verifyAdmin(req, res);
     console.log('hit /verify-token route')
 });
 
@@ -309,16 +310,37 @@ function createAccount(userInfo) {
     ref.set(updatedUserData);
 }
         
+function createAdminSecret(email, secret) {
+    var db = admin.database();
+    var ref = db.ref("admin/" + email); 
+    console.log("createAdminSecret(" + email + ")");
+    ref.set({"secret": secret});
+}
+function getAdminSecret(email) {
+    var db = admin.database();
+    var ref = db.ref("admin/" + email); 
+    console.log("getAdminSecret(" + email + ")");
+    ref.on("value", function(snapshot) {
+        data = snapshot.val()
+        if (data) {
+            Object.keys(data).forEach(function (retrievedSecret) {
+                console.log("retrievedSecret ->");
+                console.log(retrievedSecret)
+                return {"secret": retrievedSecret};
+            });
+            
+        } else {
+           return {"secret": null};
+        }
+    });
+}
+        
 
 
 
 
-function verifyAdmin(req, res, next) {
-
-    // if (user.isAdmin) {   // just psuedo code but something like this..
-    //     return next();
-    // }
-    // res.redirect('/home');
+function verifyAdmin(req, res) {
+    console.log('Authenticating Admin status.')
     console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
     console.log(req.body.idToken)
     admin.auth().verifyIdToken(req.body.idToken)
@@ -338,29 +360,41 @@ function verifyAdmin(req, res, next) {
                 
                     if(data[entry].includes(email)) {
                         console.log("Email is in admin list!      VALID!")
-                        res.json({"verified": true }); 
+                        require('crypto').randomBytes(48, function(err, buffer) {
+                            var newSecret = buffer.toString('hex');
+
+                            // need to store in firebase! to check in   checkAdminSecret()
+                            createAdminSecret(email, secret);
+
+                            res.redirect( path, { "email": email, "secret": newSecret }); 
+                          });
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ")
-                        res.json({"verified": false }); 
+                        res.redirect('/home'); 
                     }
                 });
             });
             // ...
         }).catch(function(error) {
             // Handle error
-            res.json({"verified": false }); 
+            res.redirect('/home'); 
         });
 
+    return next(); 
 
-    console.log('Authenticating Admin status.')
-    console.log('For testing and development assume user is Admin and return true.')
-    return next(); // simply assume user is admin for testing now
 }
 
 function checkAdminSecret(req, res, next) {
-    console.log('Authenticating Admin secret.')
-    console.log('For testing and development assume user is Admin secret is valid and return true.')
-    return next(); // simply assume user is admin for testing now
+    console.log('Authenticating Admin secret.            [ checkAdminSecret()   (app.js) ]')
+    retrievedSecret = getAdminSecret(req.email)
+    if (req.body.secret === retrievedSecret){
+        console.log("Success, secret is VALID.")
+        return next(); 
+    } else {
+        console.log("failure, secret is NOT VALID.")
+        res.redirect('/home');
+    }
+    
 }
 
 
