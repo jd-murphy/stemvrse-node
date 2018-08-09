@@ -70,7 +70,7 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
     // res.render('home');
     res.render('home', {
-        youtube: true,
+        youtube: true, // load youtube.js
         title: "Home",
         nav: 'nav'
     })
@@ -147,7 +147,7 @@ app.get('/admin-home', verifyAdmin, (req, res) => {
 app.get('/admin-dashboard', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-dashboard', {
-        dashboard: true,
+        dashboard: true, // load dashboard.js
         admin: true,
         title: 'Admin | Dashboard',
         nav: 'admin-nav'
