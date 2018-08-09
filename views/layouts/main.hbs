@@ -160,7 +160,8 @@
 
         function adminNavigate(path) {
             token = $('#authAccessToken').val();
-            console.log("POST to /verify-token");
+            console.log("POST to /verify-token from adminNavigate()  (main.hbs)");
+
             var request = $.ajax({
               url: '/verify-token',
               method: "POST",

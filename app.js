@@ -125,8 +125,8 @@ app.get('/account', isAccountHolder, (req, res) => {
 
 
 ///////////// ADMIN ROUTES //////////////
-app.post('/verify-token',verifyAdmin, () => {
-
+app.post('/verify-token',verifyAdmin, (req, res) => {
+    console.log('hit /verify-token route')
 });
 
 
@@ -319,7 +319,7 @@ function verifyAdmin(req, res, next) {
     //     return next();
     // }
     // res.redirect('/home');
-    console.log('req.query.idToken')
+    console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
     console.log(req.query.idToken)
     admin.auth().verifyIdToken(req.query.idToken)
         .then(function(decodedToken) {
