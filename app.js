@@ -360,7 +360,7 @@ function checkAdminSecret(req, res, next) {
 
 
 
-function isAccountHolder() {
+function isAccountHolder(req, res, next) {
 
  // if (user.isAccountHolder) {   // just psuedo code but something like this..
     //     return next();
