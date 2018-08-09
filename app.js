@@ -311,9 +311,11 @@ function createAccount(userInfo) {
 }
         
 function createAdminSecret(email, secret) {
+    console.log("create admin secret...")
     var db = admin.database();
     strippedEmail = email.replace(/[^a-z0-9]/,'')
-    var ref = db.ref("admin/" + strippedEmail); 
+    console.log("stripped email -> " + strippedEmail)
+    var ref = db.ref("admin/secret/" + strippedEmail); 
     console.log("createAdminSecret(" + email + ")");
     ref.set({"secret": secret});
 }
@@ -321,7 +323,7 @@ function getAdminSecret(email) {
     try {
         var db = admin.database();
         strippedEmail = email.replace(/[^a-z0-9]/,'')
-        var ref = db.ref("admin/" + strippedEmail); 
+        var ref = db.ref("admin/secret/" + strippedEmail); 
         console.log("getAdminSecret(" + email + ")");
         ref.once("value", function(snapshot) {
             data = snapshot.val()
