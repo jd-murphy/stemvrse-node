@@ -102,7 +102,12 @@ app.get('/faqs', (req, res) => {
     })
 });
 
-app.get('/account', (req, res) => {
+
+
+
+
+// this route for account holders (clients only)
+app.get('/account', isAccountHolder, (req, res) => {
     res.render('account', {
         title: "Account",
         nav: 'nav'
@@ -302,6 +307,8 @@ function createAccount(userInfo) {
         
 
 
+
+
 function verifyAdmin(req, res, next) {
 
     // if (user.isAdmin) {   // just psuedo code but something like this..
@@ -313,4 +320,21 @@ function verifyAdmin(req, res, next) {
     console.log('Authenticating Admin status.')
     console.log('For testing and development assume user is Admin and return true.')
     return next(); // simply assume user is admin for testing now
+}
+
+
+
+
+function isAccountHolder() {
+
+ // if (user.isAccountHolder) {   // just psuedo code but something like this..
+    //     return next();
+    // }
+    // res.redirect('/home');
+
+
+    console.log('Authenticating Account Holder status.')
+    console.log('For testing and development assume user is Account Holder and return true.')
+    return next(); // simply assume user is admin for testing now
+
 }

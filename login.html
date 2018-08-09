@@ -86,8 +86,11 @@
             var uiConfig = {
                 callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+
                     
-                    console.log('signInSuccessWithAuthResult -> SUCCESS   should redirect to /home')
+                    console.log('signInSuccessWithAuthResult -> SUCCESS   should redirect to /home');
+                    console.log("here is the auth result ->");
+                    console.log(authResult)
                     return true;
                 },
                 uiShown: function() {
