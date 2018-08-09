@@ -338,17 +338,17 @@ function verifyAdmin(req, res, next) {
                 
                     if(data[entry].includes(email)) {
                         console.log("Email is in admin list!      VALID!")
-                        return {"verified": true };
+                        res.json({"verified": true }); 
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ")
-                        return {"verified": false };
+                        res.json({"verified": false }); 
                     }
                 });
             });
             // ...
         }).catch(function(error) {
             // Handle error
-            return {"verified": false };
+            res.json({"verified": false }); 
         });
 
 
