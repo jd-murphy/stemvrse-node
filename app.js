@@ -136,7 +136,7 @@ app.get('/account', (req, res) => {
 app.get('/admin-home', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-home', {
-        customScripts: true,
+        customScripts: false,
         admin: true,
         title: 'Admin | Home',
         nav: 'admin-nav'
@@ -158,7 +158,7 @@ app.get('/admin-dashboard', verifyAdmin, (req, res) => {
 app.get('/admin-content', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-content', {
-        customScripts: true,
+        customScripts: false,
         admin: true,
         title: 'Admin | Content',
         nav: 'admin-nav'
@@ -169,7 +169,7 @@ app.get('/admin-content', verifyAdmin, (req, res) => {
 app.get('/admin-billing', verifyAdmin, (req, res) => {
     // res.render('dashboard');
     res.render('admin-billing', {
-        customScripts: true,
+        customScripts: false,
         admin: true,
         title: 'Admin | Billing',
         nav: 'admin-nav'
