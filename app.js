@@ -190,17 +190,17 @@ app.use(function(err, req, res, next) {      // check if user is admin or not be
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
-        getDataFromFirebase();
+        getClientDataFromFirebase();
     });
-    socket.on("deleteUser", function (username) {  
+    socket.on("deleteAccount", function (username) {  
         console.log("username is " + username)
-        deleteUser(username);
+        deleteAccount(username);
     });
-    socket.on("editUser", function (userInfo) {  
-        editUser(userInfo);
+    socket.on("editAccount", function (userInfo) {  
+        editAccount(userInfo);
     });
-    socket.on("createUser", function (userInfo) {  
-        createUser(userInfo);
+    socket.on("createAccount", function (userInfo) {  
+        createAccount(userInfo);
     });
     // socket.on("loadRaidData", function (notification_request) {  
     //     getRaidDataFromFirebase();
@@ -224,35 +224,35 @@ function setUpFirebase() {
         }
 
 
-function getDataFromFirebase() {
+function getClientDataFromFirebase() {
     var db = admin.database();
-    var ref = db.ref("testdata");
-    console.log("getDataFromFirebase()");
+    var ref = db.ref("clients");
+    console.log("getClientDataFromFirebase()");
     ref.on("value", function(snapshot) {
         data = snapshot.val()
         if (data) {
-            io.emit('newData', JSON.stringify(data));
+            io.emit('newClientData', JSON.stringify(data));
         } else {
-            io.emit('newData', null);
+            io.emit('newClientData', null);
         }
     });
 }
         
 
 
-function deleteUser(username) {
+function deleteAccount(username) {
     var db = admin.database();
-    var ref = db.ref("testdata/" + username);
-    console.log("deleteUser(" + username + ")");
+    var ref = db.ref("clients/" + username);
+    console.log("deleteAccount(" + username + ")");
     ref.remove();
 }
         
 
 
-function editUser(userInfo) {
+function editAccount(userInfo) {
     var db = admin.database();
-    var ref = db.ref("testdata/" + userInfo.username); 
-    console.log("editUser(" + userInfo.username + ")"); 
+    var ref = db.ref("clients/" + userInfo.username); 
+    console.log("editAccount(" + userInfo.username + ")"); 
     updatedUserData = { 
             account: userInfo.account,
             email: userInfo.email,
@@ -263,10 +263,10 @@ function editUser(userInfo) {
         
 
 
-function createUser(userInfo) {
+function createAccount(userInfo) {
     var db = admin.database();
-    var ref = db.ref("testdata/" + userInfo.username); 
-    console.log("createUser(" + userInfo.username + ")");
+    var ref = db.ref("clients/" + userInfo.username); 
+    console.log("createAccount(" + userInfo.username + ")");
     updatedUserData = { 
             account: userInfo.account,
             email: userInfo.email,

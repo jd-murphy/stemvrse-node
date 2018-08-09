@@ -1,8 +1,8 @@
 $(document).ready(function(){
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (dashboard.js)\n\n")
     var socket = io();
-    socket.on('newData', function (data) {
-    console.log('SOCKET on newData!      ( index.html )   ')
+    socket.on('newClientData', function (data) {
+    console.log('SOCKET on newClientData!      ( index.html )   ')
     $("#displayData div").remove(); 
     if (data != null) {
         var data = JSON.parse(data); //process notication array
@@ -72,7 +72,7 @@ $(document).ready(function(){
             $("#modalEDIT").modal();
             break;
         case "DELETE":
-            socket.emit('deleteUser', username);
+            socket.emit('deleteAccount', username);
             $("#modalDialog").modal('hide');
             break;
         default:
@@ -94,7 +94,7 @@ $(document).ready(function(){
             "phone": phone 
         } 
         $("#modalEDIT").modal('hide');
-        socket.emit('editUser', userInfo);
+        socket.emit('editAccount', userInfo);
     });
 
     $("#submitAddNewClientModal").on('click', function() {
@@ -109,7 +109,7 @@ $(document).ready(function(){
             "phone": phone 
         } 
         $("#addNewClientModal").modal('hide');
-        socket.emit('createUser', userInfo);
+        socket.emit('createAccount', userInfo);
         cleanseNewUserModal();
     });
 
