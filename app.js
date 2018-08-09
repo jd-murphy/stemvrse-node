@@ -349,46 +349,51 @@ function getAdminSecret(email) {
 
 
 function verifyAdmin(req, res) {
-    console.log('Authenticating Admin status.')
-    console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
-    console.log(req.body.idToken)
-    admin.auth().verifyIdToken(req.body.idToken)
-        .then(function(decodedToken) {
-            var uid = decodedToken.uid;
-            var email = decodedToken.email;
-            console.log("uid and email from uath token ->");
-            console.log(uid);
-            console.log(email);
-            var db = admin.database();
-            var ref = db.ref("admin");
-            console.log("get admin emails from firebase");
-            ref.once("value", function(snapshot) {
-                data = snapshot.val()
+    try {
+        console.log('Authenticating Admin status.')
+        console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
+        console.log(req.body.idToken)
+        admin.auth().verifyIdToken(req.body.idToken)
+            .then(function(decodedToken) {
+                var uid = decodedToken.uid;
+                var email = decodedToken.email;
+                console.log("uid and email from uath token ->");
+                console.log(uid);
+                console.log(email);
+                var db = admin.database();
+                var ref = db.ref("admin");
+                console.log("get admin emails from firebase");
+                ref.once("value", function(snapshot) {
+                    data = snapshot.val()
 
-                Object.keys(data).forEach(function (entry) {
-                
-                    if(data[entry].includes(email)) {
-                        console.log("Email is in admin list!      VALID!")
-                        require('crypto').randomBytes(48, function(err, buffer) {
-                            var newSecret = buffer.toString('hex');
+                    Object.keys(data).forEach(function (entry) {
+                    
+                        if(data[entry].includes(email)) {
+                            console.log("Email is in admin list!      VALID!")
+                            require('crypto').randomBytes(48, function(err, buffer) {
+                                var newSecret = buffer.toString('hex');
 
-                            // need to store in firebase! to check in   checkAdminSecret()
-                            console.log("\n\nCALLING   createAdminSecret()\n\n")
-                            createAdminSecret(email, newSecret);
+                                // need to store in firebase! to check in   checkAdminSecret()
+                                console.log("\n\nCALLING   createAdminSecret()\n\n")
+                                createAdminSecret(email, newSecret);
 
-                            res.redirect( path, { "email": email, "secret": newSecret }); 
-                          });
-                    } else {
-                        console.log("POOOOOOOO email is not valid admin email! ")
-                        res.redirect('/home'); 
-                    }
+                                res.redirect( path, { "email": email, "secret": newSecret }); 
+                            });
+                        } else {
+                            console.log("POOOOOOOO email is not valid admin email! ")
+                            res.redirect('/home'); 
+                        }
+                    });
                 });
+                // ...
+            }).catch(function(error) {
+                // Handle error
+                res.redirect('/home'); 
             });
-            // ...
-        }).catch(function(error) {
-            // Handle error
-            res.redirect('/home'); 
-        });
+
+    } catch (error) {
+        res.redirect('/home'); 
+    }
 
     // return next(); 
 
