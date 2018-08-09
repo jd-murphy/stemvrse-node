@@ -103,10 +103,10 @@ app.get('/researchers', (req, res) => {
     // res.sendFile('home.html',{root: __dirname});
 });
 
-app.get('/faq', (req, res) => {
+app.get('/faqs', (req, res) => {
     // res.render('home');
-    res.render('faq', {
-        title: "FAQ",
+    res.render('faqs', {
+        title: "FAQs",
         nav: 'nav'
     })
     // res.sendFile('home.html',{root: __dirname});
