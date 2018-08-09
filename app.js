@@ -312,15 +312,17 @@ function createAccount(userInfo) {
         
 function createAdminSecret(email, secret) {
     var db = admin.database();
-    var ref = db.ref("admin/" + email); 
+    strippedEmail = email.replace(/[^a-z0-9.]/,'')
+    var ref = db.ref("admin/" + strippedEmail); 
     console.log("createAdminSecret(" + email + ")");
     ref.set({"secret": secret});
 }
 function getAdminSecret(email) {
     var db = admin.database();
-    var ref = db.ref("admin/" + email); 
+    strippedEmail = email.replace(/[^a-z0-9.]/,'')
+    var ref = db.ref("admin/" + strippedEmail); 
     console.log("getAdminSecret(" + email + ")");
-    ref.on("value", function(snapshot) {
+    ref.once("value", function(snapshot) {
         data = snapshot.val()
         if (data) {
             Object.keys(data).forEach(function (retrievedSecret) {
