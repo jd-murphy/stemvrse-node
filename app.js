@@ -125,13 +125,13 @@ app.get('/account', isAccountHolder, (req, res) => {
 
 
 ///////////// ADMIN ROUTES //////////////
-app.post('/verify-token', (req, res) => {
-    verifyAdmin(req, res);
-    console.log('hit /verify-token route')
-});
+// app.post('/verify-token', (req, res) => {
+//     verifyAdmin(req, res);
+//     console.log('hit /verify-token route')
+// });
 
 
-app.get('/admin-home', checkAdminSecret, (req, res) => {
+app.get('/admin-home',verifyAdmin, checkAdminSecret, (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -139,7 +139,7 @@ app.get('/admin-home', checkAdminSecret, (req, res) => {
     })
 });
 
-app.get('/admin-dashboard', checkAdminSecret, (req, res) => {
+app.get('/admin-dashboard',verifyAdmin, checkAdminSecret, (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -148,7 +148,7 @@ app.get('/admin-dashboard', checkAdminSecret, (req, res) => {
     })
 });
 
-app.get('/admin-content', checkAdminSecret, (req, res) => {
+app.get('/admin-content',verifyAdmin, checkAdminSecret, (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -156,7 +156,7 @@ app.get('/admin-content', checkAdminSecret, (req, res) => {
     })
 });
 
-app.get('/admin-billing', checkAdminSecret, (req, res) => {
+app.get('/admin-billing',verifyAdmin, checkAdminSecret, (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
@@ -373,6 +373,7 @@ function verifyAdmin(req, res) {
                             var newSecret = buffer.toString('hex');
 
                             // need to store in firebase! to check in   checkAdminSecret()
+                            console.log("\n\nCALLING   createAdminSecret()\n\n")
                             createAdminSecret(email, newSecret);
 
                             res.redirect( path, { "email": email, "secret": newSecret }); 
@@ -389,7 +390,7 @@ function verifyAdmin(req, res) {
             res.redirect('/home'); 
         });
 
-    return next(); 
+    // return next(); 
 
 }
 
