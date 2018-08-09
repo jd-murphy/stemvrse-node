@@ -158,9 +158,39 @@
                 });
         }
 
-        function navigate(path) {
+        function adminNavigate(path) {
             token = $('#authAccessToken').val();
-            window.location.href = path + "?idToken=" + token;
+            console.log("POST to /verify-token");
+            var request = $.ajax({
+              url: '/verify-token',
+              method: "POST",
+              data: { idToken : token },
+              dataType: "json"
+            });
+            
+            request.done(function(result) {
+              console.log("result from admin verification")
+              console.log(result)
+              if (result["verified"] == true) {
+                  window.location.href = path;
+              } else {
+                  window.location.href = '/home';
+              }
+              
+            });
+            
+            request.fail(function() {
+              alert( "Request failed");
+              window.location.href = '/home';
+            });
+         
+
+
+
+
+            
+
+            
         }
 
     </script>

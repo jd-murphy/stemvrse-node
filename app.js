@@ -125,8 +125,12 @@ app.get('/account', isAccountHolder, (req, res) => {
 
 
 ///////////// ADMIN ROUTES //////////////
+app.post('/verify-token',verifyAdmin, () => {
 
-app.get('/admin-home', verifyAdmin, (req, res) => {
+});
+
+
+app.get('/admin-home', checkAdminSecret, (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -134,7 +138,7 @@ app.get('/admin-home', verifyAdmin, (req, res) => {
     })
 });
 
-app.get('/admin-dashboard', verifyAdmin, (req, res) => {
+app.get('/admin-dashboard', checkAdminSecret, (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -143,7 +147,7 @@ app.get('/admin-dashboard', verifyAdmin, (req, res) => {
     })
 });
 
-app.get('/admin-content', verifyAdmin, (req, res) => {
+app.get('/admin-content', checkAdminSecret, (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -151,7 +155,7 @@ app.get('/admin-content', verifyAdmin, (req, res) => {
     })
 });
 
-app.get('/admin-billing', verifyAdmin, (req, res) => {
+app.get('/admin-billing', checkAdminSecret, (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
@@ -324,6 +328,17 @@ function verifyAdmin(req, res, next) {
             console.log("uid and email from uath token ->");
             console.log(uid);
             console.log(email);
+            var db = admin.database();
+            var ref = db.ref("admin");
+            console.log("get admin emails from firebase");
+            ref.once("value", function(snapshot) {
+                data = snapshot.val()
+                
+                Object.keys(data).forEach(function (entry) {
+                    console.log("entry from /admin/");
+                    console.log(data[entry])
+                });
+            });
             // ...
         }).catch(function(error) {
             // Handle error
@@ -333,6 +348,13 @@ function verifyAdmin(req, res, next) {
     console.log('Authenticating Admin status.')
     console.log('For testing and development assume user is Admin and return true.')
     return next(); // simply assume user is admin for testing now
+}
+
+function checkAdminSecret(req, res, next) {
+    console.log('Authenticating Admin secret.')
+    console.log('For testing and development assume user is Admin secret is valid and return true.')
+    return next(); // simply assume user is admin for testing now
+}
 }
 
 
