@@ -167,10 +167,9 @@
             console.log("POST to /verify-token from adminNavigate()  (main.hbs)");
 
             var request = $.ajax({
-              url: '/verify-token',
+              url: path,
               method: "POST",
-              data: { idToken : token, path : path},
-              dataType: "json"
+              data: { idToken : token}
             });
             
            // request.done(function(result) {

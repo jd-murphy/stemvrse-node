@@ -131,7 +131,7 @@ app.get('/account', isAccountHolder, (req, res) => {
 // });
 
 
-app.get('/admin-home',verifyAdmin, checkAdminSecret, (req, res) => {
+app.post('/admin-home', verifyAdmin, (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -139,7 +139,7 @@ app.get('/admin-home',verifyAdmin, checkAdminSecret, (req, res) => {
     })
 });
 
-app.get('/admin-dashboard',verifyAdmin, checkAdminSecret, (req, res) => {
+app.post('/admin-dashboard', verifyAdmin, (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -148,7 +148,7 @@ app.get('/admin-dashboard',verifyAdmin, checkAdminSecret, (req, res) => {
     })
 });
 
-app.get('/admin-content',verifyAdmin, checkAdminSecret, (req, res) => {
+app.post('/admin-content', verifyAdmin, (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -156,7 +156,7 @@ app.get('/admin-content',verifyAdmin, checkAdminSecret, (req, res) => {
     })
 });
 
-app.get('/admin-billing',verifyAdmin, checkAdminSecret, (req, res) => {
+app.post('/admin-billing', verifyAdmin, (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
@@ -310,45 +310,45 @@ function createAccount(userInfo) {
     ref.set(updatedUserData);
 }
         
-function createAdminSecret(email, secret) {
-    console.log("create admin secret...")
-    var db = admin.database();
-    strippedEmail = email.replace(/[^a-z0-9]/,'')
-    console.log("stripped email -> " + strippedEmail)
-    var ref = db.ref("admin/secret/" + strippedEmail); 
-    console.log("createAdminSecret(" + email + ")");
-    ref.set({"secret": secret});
-}
-function getAdminSecret(email) {
-    try {
-        var db = admin.database();
-        strippedEmail = email.replace(/[^a-z0-9]/,'')
-        var ref = db.ref("admin/secret/" + strippedEmail); 
-        console.log("getAdminSecret(" + email + ")");
-        ref.once("value", function(snapshot) {
-            data = snapshot.val()
-            if (data) {
-                Object.keys(data).forEach(function (retrievedSecret) {
-                    console.log("retrievedSecret ->");
-                    console.log(retrievedSecret)
-                    return {"secret": retrievedSecret};
-                });
+// function createAdminSecret(email, secret) {
+//     console.log("create admin secret...")
+//     var db = admin.database();
+//     strippedEmail = email.replace(/[^a-z0-9]/,'')
+//     console.log("stripped email -> " + strippedEmail)
+//     var ref = db.ref("admin/secret/" + strippedEmail); 
+//     console.log("createAdminSecret(" + email + ")");
+//     ref.set({"secret": secret});
+// }
+// function getAdminSecret(email) {
+//     try {
+//         var db = admin.database();
+//         strippedEmail = email.replace(/[^a-z0-9]/,'')
+//         var ref = db.ref("admin/secret/" + strippedEmail); 
+//         console.log("getAdminSecret(" + email + ")");
+//         ref.once("value", function(snapshot) {
+//             data = snapshot.val()
+//             if (data) {
+//                 Object.keys(data).forEach(function (retrievedSecret) {
+//                     console.log("retrievedSecret ->");
+//                     console.log(retrievedSecret)
+//                     return {"secret": retrievedSecret};
+//                 });
                 
-            } else {
-               return {"secret": null};
-            }
-        });
-    } catch (error) {
-        return {"secret": null};
-    }
+//             } else {
+//                return {"secret": null};
+//             }
+//         });
+//     } catch (error) {
+//         return {"secret": null};
+//     }
     
-}
+// }
         
 
 
 
 
-function verifyAdmin(req, res) {
+function verifyAdmin(req, res, next) {
     try {
         console.log('Authenticating Admin status.')
         console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
@@ -370,15 +370,15 @@ function verifyAdmin(req, res) {
                     
                         if(data[entry].includes(email)) {
                             console.log("Email is in admin list!      VALID!")
-                            require('crypto').randomBytes(48, function(err, buffer) {
-                                var newSecret = buffer.toString('hex');
+                            // require('crypto').randomBytes(48, function(err, buffer) {
+                                // var newSecret = buffer.toString('hex');
 
                                 // need to store in firebase! to check in   checkAdminSecret()
-                                console.log("\n\nCALLING   createAdminSecret()\n\n")
-                                createAdminSecret(email, newSecret);
+                                // console.log("\n\nCALLING   createAdminSecret()\n\n")
+                                // createAdminSecret(email, newSecret);
 
-                                res.redirect( path, { "email": email, "secret": newSecret }); 
-                            });
+                                next(); 
+                            // });
                         } else {
                             console.log("POOOOOOOO email is not valid admin email! ")
                             res.redirect('/home'); 
@@ -399,18 +399,19 @@ function verifyAdmin(req, res) {
 
 }
 
-function checkAdminSecret(req, res, next) {
-    console.log('Authenticating Admin secret.            [ checkAdminSecret(' + req.body.email + ')   (app.js) ]')
-    retrievedSecret = getAdminSecret(req.body.email)
-    if (req.body.secret === retrievedSecret){
-        console.log("Success, secret is VALID.")
-        return next(); 
-    } else {
-        console.log("failure, secret is NOT VALID.")
-        res.redirect('/home');
-    }
+// function checkAdminSecret(email, secret) {
+//     console.log('Authenticating Admin secret.            [ checkAdminSecret(' + email + ')   (app.js) ]')
+//     retrievedSecret = getAdminSecret(email)
+//     // check first if null -> return error if null or undefined
+//     if (secret === retrievedSecret){
+//         console.log("Success, secret is VALID.")
+//         return next(); 
+//     } else {
+//         console.log("failure, secret is NOT VALID.")
+//         res.redirect('/home');
+//     }
     
-}
+// }
 
 
 
