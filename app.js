@@ -336,7 +336,7 @@ function verifyAdmin(req, res, next) {
 
                 Object.keys(data).forEach(function (entry) {
                 
-                    if( data[entry].contains(email) ) {
+                    if(data[entry].includes(email)) {
                         console.log("Email is in admin list!      VALID!")
                         return {"verified": true };
                     } else {
