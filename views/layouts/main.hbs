@@ -59,6 +59,9 @@
                 var phoneNumber = user.phoneNumber;
                 var providerData = user.providerData;
                 user.getIdToken().then(function(accessToken) {
+
+                    console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
+                    console.log(email);
                 // document.getElementById('sign-in-status').textContent = 'Signed in';
                 // document.getElementById('sign-in').textContent = 'Sign out';
                 // document.getElementById('account-details').textContent = JSON.stringify({
