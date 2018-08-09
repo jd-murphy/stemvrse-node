@@ -315,6 +315,17 @@ function verifyAdmin(req, res, next) {
     //     return next();
     // }
     // res.redirect('/home');
+    admin.auth().verifyIdToken(idToken)
+        .then(function(decodedToken) {
+            var uid = decodedToken.uid;
+            var email = decodedToken.email;
+            console.log("uid and email from usth token ->");
+            console.log(uid);
+            console.log(email);
+            // ...
+        }).catch(function(error) {
+            // Handle error
+        });
 
 
     console.log('Authenticating Admin status.')
