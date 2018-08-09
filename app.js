@@ -334,7 +334,7 @@ function verifyAdmin(req, res, next) {
             ref.once("value", function(snapshot) {
                 data = snapshot.val()
                 
-                if( data[entry].contains(email) ) {
+                if( data[0].contains(email) ) {
                     console.log("Email is in admin list!      VALID!")
                     return {"verified": true };
                 } else {
