@@ -315,11 +315,13 @@ function verifyAdmin(req, res, next) {
     //     return next();
     // }
     // res.redirect('/home');
-    admin.auth().verifyIdToken(req.idToken)
+    console.log('req.query.idToken')
+    console.log(req.query.idToken)
+    admin.auth().verifyIdToken(req.query.idToken)
         .then(function(decodedToken) {
             var uid = decodedToken.uid;
             var email = decodedToken.email;
-            console.log("uid and email from usth token ->");
+            console.log("uid and email from uath token ->");
             console.log(uid);
             console.log(email);
             // ...
