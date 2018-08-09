@@ -191,6 +191,7 @@ io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
         getClientDataFromFirebase();
+        listAllUsers();
     });
     socket.on("deleteAccount", function (username) {  
         console.log("username is " + username)
@@ -222,6 +223,30 @@ function setUpFirebase() {
             });
             console.log("firebase initialized!");
         }
+
+
+
+function listAllUsers(nextPageToken) {
+    // List batch of users, 1000 at a time.
+    admin.auth().listUsers(1000, nextPageToken)
+      .then(function(listUsersResult) {
+        listUsersResult.users.forEach(function(userRecord) {
+          console.log("user", userRecord.toJSON());
+          io.emit("onUserData", userRecord)
+        });
+        if (listUsersResult.pageToken) {
+          // List next batch of users.
+          listAllUsers(listUsersResult.pageToken)
+        }
+      })
+      .catch(function(error) {
+        console.log("Error listing users:", error);
+      });
+}
+
+  
+        
+
 
 
 function getClientDataFromFirebase() {
