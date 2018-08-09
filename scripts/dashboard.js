@@ -12,8 +12,8 @@ $(document).ready(function(){
              dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
                                      '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
                                      '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                         '<a class="dropdown-item editUser" href="#editUser' + username + '" id="editUser' + username + '">Edit User</a>' + 
-                                         '<a class="dropdown-item deleteUser" href="#deleteUser' + username + '" id="deleteUser' + username + '">Delete User</a>' + 
+                                         '<a class="dropdown-item editUser" href="#editUser' + username + '" id="editUser' + username + '">Edit Client</a>' + 
+                                         '<a class="dropdown-item deleteUser" href="#deleteUser' + username + '" id="deleteUser' + username + '">Delete Client</a>' + 
                                      '</div>' + 
                                  '</div>'
 
