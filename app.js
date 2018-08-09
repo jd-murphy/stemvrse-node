@@ -69,7 +69,6 @@ app.get('/', (req, res) => {
 
 app.get('/home', (req, res) => {
     res.render('home', {
-        youtube: true, // load youtube.js
         title: "Home",
         nav: 'nav'
     })
