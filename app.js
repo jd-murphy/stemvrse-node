@@ -68,58 +68,46 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    // res.render('home');
     res.render('home', {
         youtube: true, // load youtube.js
         title: "Home",
         nav: 'nav'
     })
-    // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/favorites', (req, res) => {
-    // res.render('home');
     res.render('favorites', {
         title: "Favorites",
         nav: 'nav'
     })
-    // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/where-in-the-world', (req, res) => {
-    // res.render('home');
     res.render('where-in-the-world', {
         title: "Where in the World",
         nav: 'nav'
     })
-    // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/researchers', (req, res) => {
-    // res.render('home');
     res.render('researchers', {
         title: "Researchers",
         nav: 'nav'
     })
-    // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/faqs', (req, res) => {
-    // res.render('home');
     res.render('faqs', {
         title: "FAQs",
         nav: 'nav'
     })
-    // res.sendFile('home.html',{root: __dirname});
 });
 
 app.get('/account', (req, res) => {
-    // res.render('home');
     res.render('account', {
         title: "Account",
         nav: 'nav'
     })
-    // res.sendFile('home.html',{root: __dirname});
 });
 
 
@@ -135,44 +123,36 @@ app.get('/account', (req, res) => {
 ///////////// ADMIN ROUTES //////////////
 
 app.get('/admin-home', verifyAdmin, (req, res) => {
-    // res.render('dashboard');
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
         nav: 'admin-nav'
     })
-    // res.sendFile('index.html',{root: __dirname});
 });
 
 app.get('/admin-dashboard', verifyAdmin, (req, res) => {
-    // res.render('dashboard');
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
         title: 'Admin | Dashboard',
         nav: 'admin-nav'
     })
-    // res.sendFile('index.html',{root: __dirname});
 });
 
 app.get('/admin-content', verifyAdmin, (req, res) => {
-    // res.render('dashboard');
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
         nav: 'admin-nav'
     })
-    // res.sendFile('index.html',{root: __dirname});
 });
 
 app.get('/admin-billing', verifyAdmin, (req, res) => {
-    // res.render('dashboard');
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
         nav: 'admin-nav'
     })
-    // res.sendFile('index.html',{root: __dirname});
 });
 
 
