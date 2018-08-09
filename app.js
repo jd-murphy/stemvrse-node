@@ -318,23 +318,28 @@ function createAdminSecret(email, secret) {
     ref.set({"secret": secret});
 }
 function getAdminSecret(email) {
-    var db = admin.database();
-    strippedEmail = email.replace(/[^a-z0-9]/,'')
-    var ref = db.ref("admin/" + strippedEmail); 
-    console.log("getAdminSecret(" + email + ")");
-    ref.once("value", function(snapshot) {
-        data = snapshot.val()
-        if (data) {
-            Object.keys(data).forEach(function (retrievedSecret) {
-                console.log("retrievedSecret ->");
-                console.log(retrievedSecret)
-                return {"secret": retrievedSecret};
-            });
-            
-        } else {
-           return {"secret": null};
-        }
-    });
+    try {
+        var db = admin.database();
+        strippedEmail = email.replace(/[^a-z0-9]/,'')
+        var ref = db.ref("admin/" + strippedEmail); 
+        console.log("getAdminSecret(" + email + ")");
+        ref.once("value", function(snapshot) {
+            data = snapshot.val()
+            if (data) {
+                Object.keys(data).forEach(function (retrievedSecret) {
+                    console.log("retrievedSecret ->");
+                    console.log(retrievedSecret)
+                    return {"secret": retrievedSecret};
+                });
+                
+            } else {
+               return {"secret": null};
+            }
+        });
+    } catch (error) {
+        return {"secret": null};
+    }
+    
 }
         
 
