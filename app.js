@@ -334,14 +334,18 @@ function verifyAdmin(req, res, next) {
             ref.once("value", function(snapshot) {
                 data = snapshot.val()
                 
-                Object.keys(data).forEach(function (entry) {
-                    console.log("entry from /admin/");
-                    console.log(data[entry])
-                });
+                if( data[entry].contains(email) ) {
+                    console.log("Email is in admin list!      VALID!")
+                    return {"verified": true };
+                } else {
+                    console.log("POOOOOOOO email is not valid admin email! ")
+                    return {"verified": false };
+                }
             });
             // ...
         }).catch(function(error) {
             // Handle error
+            return {"verified": false };
         });
 
 
