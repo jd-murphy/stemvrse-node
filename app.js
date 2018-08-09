@@ -78,8 +78,8 @@ app.get('/home', (req, res) => {
 
 app.get('/favorites', (req, res) => {
     // res.render('home');
-    res.render('home', {
-        title: "Home",
+    res.render('favorites', {
+        title: "Favorites",
         nav: 'nav'
     })
     // res.sendFile('home.html',{root: __dirname});
@@ -87,8 +87,8 @@ app.get('/favorites', (req, res) => {
 
 app.get('/where-in-the-world', (req, res) => {
     // res.render('home');
-    res.render('home', {
-        title: "Home",
+    res.render('where-in-the-world', {
+        title: "Where in the World",
         nav: 'nav'
     })
     // res.sendFile('home.html',{root: __dirname});
@@ -96,8 +96,8 @@ app.get('/where-in-the-world', (req, res) => {
 
 app.get('/researchers', (req, res) => {
     // res.render('home');
-    res.render('home', {
-        title: "Home",
+    res.render('researchers', {
+        title: "Researchers",
         nav: 'nav'
     })
     // res.sendFile('home.html',{root: __dirname});
@@ -105,8 +105,8 @@ app.get('/researchers', (req, res) => {
 
 app.get('/faq', (req, res) => {
     // res.render('home');
-    res.render('home', {
-        title: "Home",
+    res.render('faq', {
+        title: "FAQ",
         nav: 'nav'
     })
     // res.sendFile('home.html',{root: __dirname});
@@ -114,8 +114,8 @@ app.get('/faq', (req, res) => {
 
 app.get('/account', (req, res) => {
     // res.render('home');
-    res.render('home', {
-        title: "Home",
+    res.render('account', {
+        title: "Account",
         nav: 'nav'
     })
     // res.sendFile('home.html',{root: __dirname});
@@ -133,45 +133,45 @@ app.get('/account', (req, res) => {
 
 ///////////// ADMIN ROUTES //////////////
 
-app.get('/admin-home', (req, res) => {
+app.get('/admin-home', verifyAdmin, (req, res) => {
     // res.render('dashboard');
-    res.render('dashboard', {
+    res.render('admin-home', {
         customScripts: true,
         admin: true,
-        title: 'Admin Dashboard',
+        title: 'Admin | Home',
         nav: 'admin-nav'
     })
     // res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/admin-dashboard', (req, res) => {
+app.get('/admin-dashboard', verifyAdmin, (req, res) => {
     // res.render('dashboard');
-    res.render('dashboard', {
+    res.render('admin-dashboard', {
         customScripts: true,
         admin: true,
-        title: 'Admin Dashboard',
+        title: 'Admin | Dashboard',
         nav: 'admin-nav'
     })
     // res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/admin-content', (req, res) => {
+app.get('/admin-content', verifyAdmin, (req, res) => {
     // res.render('dashboard');
-    res.render('dashboard', {
+    res.render('admin-content', {
         customScripts: true,
         admin: true,
-        title: 'Admin Dashboard',
+        title: 'Admin | Content',
         nav: 'admin-nav'
     })
     // res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/admin-billing', (req, res) => {
+app.get('/admin-billing', verifyAdmin, (req, res) => {
     // res.render('dashboard');
-    res.render('dashboard', {
+    res.render('admin-billing', {
         customScripts: true,
         admin: true,
-        title: 'Admin Dashboard',
+        title: 'Admin | Billing',
         nav: 'admin-nav'
     })
     // res.sendFile('index.html',{root: __dirname});
@@ -194,7 +194,7 @@ app.get('/admin-billing', (req, res) => {
 
 
 
-app.use(function(req, res, next) {
+app.use(function(req, res, next) {      // check if user is admin or not before linking back to home page!!!!
     res.render('fourOhFour', {
         title: "Error: 404",
         nav: 'nav'
@@ -203,7 +203,7 @@ app.use(function(req, res, next) {
   });
   
   // 500 - Any server error
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) {      // check if user is admin or not before linking back to home page!!!!
     return res.status(500).send("Error 500 - Internal Server Error");
   });
 
@@ -300,3 +300,15 @@ function createUser(userInfo) {
         
 
 
+function verifyAdmin(req, res, next) {
+
+    // if (user.isAdmin) {   // just psuedo code but something like this..
+    //     return next();
+    // }
+    // res.redirect('/home');
+
+
+    console.log('Authenticating Admin status.')
+    console.log('For testing and development assume user is Admin and return true.')
+    return next(); // simply assume user is admin for testing now
+}
