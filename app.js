@@ -274,9 +274,6 @@ io.on("connection", function (socket) {
         
        
 
-
-        // checkToken(token);
-        //verifyAdmin(token);//
         
     });
    
