@@ -390,7 +390,7 @@ function verifyAdmin(req, res, next) {
                 console.log(uid);
                 console.log(email);
                 var db = admin.database();
-                var ref = db.ref("tokens/" + strippedEmail);
+                var ref = db.ref("admin");
                 console.log("get admin emails from firebase");
 
 
