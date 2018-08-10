@@ -137,7 +137,7 @@ app.get('/account', isAccountHolder, (req, res) => {
 // });
 
 
-app.post('/admin-home', (req, res) => {
+app.get('/admin-home', (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -145,7 +145,7 @@ app.post('/admin-home', (req, res) => {
     })
 });
 
-app.post('/admin-dashboard', (req, res) => {
+app.get('/admin-dashboard', (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -154,7 +154,7 @@ app.post('/admin-dashboard', (req, res) => {
     })
 });
 
-app.post('/admin-content', (req, res) => {
+app.get('/admin-content', (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -162,7 +162,7 @@ app.post('/admin-content', (req, res) => {
     })
 });
 
-app.post('/admin-billing', (req, res) => {
+app.get('/admin-billing', (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
