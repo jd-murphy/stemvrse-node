@@ -221,7 +221,7 @@ io.on("connection", function (socket) {
         createAccount(userInfo);
     });
     socket.on("passToken", function (token) {  
-        checkToken(token);
+        // checkToken(token);
         //verifyAdmin(token);//
     });
     socket.on("tokenVerified", function (token) {  
