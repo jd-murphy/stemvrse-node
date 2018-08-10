@@ -381,7 +381,7 @@ function createAccount(userInfo) {
 
 function verifyAdmin(req, res, next) {
   
-        admin.auth().verifyIdToken(req.body.idToken)
+        admin.auth().verifyIdToken(req.body.token)
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;
