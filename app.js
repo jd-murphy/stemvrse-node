@@ -198,6 +198,7 @@ app.use(function(req, res, next) {      // check if user is admin or not before 
   
   // 500 - Any server error
 app.use(function(err, req, res, next) {      // check if user is admin or not before linking back to home page!!!!
+    console.log(err)
     return res.status(500).send("Error 500 - Internal Server Error");
   });
 
