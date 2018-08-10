@@ -379,7 +379,7 @@ function createAccount(userInfo) {
 
 
 
-function verifyAdmin(req, res, next) {
+function verifyAdmin(err, req, res, next) {
   
         admin.auth().verifyIdToken(req.body.token)
             .then(function(decodedToken) {
@@ -402,13 +402,14 @@ function verifyAdmin(req, res, next) {
                     
                         if(data[entry].includes(email)) {
                             console.log("Email is in admin list!      VALID!       calling next();");
-                            next();
+                            
                                 
                         } else {
                             console.log("POOOOOOOO email is not valid admin email! ");
                             res.redirect('/home');
                         }
                     });
+                    next();
                 });
                 
                
