@@ -220,15 +220,17 @@ io.on("connection", function (socket) {
     socket.on("createAccount", function (userInfo) {  
         createAccount(userInfo);
     });
-    socket.on("passToken", function (token) {  
+    socket.on("passToken", function (data) {  
+
+        console.log("HERE IS THE CURRENT USER from server side code...")
+        console.log(firebase.auth().currentUser)
+
+
         // checkToken(token);
         //verifyAdmin(token);//
-        socket.emit("receiveToken")
+        
     });
-    socket.on("tokenVerified", function (token) {  
-        socket.emit("verified")
-        //verifyAdmin(token);//
-    });
+   
 });
 
 
@@ -323,39 +325,7 @@ function createAccount(userInfo) {
     ref.set(updatedUserData);
 }
         
-// function createAdminSecret(email, secret) {
-//     console.log("create admin secret...")
-//     var db = admin.database();
-//     strippedEmail = email.replace(/[^a-z0-9]/,'')
-//     console.log("stripped email -> " + strippedEmail)
-//     var ref = db.ref("admin/secret/" + strippedEmail); 
-//     console.log("createAdminSecret(" + email + ")");
-//     ref.set({"secret": secret});
-// }
-// function getAdminSecret(email) {
-//     try {
-//         var db = admin.database();
-//         strippedEmail = email.replace(/[^a-z0-9]/,'')
-//         var ref = db.ref("admin/secret/" + strippedEmail); 
-//         console.log("getAdminSecret(" + email + ")");
-//         ref.once("value", function(snapshot) {
-//             data = snapshot.val()
-//             if (data) {
-//                 Object.keys(data).forEach(function (retrievedSecret) {
-//                     console.log("retrievedSecret ->");
-//                     console.log(retrievedSecret)
-//                     return {"secret": retrievedSecret};
-//                 });
-                
-//             } else {
-//                return {"secret": null};
-//             }
-//         });
-//     } catch (error) {
-//         return {"secret": null};
-//     }
-    
-// }
+
         
 
 
@@ -408,72 +378,8 @@ function verifyAdmin(req, res, next) {
 
 
 
-// function checkToken(idToken) {
-//     return new Promise(function(resolve, reject){
-//         console.log('in checkToken()')
-//         console.log('idToken ->')
-//         console.log(idToken)
-//         admin.auth().verifyIdToken(idToken)
-//             .then(function(decodedToken) {
-//                 var uid = decodedToken.uid;
-//                 var email = decodedToken.email;
-//                 console.log("uid and email from uath token ->");
-//                 console.log(uid);
-//                 console.log(email);
-//                 var db = admin.database();
-//                 var ref = db.ref("admin");
-//                 console.log("get admin emails from firebase");
-//                 ref.once("value", function(snapshot) {
-//                     data = snapshot.val()
-
-//                     Object.keys(data).forEach(function (entry) {
-                    
-//                         if(data[entry].includes(email)) {
-//                             console.log("Email is in admin list!      VALID!     returning TRUE and then resolve promise");
-//                             return true;
-                                
-//                         } else {
-//                             console.log("POOOOOOOO email is not valid admin email! ");
-//                             return false;
-//                         }
-//                     });
-//                 });
-                
-//                 resolve("true");
-//                 // ...
-//             }).catch(function(error) {
-//                 // Handle error
-//                 console.log("error validating admin, rejecting");
-//                 reject("Error")
-//             });
-//     }) 
-// }
-
-// function checkAdminSecret(email, secret) {
-//     console.log('Authenticating Admin secret.            [ checkAdminSecret(' + email + ')   (app.js) ]')
-//     retrievedSecret = getAdminSecret(email)
-//     // check first if null -> return error if null or undefined
-//     if (secret === retrievedSecret){
-//         console.log("Success, secret is VALID.")
-//         return next(); 
-//     } else {
-//         console.log("failure, secret is NOT VALID.")
-//         res.redirect('/home');
-//     }
-    
-// }
-
-
-
-
 
 function isAccountHolder(req, res, next) {
-
- // if (user.isAccountHolder) {   // just psuedo code but something like this..
-    //     return next();
-    // }
-    // res.redirect('/home');
-
 
     console.log('Authenticating Account Holder status.')
     console.log('For testing and development assume user is Account Holder and return true.')

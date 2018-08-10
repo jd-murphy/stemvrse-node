@@ -66,10 +66,8 @@
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
                     console.log(email);
                     var socket = io();
-
-                   socket.on('verifyToken', function(){
-                      socket.emit('passToken', accessToken);
-                   });
+                    socket.emit('passToken', {"token": accessToken, "email": email});
+                  
 
                    
 
