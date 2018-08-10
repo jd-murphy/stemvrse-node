@@ -223,7 +223,7 @@ io.on("connection", function (socket) {
     socket.on("passToken", function (data) {  
 
         console.log("HERE IS THE CURRENT USER from server side code...")
-        console.log(firebase.auth().currentUser)
+        console.log(data)
 
 
         // checkToken(token);
