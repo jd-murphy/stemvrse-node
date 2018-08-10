@@ -71,7 +71,10 @@
                         console.log(result["verified"]);
                         if (!result["verified"]) {
                           window.location.replace('/home');
+                        } else {
+                          $('#auth').removeClass('noAuth');
                         }
+                        
 
                         
                     });
