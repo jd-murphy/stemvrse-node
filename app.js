@@ -362,11 +362,15 @@ function verifyAdmin(req, res, next) {
     io.emit("verifyToken")
 
     socket.on('passToken', function(idToken){
-        if (checkToken(idToken)) {
-            next();
-        } else {
+        checkToken(idToken).then(function(result) {
+            if (result) {
+                next();
+            } else {
+                res.redirect('/home');
+            }
+        }, function(err){
             res.redirect('/home');
-        }
+        })
     })
     
 }
@@ -374,56 +378,55 @@ function verifyAdmin(req, res, next) {
 
 
 function checkToken(idToken) {
-    try {
-        console.log('Authenticating Admin status.')
-        console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
-        console.log(idToken)
-        admin.auth().verifyIdToken(idToken)
-            .then(function(decodedToken) {
-                var uid = decodedToken.uid;
-                var email = decodedToken.email;
-                console.log("uid and email from uath token ->");
-                console.log(uid);
-                console.log(email);
-                var db = admin.database();
-                var ref = db.ref("admin");
-                console.log("get admin emails from firebase");
-                ref.once("value", function(snapshot) {
-                    data = snapshot.val()
-
-                    Object.keys(data).forEach(function (entry) {
-                    
-                        if(data[entry].includes(email)) {
-                            console.log("Email is in admin list!      VALID!")
-                            // require('crypto').randomBytes(48, function(err, buffer) {
-                                // var newSecret = buffer.toString('hex');
-
-                                // need to store in firebase! to check in   checkAdminSecret()
-                                // console.log("\n\nCALLING   createAdminSecret()\n\n")
-                                // createAdminSecret(email, newSecret);
-                                return true;
-                                
-                            // });
-                        } else {
-                            console.log("POOOOOOOO email is not valid admin email! ")
-                            return false;
-                        }
+    return new Promise(function(resolve, reject){
+        try {
+            console.log('Authenticating Admin status.')
+            console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
+            console.log(idToken)
+            admin.auth().verifyIdToken(idToken)
+                .then(function(decodedToken) {
+                    var uid = decodedToken.uid;
+                    var email = decodedToken.email;
+                    console.log("uid and email from uath token ->");
+                    console.log(uid);
+                    console.log(email);
+                    var db = admin.database();
+                    var ref = db.ref("admin");
+                    console.log("get admin emails from firebase");
+                    ref.once("value", function(snapshot) {
+                        data = snapshot.val()
+    
+                        Object.keys(data).forEach(function (entry) {
+                        
+                            if(data[entry].includes(email)) {
+                                console.log("Email is in admin list!      VALID!")
+                                // require('crypto').randomBytes(48, function(err, buffer) {
+                                    // var newSecret = buffer.toString('hex');
+    
+                                    // need to store in firebase! to check in   checkAdminSecret()
+                                    // console.log("\n\nCALLING   createAdminSecret()\n\n")
+                                    // createAdminSecret(email, newSecret);
+                                    resolve(true)
+                                    
+                                // });
+                            } else {
+                                console.log("POOOOOOOO email is not valid admin email! ")
+                                resolve(false)
+                            }
+                        });
                     });
+                    // ...
+                }).catch(function(error) {
+                    // Handle error
+                    console.log("error validating admin, rejecting");
+                    reject("Error")
                 });
-                // ...
-            }).catch(function(error) {
-                // Handle error
-                console.log("error validating admin, rejecting");
-                return false;
-            });
-
-    } catch (error) {
-        console.log("error validating admin, rejecting");
-        return false;
-    }
-
-    // return next(); 
-
+    
+        } catch (error) {
+            console.log("error validating admin, rejecting");
+            reject("Error")
+        }
+    }) 
 }
 
 // function checkAdminSecret(email, secret) {
