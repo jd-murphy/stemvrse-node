@@ -73,17 +73,18 @@
                     socket.on("validToken", function() {
                       console.log("on validToken");
                        //$(document.body).append('<div style="position: fixed; bottom: 15px; right: 15px; width: 150px; border: 4px solid #46f21f;"><a href="#" onclick="nav(\'/admin-home\');"><h5>Toggle Admin Nav</h5></a></div>')
-                       if (!window.location.href.includes("admin-")) {
-                         console.log("page is not admin page, user is admin");
+                  
                          var fourOhFour = document.getElementById('fourOhFourHomeLink');
-                         if (!fourOhFour) {
-                           console.log("page is not admin page, user is admin, redirecting to /admin-home");
-                            nav('/admin-home');
-                         } else {
+                         if (fourOhFour) {
                            console.log("You're an admin, on the 404 page.");
                            document.getElementById('fourOhFourHomeLink').setAttribute('data-url','/admin-home');
+                         } else {
+                            if (!window.location.href.includes("admin-")) {
+                                console.log("page is not admin page, user is admin, redirecting to /admin-home");
+                                nav('/admin-home');
+                            }
                          }
-                       }
+                       
                        
                     });
                     socket.on('invalidToken', function() {
@@ -94,6 +95,7 @@
                     });
 
 
+    
 
                     
 
