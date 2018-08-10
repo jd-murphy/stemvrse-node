@@ -363,7 +363,7 @@ function verifyAdmin(req, res, next) {
     console.log("in verifyAdmin(), emit 'verifyToken'...")
     io.emit("verifyToken")
 
-    io.on('passToken', function(idToken){
+    socket.on('passToken', function(idToken){
         console.log("socket on 'passToken', calling checkToken()")
         admin.auth().verifyIdToken(idToken)
             .then(function(decodedToken) {
