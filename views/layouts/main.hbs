@@ -189,7 +189,16 @@
 
         function nav(path) {
               
-              $.post( path, { token: $("#token").val() });
+              $.post( path, { token: $("#token").val() })
+               .done(function() {
+                  alert( "nav(" + path + ")  done, success" );
+                })
+                .fail(function() {
+                  alert( "nav(" + path + ")  done, failuer (error)" );
+                })
+                .always(function() {
+                  alert( "nav(" + path + ")  DONE > finished" );
+                });
 
 
         }
