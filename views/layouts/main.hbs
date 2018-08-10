@@ -78,9 +78,9 @@
                          if (!window.location.href.includes("404")) {
                            console.log("page is not admin page, user is admin, redirecting to /admin-home");
                             nav('/admin-home');
-                         } else {
-                           console.log("page is not admin page, user is admin, PAGE is 404, change href to /admin-home for admin user");
-                           $('#fourOhFourHomeLink').attr("data-url", "/admin-home");
+                         } 
+                         if (window.location.href.includes("404")) {
+                           document.getElementById('fourOhFourHomeLink').setAttribute('data-url') = "/admin-home";
                          }
                        }
                        
