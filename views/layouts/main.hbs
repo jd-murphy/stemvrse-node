@@ -52,7 +52,7 @@
         initApp = function() {
           firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                //$('#auth').removeClass('noAuth');
+              $('#auth').removeClass('noAuth');
               // User is signed in.
                 var displayName = user.displayName;
                 var email = user.email;
@@ -66,24 +66,16 @@
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
                     //console.log(email);
                     var socket = io();
-                    socket.on('adminVerificationResult', function (result) {
-                        console.log('SOCKET on adminVerificationResult!      ( main.hbs )   ')
-                        console.log(result["verified"]);
-                        if (result["verified"]) {
-                          $('#auth').removeClass('noAuth');
-                        } 
-                        
 
-                        
-                    });
-
+                   socket.on('verifyToken', function(){
+                      socket.emit('passToken', accessToken);
+                   });
 
                    
-                    socket.emit('verifyAdmin', accessToken);
 
 
 
-                       
+                    
 
 
 

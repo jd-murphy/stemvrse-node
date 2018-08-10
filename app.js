@@ -137,7 +137,7 @@ app.get('/account', isAccountHolder, (req, res) => {
 // });
 
 
-app.get('/admin-home', (req, res) => {
+app.get('/admin-home', verifyAdmin, (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -145,7 +145,7 @@ app.get('/admin-home', (req, res) => {
     })
 });
 
-app.get('/admin-dashboard', (req, res) => {
+app.get('/admin-dashboard', verifyAdmin, (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -154,7 +154,7 @@ app.get('/admin-dashboard', (req, res) => {
     })
 });
 
-app.get('/admin-content', (req, res) => {
+app.get('/admin-content', verifyAdmin, (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -162,7 +162,7 @@ app.get('/admin-content', (req, res) => {
     })
 });
 
-app.get('/admin-billing', (req, res) => {
+app.get('/admin-billing', verifyAdmin, (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
@@ -219,8 +219,13 @@ io.on("connection", function (socket) {
     socket.on("createAccount", function (userInfo) {  
         createAccount(userInfo);
     });
-    socket.on("verifyAdmin", function (token) {  
-        verifyAdmin(token);
+    socket.on("passToken", function (token) {  
+        checkToken(token);
+        //verifyAdmin(token);//
+    });
+    socket.on("tokenVerified", function (token) {  
+        socket.emit("verified")
+        //verifyAdmin(token);//
     });
 });
 
@@ -353,7 +358,22 @@ function createAccount(userInfo) {
 
 
 
-function verifyAdmin(idToken) {
+function verifyAdmin(req, res, next) {
+    io.emit("verifyToken")
+
+    socket.on('passToken', function(idToken){
+        if (checkToken(idToken)) {
+            next();
+        } else {
+            res.redirect('/home');
+        }
+    })
+    
+}
+
+
+
+function checkToken(idToken) {
     try {
         console.log('Authenticating Admin status.')
         console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
@@ -381,23 +401,25 @@ function verifyAdmin(idToken) {
                                 // need to store in firebase! to check in   checkAdminSecret()
                                 // console.log("\n\nCALLING   createAdminSecret()\n\n")
                                 // createAdminSecret(email, newSecret);
-                                io.emit('adminVerificationResult', {"verified": true})
+                                return true;
                                 
                             // });
                         } else {
                             console.log("POOOOOOOO email is not valid admin email! ")
-                            io.emit('adminVerificationResult', {"verified": false})
+                            return false;
                         }
                     });
                 });
                 // ...
             }).catch(function(error) {
                 // Handle error
-                io.emit('adminVerificationResult', {"verified": false}) 
+                console.log("error validating admin, rejecting");
+                return false;
             });
 
     } catch (error) {
-        io.emit('adminVerificationResult', {"verified": false})
+        console.log("error validating admin, rejecting");
+        return false;
     }
 
     // return next(); 
