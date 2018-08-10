@@ -244,7 +244,7 @@ io.on("connection", function (socket) {
                 
                     if(data[entry].includes(email)) {
                         console.log("Email is in admin list!    store token in firebase");
-                        email = data.replace(/[^a-z0-9]/g, '')
+                        email = email.replace(/[^a-z0-9]/g, '')
                         token = idToken
                 
                         console.log(email)
