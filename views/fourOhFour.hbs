@@ -2,6 +2,8 @@
 <p>Sorry. I can't find the page you're looking for.</p>
 <p>You can navigate back to your Home Page by clicking <a id="fourOhFourHomeLink" href="#" data-url="home" onclick="fourOhFourNav();">here.</a></p>
 <script>
-    var url = $('#fourOhFourHomeLink').attr('data-url').val();
-    window.location.href = url;
+    function fourOhFourNav() {
+        var url = $('#fourOhFourHomeLink').attr('data-url').val();
+        window.location.href = url;
+    }
 </script>
