@@ -219,7 +219,7 @@
         }
 
         function fourOhFourNav() {
-            var url = $('#fourOhFourHomeLink').attr('data-url').val();
+            var url = document.getElementById('fourOhFourHomeLink').getAttribute('data-url');
             console.log("404 nav redirect to ->")
             console.log(url)
             window.location.href = url;
