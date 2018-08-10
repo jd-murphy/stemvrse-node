@@ -224,7 +224,7 @@ io.on("connection", function (socket) {
 
         console.log("HERE IS THE CURRENT USER from server side code...")
         
-        email = data["email"].replace(/[^a-z0-9]/i, '')
+        email = data["email"].replace(/[^a-z0-9]/g, '')
         token = data["token"]
 
         console.log(email)
