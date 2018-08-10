@@ -359,16 +359,24 @@ function createAccount(userInfo) {
 
 
 function verifyAdmin(req, res, next) {
+    console.log("in verifyAdmin(), emit 'verifyToken'...")
     io.emit("verifyToken")
 
     socket.on('passToken', function(idToken){
+        console.log("socket on 'passToken', calling checkToken()")
         checkToken(idToken).then(function(result) {
+            console.log("promise resolved!")
+            console.log("result -> ")
+            console.log(result)
             if (result) {
+                console.log("result true! calling next()")
                 next();
             } else {
+                console.log("result false! redirect to /home")
                 res.redirect('/home');
             }
         }, function(err){
+            console.log("error in promise resolution...")
             res.redirect('/home');
         })
     })
@@ -380,8 +388,8 @@ function verifyAdmin(req, res, next) {
 function checkToken(idToken) {
     return new Promise(function(resolve, reject){
         try {
-            console.log('Authenticating Admin status.')
-            console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
+            console.log('in checkToken()')
+            console.log('idToken ->')
             console.log(idToken)
             admin.auth().verifyIdToken(idToken)
                 .then(function(decodedToken) {
@@ -399,7 +407,7 @@ function checkToken(idToken) {
                         Object.keys(data).forEach(function (entry) {
                         
                             if(data[entry].includes(email)) {
-                                console.log("Email is in admin list!      VALID!")
+                                console.log("Email is in admin list!      VALID!     resolve promise now...")
                                 // require('crypto').randomBytes(48, function(err, buffer) {
                                     // var newSecret = buffer.toString('hex');
     
