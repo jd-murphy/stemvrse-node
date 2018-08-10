@@ -223,6 +223,7 @@ io.on("connection", function (socket) {
     socket.on("passToken", function (token) {  
         // checkToken(token);
         //verifyAdmin(token);//
+        socket.emit("receiveToken")
     });
     socket.on("tokenVerified", function (token) {  
         socket.emit("verified")
@@ -363,7 +364,7 @@ function verifyAdmin(req, res, next) {
     console.log("in verifyAdmin(), emit 'verifyToken'...")
     io.emit("verifyToken")
 
-    socket.on('passToken', function(idToken){
+    io.on('receiveToken', function(idToken){
         console.log("socket on 'passToken', calling checkToken()")
         admin.auth().verifyIdToken(idToken)
             .then(function(decodedToken) {
