@@ -385,7 +385,7 @@ function verifyAdmin(req, res, next) {
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;
-                email = email.replace(/[^a-z0-9]/g, '')
+                // email = email.replace(/[^a-z0-9]/g, '')
                 console.log("uid and email from uath token ->");
                 console.log(uid);
                 console.log(email);
