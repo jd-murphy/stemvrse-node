@@ -78,7 +78,8 @@
                        
                     });
                     socket.on('invalidToken', function() {
-                      if (!window.location.href.includes("/landing")) {
+
+                      if (window.location.href.includes("/landing")) {
                           window.location.href = "/home";
                        }
                     });
