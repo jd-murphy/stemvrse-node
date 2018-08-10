@@ -189,17 +189,16 @@
 
         function nav(path) {
               
-              $.post( path, { token: $("#token").val() })
-               .done(function(data) {
-                  console.log( "nav(" + path + ")  done, success: " + data);
-                })
-                .fail(function() {
-                  console.log( "nav(" + path + ")  done, failuer (error)" );
-                })
-                .always(function() {
-                  console.log( "nav(" + path + ")  DONE > finished" );
-                });
-
+          var form = document.createElement("form");
+          form.setAttribute("method", "POST");
+          form.setAttribute("action", path);
+          var tokenInput = document.createElement("input");
+          tokenInput.setAttribute("type", "hidden");
+          tokenInput.setAttribute("name", "tokenInput");
+          tokenInput.setAttribute("value", $("#token").val());
+          form.appendChild(tokenInput);
+          document.body.appendChild(form);
+          form.submit();
 
         }
 
