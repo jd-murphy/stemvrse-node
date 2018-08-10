@@ -138,7 +138,7 @@ app.get('/account', isAccountHolder, (req, res) => {
 // });
 
 
-app.get('/admin-home', verifyAdmin, (req, res) => {
+app.post('/admin-home', verifyAdmin, (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -146,7 +146,7 @@ app.get('/admin-home', verifyAdmin, (req, res) => {
     })
 });
 
-app.get('/admin-dashboard', verifyAdmin, (req, res) => {
+app.post('/admin-dashboard', verifyAdmin, (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -155,7 +155,7 @@ app.get('/admin-dashboard', verifyAdmin, (req, res) => {
     })
 });
 
-app.get('/admin-content', verifyAdmin, (req, res) => {
+app.post('/admin-content', verifyAdmin, (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -163,7 +163,7 @@ app.get('/admin-content', verifyAdmin, (req, res) => {
     })
 });
 
-app.get('/admin-billing', verifyAdmin, (req, res) => {
+app.post('/admin-billing', verifyAdmin, (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
@@ -222,18 +222,56 @@ io.on("connection", function (socket) {
     });
     socket.on("passToken", function (data) {  
 
-        console.log("HERE IS THE CURRENT USER from server side code...")
+       
+
+
+        idToken = data["token"]
+
+        admin.auth().verifyIdToken(idToken)
+        .then(function(decodedToken) {
+            var uid = decodedToken.uid;
+            var email = decodedToken.email;
+            console.log("uid and email from uath token ->");
+            console.log(uid);
+            console.log(email);
+            var db = admin.database();
+            var ref = db.ref("admin");
+            console.log("get admin emails from firebase");
+            ref.once("value", function(snapshot) {
+                data = snapshot.val()
+
+                Object.keys(data).forEach(function (entry) {
+                
+                    if(data[entry].includes(email)) {
+                        console.log("Email is in admin list!    store token in firebase");
+                        email = data.replace(/[^a-z0-9]/g, '')
+                        token = idToken
+                
+                        console.log(email)
+                        console.log(token)
+                
+                        var db = admin.database();
+                        var ref = db.ref("tokens/" + email); 
+                        console.log("storing token for " + email);
+                        ref.set({"token": token});
+                        io.emit("validToken")
+                            
+                    } else {
+                        console.log("POOOOOOOO email is not valid admin email! ");
+                        
+                    }
+                });
+            });
+            
+           
+            // ...
+        }).catch(function(error) {
+            // Handle error
+            console.log("error validating admin, rejecting");
+            res.redirect('/home');
+        });
         
-        email = data["email"].replace(/[^a-z0-9]/g, '')
-        token = data["token"]
-
-        console.log(email)
-        console.log(token)
-
-        var db = admin.database();
-        var ref = db.ref("tokens/" + email); 
-        console.log("storing token for " + email);
-        ref.set({"token": token});
+       
 
 
         // checkToken(token);
@@ -341,21 +379,21 @@ function createAccount(userInfo) {
 
 
 function verifyAdmin(req, res, next) {
-    console.log("in verifyAdmin(), emit 'verifyToken'...")
-    io.emit("verifyToken")
-
-    io.on('receiveToken', function(idToken){
-        console.log("socket on 'passToken', calling checkToken()")
-        admin.auth().verifyIdToken(idToken)
+  
+        admin.auth().verifyIdToken(req.body.idToken)
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;
+                email = email.replace(/[^a-z0-9]/g, '')
                 console.log("uid and email from uath token ->");
                 console.log(uid);
                 console.log(email);
                 var db = admin.database();
-                var ref = db.ref("admin");
+                var ref = db.ref("tokens/" + email);
                 console.log("get admin emails from firebase");
+
+
+
                 ref.once("value", function(snapshot) {
                     data = snapshot.val()
 
@@ -379,9 +417,6 @@ function verifyAdmin(req, res, next) {
                 console.log("error validating admin, rejecting");
                 res.redirect('/home');
             });
-
-
-    })
     
 }
 
