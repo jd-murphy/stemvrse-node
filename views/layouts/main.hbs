@@ -69,7 +69,9 @@
                     socket.on('adminVerificationResult', function (result) {
                         console.log('SOCKET on adminVerificationResult!      ( main.hbs )   ')
                         console.log(result["verified"]);
-
+                        if (!result["verified"]) {
+                          window.location.replace('/home');
+                        }
 
                         
                     });
