@@ -190,14 +190,14 @@
         function nav(path) {
               
               $.post( path, { token: $("#token").val() })
-               .done(function() {
-                  alert( "nav(" + path + ")  done, success" );
+               .done(function(data) {
+                  console.log( "nav(" + path + ")  done, success: " + data);
                 })
                 .fail(function() {
-                  alert( "nav(" + path + ")  done, failuer (error)" );
+                  console.log( "nav(" + path + ")  done, failuer (error)" );
                 })
                 .always(function() {
-                  alert( "nav(" + path + ")  DONE > finished" );
+                  console.log( "nav(" + path + ")  DONE > finished" );
                 });
 
 
