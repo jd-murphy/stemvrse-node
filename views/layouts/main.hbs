@@ -81,7 +81,7 @@
                             nav('/admin-home');
                          } else {
                            console.log("You're an admin, on the 404 page.");
-                           $('#fourOhFourHomeLink').attr('data-url','/admin-home');
+                           document.getElementById('fourOhFourHomeLink').setAttribute('data-url','/admin-home');
                          }
                        }
                        
