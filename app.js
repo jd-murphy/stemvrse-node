@@ -365,32 +365,6 @@ function verifyAdmin(req, res, next) {
 
     io.on('passToken', function(idToken){
         console.log("socket on 'passToken', calling checkToken()")
-        checkToken(idToken).then(function(result) {
-            console.log("promise resolved!")
-            console.log("result -> ")
-            console.log(result)
-            if (result) {
-                console.log("result true! calling next()")
-                next();
-            } else {
-                console.log("result false! redirect to /home")
-                res.redirect('/home');
-            }
-        }, function(err){
-            console.log("error in promise resolution...")
-            res.redirect('/home');
-        })
-    })
-    
-}
-
-
-
-function checkToken(idToken) {
-    return new Promise(function(resolve, reject){
-        console.log('in checkToken()')
-        console.log('idToken ->')
-        console.log(idToken)
         admin.auth().verifyIdToken(idToken)
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
@@ -408,24 +382,71 @@ function checkToken(idToken) {
                     
                         if(data[entry].includes(email)) {
                             console.log("Email is in admin list!      VALID!     returning TRUE and then resolve promise");
-                            return true;
+                            next();
                                 
                         } else {
                             console.log("POOOOOOOO email is not valid admin email! ");
-                            return false;
+                            res.redirect('/home');
                         }
                     });
                 });
                 
-                resolve("true");
+               
                 // ...
             }).catch(function(error) {
                 // Handle error
                 console.log("error validating admin, rejecting");
-                reject("Error")
+                res.redirect('/home');
             });
-    }) 
+
+
+    })
+    
 }
+
+
+
+
+// function checkToken(idToken) {
+//     return new Promise(function(resolve, reject){
+//         console.log('in checkToken()')
+//         console.log('idToken ->')
+//         console.log(idToken)
+//         admin.auth().verifyIdToken(idToken)
+//             .then(function(decodedToken) {
+//                 var uid = decodedToken.uid;
+//                 var email = decodedToken.email;
+//                 console.log("uid and email from uath token ->");
+//                 console.log(uid);
+//                 console.log(email);
+//                 var db = admin.database();
+//                 var ref = db.ref("admin");
+//                 console.log("get admin emails from firebase");
+//                 ref.once("value", function(snapshot) {
+//                     data = snapshot.val()
+
+//                     Object.keys(data).forEach(function (entry) {
+                    
+//                         if(data[entry].includes(email)) {
+//                             console.log("Email is in admin list!      VALID!     returning TRUE and then resolve promise");
+//                             return true;
+                                
+//                         } else {
+//                             console.log("POOOOOOOO email is not valid admin email! ");
+//                             return false;
+//                         }
+//                     });
+//                 });
+                
+//                 resolve("true");
+//                 // ...
+//             }).catch(function(error) {
+//                 // Handle error
+//                 console.log("error validating admin, rejecting");
+//                 reject("Error")
+//             });
+//     }) 
+// }
 
 // function checkAdminSecret(email, secret) {
 //     console.log('Authenticating Admin secret.            [ checkAdminSecret(' + email + ')   (app.js) ]')
