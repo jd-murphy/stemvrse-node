@@ -64,7 +64,7 @@
                 user.getIdToken().then(function(accessToken) {
 
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
-                    //console.log(email);
+                    console.log(email);
                     var socket = io();
 
                    socket.on('verifyToken', function(){

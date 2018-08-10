@@ -362,7 +362,7 @@ function verifyAdmin(req, res, next) {
     console.log("in verifyAdmin(), emit 'verifyToken'...")
     io.emit("verifyToken")
 
-    socket.on('passToken', function(idToken){
+    io.on('passToken', function(idToken){
         console.log("socket on 'passToken', calling checkToken()")
         checkToken(idToken).then(function(result) {
             console.log("promise resolved!")
