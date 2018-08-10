@@ -414,12 +414,12 @@ function checkToken(idToken) {
                                     // need to store in firebase! to check in   checkAdminSecret()
                                     // console.log("\n\nCALLING   createAdminSecret()\n\n")
                                     // createAdminSecret(email, newSecret);
-                                    resolve(true)
+                                    resolve("true")
                                     
                                 // });
                             } else {
                                 console.log("POOOOOOOO email is not valid admin email! ")
-                                resolve(false)
+                                resolve("false")
                             }
                         });
                     });
