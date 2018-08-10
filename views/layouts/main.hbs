@@ -223,7 +223,12 @@
             var url = document.getElementById('fourOhFourHomeLink').getAttribute('data-url');
             console.log("404 nav redirect to ->")
             console.log(url)
-            window.location.href = url;
+            if (url === "/admin-home") {
+              nav(url)
+            } else {
+              window.location.href = url;
+            }
+            
         }
 
 
