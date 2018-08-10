@@ -223,7 +223,17 @@ io.on("connection", function (socket) {
     socket.on("passToken", function (data) {  
 
         console.log("HERE IS THE CURRENT USER from server side code...")
-        console.log(data)
+        
+        email = data["email"].replace('/[^a-z0-9]/i', '')
+        token = data["token"]
+
+        console.log(email)
+        console.log(token)
+
+        var db = admin.database();
+        var ref = db.ref("tokens/" + email); 
+        console.log("storing token for " + email);
+        ref.set({"token": token});
 
 
         // checkToken(token);
