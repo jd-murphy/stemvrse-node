@@ -12,6 +12,7 @@ require('firebase/auth');
 require('firebase/database');
 
 var path = require('path');
+var Promise = require('promise');
 
 
 var handlebars = require('express-handlebars').create({
@@ -387,53 +388,42 @@ function verifyAdmin(req, res, next) {
 
 function checkToken(idToken) {
     return new Promise(function(resolve, reject){
-        try {
-            console.log('in checkToken()')
-            console.log('idToken ->')
-            console.log(idToken)
-            admin.auth().verifyIdToken(idToken)
-                .then(function(decodedToken) {
-                    var uid = decodedToken.uid;
-                    var email = decodedToken.email;
-                    console.log("uid and email from uath token ->");
-                    console.log(uid);
-                    console.log(email);
-                    var db = admin.database();
-                    var ref = db.ref("admin");
-                    console.log("get admin emails from firebase");
-                    ref.once("value", function(snapshot) {
-                        data = snapshot.val()
-    
-                        Object.keys(data).forEach(function (entry) {
-                        
-                            if(data[entry].includes(email)) {
-                                console.log("Email is in admin list!      VALID!     resolve promise now...")
-                                // require('crypto').randomBytes(48, function(err, buffer) {
-                                    // var newSecret = buffer.toString('hex');
-    
-                                    // need to store in firebase! to check in   checkAdminSecret()
-                                    // console.log("\n\nCALLING   createAdminSecret()\n\n")
-                                    // createAdminSecret(email, newSecret);
-                                    resolve("true")
-                                    
-                                // });
-                            } else {
-                                console.log("POOOOOOOO email is not valid admin email! ")
-                                resolve("false")
-                            }
-                        });
+        console.log('in checkToken()')
+        console.log('idToken ->')
+        console.log(idToken)
+        admin.auth().verifyIdToken(idToken)
+            .then(function(decodedToken) {
+                var uid = decodedToken.uid;
+                var email = decodedToken.email;
+                console.log("uid and email from uath token ->");
+                console.log(uid);
+                console.log(email);
+                var db = admin.database();
+                var ref = db.ref("admin");
+                console.log("get admin emails from firebase");
+                ref.once("value", function(snapshot) {
+                    data = snapshot.val()
+
+                    Object.keys(data).forEach(function (entry) {
+                    
+                        if(data[entry].includes(email)) {
+                            console.log("Email is in admin list!      VALID!     returning TRUE and then resolve promise");
+                            return true;
+                                
+                        } else {
+                            console.log("POOOOOOOO email is not valid admin email! ");
+                            return false;
+                        }
                     });
-                    // ...
-                }).catch(function(error) {
-                    // Handle error
-                    console.log("error validating admin, rejecting");
-                    reject("Error")
                 });
-    
-        } catch (error) {
-            console.log("error validating admin, rejecting");
-            reject("Error")
-        }
+                
+                resolve("true");
+                // ...
+            }).catch(function(error) {
+                // Handle error
+                console.log("error validating admin, rejecting");
+                reject("Error")
+            });
     }) 
 }
 
