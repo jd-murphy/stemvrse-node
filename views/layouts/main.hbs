@@ -45,11 +45,14 @@
     <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    <script src="/socket.io/socket.io.js"></script>
+
+
     <script type="text/javascript">
         initApp = function() {
           firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                $('#auth').removeClass('noAuth');
+                //$('#auth').removeClass('noAuth');
               // User is signed in.
                 var displayName = user.displayName;
                 var email = user.email;
@@ -61,10 +64,30 @@
                 user.getIdToken().then(function(accessToken) {
 
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
-                    console.log(email);
-                    $('body').append('<input id="authAccessToken" type="hidden" value="' + accessToken + '">')
+                    //console.log(email);
+                    var socket = io();
+                    socket.on('adminVerificationResult', function (result) {
+                        console.log('SOCKET on adminVerificationResult!      ( main.hbs )   ')
+                        console.log(result["verified"]);
+
+
+                        
+                    });
+
+
+                   
+                    socket.emit('verifyAdmin', accessToken);
+
+
+
+                       
+
+
+
+                    //$('body').append('<input id="authAccessToken" type="hidden" value="' + accessToken + '">')
+
                     
-                    sessionStorage.setItem("authAccessToken", accessToken)
+                    //sessionStorage.setItem("authAccessToken", accessToken)
             
                     
                 // document.getElementById('sign-in-status').textContent = 'Signed in';
@@ -138,10 +161,11 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    
+    
    
     {{#if dashboard}}
       <script>console.log("Loading dashboard.js -> ")</script>
-      <script src="/socket.io/socket.io.js"></script>
       <script src="../../scripts/dashboard.js"></script>
     {{/if}}
 
@@ -162,8 +186,6 @@
                     // An error happened
                 });
         }
-
-
 
 
 

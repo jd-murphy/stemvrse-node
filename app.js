@@ -67,6 +67,12 @@ app.get('/', (req, res) => {
 
 
 
+app.get('/landing', (req, res)=>{
+    res.render('landing');
+});
+
+
+
 app.get('/home', (req, res) => {
     res.render('home', {
         title: "Home",
@@ -129,7 +135,9 @@ app.get('/account', isAccountHolder, (req, res) => {
 //     verifyAdmin(req, res);
 //     console.log('hit /verify-token route')
 // });
-app.get('/admin-home', verifyAdmin, (req, res) => {
+
+
+app.post('/admin-home', (req, res) => {
     res.render('admin-home', {
         admin: true,
         title: 'Admin | Home',
@@ -137,15 +145,7 @@ app.get('/admin-home', verifyAdmin, (req, res) => {
     })
 });
 
-app.post('/admin-home', verifyAdmin, (req, res) => {
-    res.render('admin-home', {
-        admin: true,
-        title: 'Admin | Home',
-        nav: 'admin-nav'
-    })
-});
-
-app.post('/admin-dashboard', verifyAdmin, (req, res) => {
+app.post('/admin-dashboard', (req, res) => {
     res.render('admin-dashboard', {
         dashboard: true, // load dashboard.js
         admin: true,
@@ -154,7 +154,7 @@ app.post('/admin-dashboard', verifyAdmin, (req, res) => {
     })
 });
 
-app.post('/admin-content', verifyAdmin, (req, res) => {
+app.post('/admin-content', (req, res) => {
     res.render('admin-content', {
         admin: true,
         title: 'Admin | Content',
@@ -162,7 +162,7 @@ app.post('/admin-content', verifyAdmin, (req, res) => {
     })
 });
 
-app.post('/admin-billing', verifyAdmin, (req, res) => {
+app.post('/admin-billing', (req, res) => {
     res.render('admin-billing', {
         admin: true,
         title: 'Admin | Billing',
@@ -219,9 +219,9 @@ io.on("connection", function (socket) {
     socket.on("createAccount", function (userInfo) {  
         createAccount(userInfo);
     });
-    // socket.on("loadRaidData", function (notification_request) {  
-    //     getRaidDataFromFirebase();
-    // });
+    socket.on("verifyAdmin", function (token) {  
+        verifyAdmin(token);
+    });
 });
 
 
@@ -353,13 +353,12 @@ function createAccount(userInfo) {
 
 
 
-
-function verifyAdmin(req, res, next) {
+function verifyAdmin(idToken) {
     try {
         console.log('Authenticating Admin status.')
         console.log('verifyAdmin()   from app.js  \n req.query.idToken ->')
-        console.log(req.headers.idToken)
-        admin.auth().verifyIdToken(req.headers.idToken)
+        console.log(idToken)
+        admin.auth().verifyIdToken(idToken)
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;
@@ -382,23 +381,23 @@ function verifyAdmin(req, res, next) {
                                 // need to store in firebase! to check in   checkAdminSecret()
                                 // console.log("\n\nCALLING   createAdminSecret()\n\n")
                                 // createAdminSecret(email, newSecret);
-
-                                next(); 
+                                io.emit('adminVerificationResult', {"verified": true})
+                                
                             // });
                         } else {
                             console.log("POOOOOOOO email is not valid admin email! ")
-                            res.redirect('/home'); 
+                            io.emit('adminVerificationResult', {"verified": false})
                         }
                     });
                 });
                 // ...
             }).catch(function(error) {
                 // Handle error
-                res.redirect('/home'); 
+                io.emit('adminVerificationResult', {"verified": false}) 
             });
 
     } catch (error) {
-        res.redirect('/home'); 
+        io.emit('adminVerificationResult', {"verified": false})
     }
 
     // return next(); 
