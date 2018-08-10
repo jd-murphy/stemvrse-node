@@ -259,7 +259,7 @@ io.on("connection", function (socket) {
                             
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ");
-                        
+                        io.emit("invalidToken")
                     }
                 });
             });
@@ -269,7 +269,8 @@ io.on("connection", function (socket) {
         }).catch(function(error) {
             // Handle error
             console.log("error validating admin, rejecting");
-            res.redirect('/home');
+            io.emit("invalidToken")
+            
         });
         
        
