@@ -190,8 +190,7 @@ app.post('/admin-billing', verifyAdmin, (req, res) => {
 
 app.use(function(req, res, next) {      // check if user is admin or not before linking back to home page!!!!
     res.render('fourOhFour', {
-        title: "Error: 404",
-        nav: 'nav'
+        title: "Error: 404"
     })
     // return res.status(404).send("Error 404 - Page Not Found");
   });
