@@ -433,7 +433,7 @@ function addVideo(videoInfo) {
 function deleteVideo(videoName) {
     console.log("calling deleteVideo() from app.js")
     var db = admin.database();
-    name = videoInfo.name.toLowerCase();
+    name = videoName.toLowerCase();
     strippedName = name.replace(/[^a-z0-9]/g, '')
     var ref = db.ref("videos/" + strippedName);
     console.log("deleteVideo(" + strippedName + ")");
