@@ -276,6 +276,13 @@ io.on("connection", function (socket) {
 
         
     });
+    socket.on("addVideo", function (videoInfo) {  
+        addVideo(videoInfo);
+    });
+    socket.on("deleteVideo", function (videoInfo) {  
+        deleteVideo(videoInfo);
+    });
+    
    
 });
 
@@ -369,6 +376,33 @@ function createAccount(userInfo) {
             phone: userInfo.phone
          }
     ref.set(updatedUserData);
+}
+
+
+
+        
+
+
+function addVideo(videoInfo) {
+    var db = admin.database();
+    strippedName =  videoInfo.name.replace(/[^a-z0-9]/g, '')
+    var ref = db.ref("videos/" + strippedName); 
+    console.log("addVideo(" + strippedName + ")");
+    updatedVideoData = { 
+            name: videoInfo.name,
+            link: videoInfo.link
+         }
+    ref.set(updatedVideoData);
+}
+        
+
+
+function deleteVideo(videoName) {
+    var db = admin.database();
+    strippedName =  videoInfo.name.replace(/[^a-z0-9]/g, '')
+    var ref = db.ref("videos/" + strippedName);
+    console.log("deleteVideo(" + strippedName + ")");
+    ref.remove();
 }
         
 

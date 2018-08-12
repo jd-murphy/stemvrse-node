@@ -34,26 +34,26 @@ $(document).ready(function(){
     });
 
     $('#displayData').on('click','div div strong div div a.editUser', function() {
-    clientUserName = this.id.substring(8);
-    $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
-    $("#decisionModalButton").html("EDIT");
-    $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
-    $("#decisionModalButton").removeClass("btn-outline-danger");
-    $("#decisionModalButton").addClass("btn-outline-success");
-    document.getElementById('hiddenUsername').value = clientUserName;
-    $("#modalDialog").modal();
+        clientUserName = this.id.substring(8);
+        $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
+        $("#decisionModalButton").html("EDIT");
+        $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
+        $("#decisionModalButton").removeClass("btn-outline-danger");
+        $("#decisionModalButton").addClass("btn-outline-success");
+        document.getElementById('hiddenUsername').value = clientUserName;
+        $("#modalDialog").modal();
 
     });
 
     $('#displayData').on('click','div div strong div div a.deleteUser', function() {
-    clientUserName = this.id.substring(10);
-    $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
-    $("#decisionModalButton").html("DELETE");
-    $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
-    $("#decisionModalButton").removeClass("btn-outline-success");
-    $("#decisionModalButton").addClass("btn-outline-danger");
-    document.getElementById('hiddenUsername').value = clientUserName;
-    $("#modalDialog").modal()
+        clientUserName = this.id.substring(10);
+        $("#modalDataDiv").html("You have chosen to DELETE the user: <strong>" + clientUserName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
+        $("#decisionModalButton").html("DELETE");
+        $("#modalTitle").html("<strong>Delete User: " + clientUserName + "</strong>");
+        $("#decisionModalButton").removeClass("btn-outline-success");
+        $("#decisionModalButton").addClass("btn-outline-danger");
+        document.getElementById('hiddenUsername').value = clientUserName;
+        $("#modalDialog").modal()
 
     });
 
