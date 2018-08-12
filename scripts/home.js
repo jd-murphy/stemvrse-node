@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     
     $('#displayVideos').on('click','li div div strong div div a.favoriteVideo', function() {
-        videoName = this.id.substring(11);
+        videoName = this.id.substring(13);
         var displayName = this.getAttribute('data-video-display-name');
        
         console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
