@@ -131,7 +131,8 @@ socket.on('onUserData', function (data) {
         // var data = JSON.parse(data); //process notication array
 
      Object.keys(data).forEach(function (user) {
-         console.log(user[data]);
+         console.log(user.displayName);
+         console.log(user.email);
 
             //  $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
             //          '<div class="card-header"><strong>' + username + '</strong></div>' + 
