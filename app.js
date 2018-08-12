@@ -279,13 +279,19 @@ io.on("connection", function (socket) {
         
     });
 
-    socket.on("loadVideos", function (videoInfo) {  
+    socket.on("loadVideos", function (videoInfo) {
+        console.log("socket on loadVideos, app.js")
+        console.log("calling getVideoDataFromFirebase()")  
         getVideoDataFromFirebase();
     });
     socket.on("addVideo", function (videoInfo) {  
+        console.log("socket on addVideo, app.js")
+        console.log("calling addVideo()")
         addVideo(videoInfo);
     });
     socket.on("deleteVideo", function (videoInfo) {  
+        console.log("socket on deleteVideo, app.js")
+        console.log("calling deleteVideo()")
         deleteVideo(videoInfo);
     });
     
@@ -394,6 +400,7 @@ function getVideoDataFromFirebase() {
     var ref = db.ref("videos");
     console.log("getVideoDataFromFirebase()");
     ref.on("value", function(snapshot) {
+        console.log("on value, getVideoDataFromFirebase() snapshot")
         data = snapshot.val()
         if (data) {
             io.emit('newVideoData', JSON.stringify(data));
@@ -424,6 +431,7 @@ function addVideo(videoInfo) {
 
 
 function deleteVideo(videoName) {
+    console.log("calling deleteVideo() from app.js")
     var db = admin.database();
     name = videoInfo.name.toLowerCase();
     strippedName = name.replace(/[^a-z0-9]/g, '')

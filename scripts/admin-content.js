@@ -18,7 +18,7 @@ $(document).ready(function(){
             dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
                                      '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
                                      '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                         '<a class="dropdown-item deleteVideo" href="#deleteVideo' + strippedName + '" id="deleteVideo' + strippedName + '">Delete Video</a>' + 
+                                         '<a class="dropdown-item deleteVideo" data-video-display-name=' + name + ' href="#deleteVideo' + strippedName + '" id="deleteVideo' + strippedName + '">Delete Video</a>' + 
                                      '</div>' + 
                                  '</div>'
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     
     $('#displayVideos').on('click','li div div strong div div a.deleteVideo', function() {
-        videoName = this.id.substring(10);
+        videoName = this.id.substring(11);
         $("#modalDataDiv").html("You have chosen to DELETE the video: <strong>" + videoName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
         $("#decisionModalButton").html("DELETE");
         $("#modalTitle").html("<strong>Delete Video: " + videoName + "</strong>");
