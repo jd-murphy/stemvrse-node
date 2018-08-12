@@ -19,7 +19,7 @@ $(document).ready(function(){
                                  '</div>'
 
              $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-                     '<div class="card-header"><strong>' + username + dropdownOptions + '</strong></div>' + 
+                     '<div class="card-header"><strong>Account: ' + username + dropdownOptions + '</strong></div>' + 
                      '<div class="card-body">' + 
                      ' <h4 class="card-title">Account Info</h4>' + 
                          '<p class="card-text"><strong>User:</strong> ' + username + "<br /><strong>Email:</strong> " + data[username].email + "<br /><strong>Phone:</strong> " + data[username].phone + "<br /><strong>Account:</strong> " + data[username].account + '</p>' + 
@@ -126,15 +126,15 @@ $(document).ready(function(){
 
 socket.on('onUserData', function (user) {
     console.log('SOCKET on onUserData!      ( index.html )   ')
-    $("#displayUserData div").remove(); 
+    // $("#displayUserData div").remove(); 
     if (user != null) {
         console.log(user.displayName);
         console.log(user.email);
         console.log(user.metadata.creationTime);
         console.log(user.metadata.lastSignInTime);
 
-        $('#displayUserData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-                '<div class="card-header"><strong>' + user.displayName + '</strong></div>' + 
+        $('#displayUserData').append('<div class="card border-primary mb-3" style="max-width: 20rem;">' + 
+                '<div class="card-header"><strong>User: ' + user.displayName + '</strong></div>' + 
                 '<div class="card-body">' + 
                 ' <h4 class="card-title">User Info</h4>' + 
                     '<p class="card-text"><strong>Email:</strong> ' + user.email + '<br /><strong>Joined:</strong> ' +
