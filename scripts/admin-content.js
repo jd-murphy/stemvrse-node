@@ -7,7 +7,7 @@ $(document).ready(function(){
     
     $("#displayVideos li").remove(); 
     if (data != null) {
-        // var data = JSON.parse(data); //process notication array
+        var data = JSON.parse(data); //process notication array
         console.log(data);
     // Object.keys(data).forEach(function (video) {
             name = data.name
