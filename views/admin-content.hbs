@@ -1,2 +1,74 @@
 <h3>This is the Admin | Content page.</h3>
 <p>Information about all content can be found here.</p>
+
+          
+
+            
+            <div class="container">
+                <div class="col-md-8 d-flex justify-content-center row" style="padding: 2em">
+                    <input type="text" id="filterVideosInput" placeholder="Type Video Name to Filter" onkeyup="filterVideos();" value="" style="width: 80%;">
+                </div> 
+            </div>
+
+
+
+        <div>
+            <ul style="list-style: none;">
+                <li id="puppiesVideoDiv" data-descriptor="video-li" data-video-name="Puppies at Aggieland Humane Society">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/94bh0196mvs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                <li id="kittensVideoDiv" data-descriptor="video-li" data-video-name="Kittens at Aggieland Humane Society">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WwFzm4y6HUc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                 <li id="diveTrainingStillVideoDiv" data-descriptor="video-li" data-video-name="Dive Training Still">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/w_kOjEO_hNI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                 <li id="diveVideoDiv" data-descriptor="video-li" data-video-name="Dive">
+                   <iframe width="560" height="315" src="https://www.youtube.com/embed/dP5YPBYvMoE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                 <li id="nasaVideoDiv" data-descriptor="video-li" data-video-name="NASA">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yw2DqVGJzdY?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                <li id="comalRiverVideoDiv" data-descriptor="video-li" data-video-name="Comal River"> 
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4B6neVaZRqc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                <li id="stingrayPoorKnightsVideoDiv" data-descriptor="video-li" data-video-name="Stingray Poor Knights Islands New Zealand">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4RizIoJd8Lo?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                <li id="nasaLabVideoDiv" data-descriptor="video-li" data-video-name="NASA Lab">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/CQvGTO08AxE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                 <li id="divingPoorKnightsVideoDiv" data-descriptor="video-li" data-video-name="Diving in the Poor Knights in New Zealand">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/KDKC6y9ICe4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                 <li id="dotterelsOpoutereBeachVideoDiv" data-descriptor="video-li" data-video-name="Dotterels on Opoutere Beach in New Zealand">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4oiwtXp7If0?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+            </ul>
+        </div>
+
+
+        <script>
+             function filterVideos() {
+                console.log("running filterVideos()")
+                var videoInput = document.getElementById('filterVideosInput')
+                var typedName = videoInput.value.toLowerCase();
+
+                var divs = document.querySelectorAll('[data-descriptor=video-li]');
+                for (var i = 0; i < divs.length; i++) {
+
+                    videoName = divs[i].getAttribute('data-video-name').toLowerCase();
+                    divID = divs[i].getAttribute('id');
+                    hideMe = document.getElementById(divID);
+                    if (videoName.includes(typedName)) {
+                        console.log(videoName);
+                        hideMe.classList.remove("hideMe");
+                    } else {
+                        hideMe.classList.add("hideMe")
+                    }
+
+                    
+                }
+             }
+        </script>
+

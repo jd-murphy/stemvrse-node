@@ -303,7 +303,7 @@ function listAllUsers(nextPageToken) {
       .then(function(listUsersResult) {
         listUsersResult.users.forEach(function(userRecord) {
           console.log("user", userRecord.toJSON());
-          io.emit("onUserData", userRecord)
+          io.emit("onUserData", userRecord.toJSON());
         });
         if (listUsersResult.pageToken) {
           // List next batch of users.

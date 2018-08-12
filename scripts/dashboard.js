@@ -1,6 +1,7 @@
 $(document).ready(function(){
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (dashboard.js)\n\n")
     var socket = io();
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     socket.on('newClientData', function (data) {
     console.log('SOCKET on newClientData!      ( index.html )   ')
     $("#displayData div").remove(); 
@@ -119,10 +120,42 @@ $(document).ready(function(){
         str = str.replace(/\s/g,'');
         $(this).val(str); 
     });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+socket.on('onUserData', function (data) {
+    console.log('SOCKET on onUserData!      ( index.html )   ')
+    $("#displayUserData div").remove(); 
+    if (data != null) {
+        var data = JSON.parse(data); //process notication array
+
+     Object.keys(data).forEach(function (username) {
+         console.log(username);
+
+            //  $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
+            //          '<div class="card-header"><strong>' + username + '</strong></div>' + 
+            //          '<div class="card-body">' + 
+            //          ' <h4 class="card-title">Account Info</h4>' + 
+            //              '<p class="card-text"><strong>User:</strong> ' + username + "<br /><strong>Email:</strong> " + data[username].email + "<br /><strong>Phone:</strong> " + data[username].phone + "<br /><strong>Account:</strong> " + data[username].account + '</p>' + 
+            //              '<input type="hidden" name="hiddenEmail' + username + '" id="hiddenEmail' + username + '" value="' + data[username].email + '">' +
+            //              '<input type="hidden" name="hiddenPhone' + username + '" id="hiddenPhone' + username + '" value="' + data[username].phone + '">' +
+            //              '<input type="hidden" name="hiddenAccount' + username + '" id="hiddenAccount' + username + '" value="' + data[username].account + '">' +
+                     
+            //      '</div>' + 
+            //      '</div>');
+        });
+    }
+    });
 
 
 
 
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     socket.emit('loadData');
 });
 
