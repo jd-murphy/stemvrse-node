@@ -18,7 +18,7 @@ $(document).ready(function(){
             dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
                                      '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
                                      '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                         '<a class="dropdown-item deleteVideo" href="#deleteVideo' + name + '" id="deleteVideo' + name + '">Delete Video</a>' + 
+                                         '<a class="dropdown-item deleteVideo" href="#deleteVideo' + strippedName + '" id="deleteVideo' + strippedName + '">Delete Video</a>' + 
                                      '</div>' + 
                                  '</div>'
 
