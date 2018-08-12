@@ -7,11 +7,11 @@ $(document).ready(function(){
     
     $("#displayVideos li").remove(); 
     if (data != null) {
-        var data = JSON.parse(data); //process notication array
+        // var data = JSON.parse(data); //process notication array
         console.log(data);
-    Object.keys(data).forEach(function (video) {
-            name = video["name"]
-            link = video["link"]
+    // Object.keys(data).forEach(function (video) {
+            name = data.name
+            link = data.link
             name = name.toLowerCase();
             strippedName =  name.replace(/[^a-z0-9]/g, '')
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
                      
                  '</div>' + 
                  '</div></li>');
-        });
+        // });
     }
     });
 
