@@ -10,8 +10,8 @@ $(document).ready(function(){
         var data = JSON.parse(data); //process notication array
         console.log(data);
     Object.keys(data).forEach(function (video) {
-            name = video.name
-            link = video.link
+            name = video["name"]
+            link = video["link"]
             name = name.toLowerCase();
             strippedName =  name.replace(/[^a-z0-9]/g, '')
 
@@ -26,9 +26,9 @@ $(document).ready(function(){
                      '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                      '<div class="card-body">' + 
                      ' <h4 class="card-title">Video Info</h4>' + 
-                        ' <li id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '">' + 
+                        ' <div id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '">' + 
                             '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
-                        '</li>' + 
+                        '</div>' + 
                          '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
                          '<input type="hidden" name="hiddenName' + name + '" id="hiddenName' + name + '" value="' + name + '">' +
                          '<input type="hidden" name="hiddenLink' + name + '" id="hiddenLink' + name + '" value="' + link + '">' +
