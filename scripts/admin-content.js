@@ -43,9 +43,10 @@ $(document).ready(function(){
     
     $('#displayVideos').on('click','li div div strong div div a.deleteVideo', function() {
         videoName = this.id.substring(11);
-        $("#modalDataDiv").html("You have chosen to DELETE the video: <strong>" + videoName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
+        var displayName = this.getAttribute('data-video-display-name');
+        $("#modalDataDiv").html("You have chosen to DELETE the video: <strong>" + displayName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
         $("#decisionModalButton").html("DELETE");
-        $("#modalTitle").html("<strong>Delete Video: " + videoName + "</strong>");
+        $("#modalTitle").html("<strong>Delete Video: " + displayName + "</strong>");
         $("#decisionModalButton").removeClass("btn-outline-success");
         $("#decisionModalButton").addClass("btn-outline-danger");
         document.getElementById('hiddenVideoName').value = videoName;
