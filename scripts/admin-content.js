@@ -53,10 +53,10 @@ $(document).ready(function(){
     
     $("#decisionModalButton").on('click', function() {
         action = $("#decisionModalButton").text();
-        username = $('#hiddenVideoName').val();
+        name = $('#hiddenVideoName').val();
         switch (action) {
             case "DELETE":
-                socket.emit('deleteVideo', username);
+                socket.emit('deleteVideo', name);
                 $("#modalDialog").modal('hide');
                 break;
             default:
@@ -76,7 +76,7 @@ $(document).ready(function(){
                 "link": link
             } 
             $("#addNewVideoModal").modal('hide');
-            socket.emit('addVideo', userInfo);
+            socket.emit('addVideo', videoInfo);
             cleanseNewVideoModal();
         }); 
 
