@@ -128,7 +128,7 @@ socket.on('onUserData', function (data) {
     console.log('SOCKET on onUserData!      ( index.html )   ')
     $("#displayUserData div").remove(); 
     if (data != null) {
-        var data = JSON.parse(data); //process notication array
+        // var data = JSON.parse(data); //process notication array
 
      Object.keys(data).forEach(function (username) {
          console.log(username);
