@@ -22,11 +22,11 @@ $(document).ready(function(){
                                      '</div>' + 
                                  '</div>'
 
-             $('#displayVideos').append('<li><div class="card border-info mb-3" style="max-width: 100rem;">' + 
+             $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 100rem;">' + 
                      '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                      '<div class="card-body">' + 
                      ' <h4 class="card-title">Video Info</h4>' + 
-                        ' <div id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '">' + 
+                        ' <div>' + 
                             '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                         '</div>' + 
                          '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
