@@ -22,7 +22,7 @@ $(document).ready(function(){
                                      '</div>' + 
                                  '</div>'
 
-             $('#displayData').append('<li><div class="card border-info mb-3" style="max-width: 100rem;">' + 
+             $('#displayVideos').append('<li><div class="card border-info mb-3" style="max-width: 100rem;">' + 
                      '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                      '<div class="card-body">' + 
                      ' <h4 class="card-title">Video Info</h4>' + 
