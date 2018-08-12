@@ -124,32 +124,24 @@ $(document).ready(function(){
 
 
 
-socket.on('onUserData', function (data) {
+socket.on('onUserData', function (user) {
     console.log('SOCKET on onUserData!      ( index.html )   ')
     $("#displayUserData div").remove(); 
-    if (data != null) {
-        // var data = JSON.parse(data); //process notication array
-        console.log(data.displayName);
-        console.log(data.email);
-        console.log(data.metadata);
-        console.log(data.metadata.creationTime);
-        console.log(data.metadata.lastSignInTime);
-    //  Object.keys(data).forEach(function (user) {
-    //      console.log(user.displayName);
-    //      console.log(user.email);
+    if (user != null) {
+        console.log(user.displayName);
+        console.log(user.email);
+        console.log(user.metadata.creationTime);
+        console.log(user.metadata.lastSignInTime);
 
-            //  $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-            //          '<div class="card-header"><strong>' + username + '</strong></div>' + 
-            //          '<div class="card-body">' + 
-            //          ' <h4 class="card-title">Account Info</h4>' + 
-            //              '<p class="card-text"><strong>User:</strong> ' + username + "<br /><strong>Email:</strong> " + data[username].email + "<br /><strong>Phone:</strong> " + data[username].phone + "<br /><strong>Account:</strong> " + data[username].account + '</p>' + 
-            //              '<input type="hidden" name="hiddenEmail' + username + '" id="hiddenEmail' + username + '" value="' + data[username].email + '">' +
-            //              '<input type="hidden" name="hiddenPhone' + username + '" id="hiddenPhone' + username + '" value="' + data[username].phone + '">' +
-            //              '<input type="hidden" name="hiddenAccount' + username + '" id="hiddenAccount' + username + '" value="' + data[username].account + '">' +
-                     
-            //      '</div>' + 
-            //      '</div>');
-        // });
+        $('#displayUserData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
+                '<div class="card-header"><strong>' + user.displayName + '</strong></div>' + 
+                '<div class="card-body">' + 
+                ' <h4 class="card-title">User Info</h4>' + 
+                    '<p class="card-text"><strong>Email:</strong> ' + user.email + '<br /><strong>Joined:</strong> ' +
+                     user.metadata.creationTime + '<br /><strong>Last Login:</strong> ' + user.metadata.lastSignInTime + '</p>' + 
+            '</div>' + 
+            '</div>');
+
     }
     });
 
