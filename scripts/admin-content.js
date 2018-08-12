@@ -11,6 +11,7 @@ $(document).ready(function(){
      Object.keys(data).forEach(function (video) {
             name = video.name
             link = video.link
+            name = name.toLowerCase();
             strippedName =  name.replace(/[^a-z0-9]/g, '')
 
             dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 

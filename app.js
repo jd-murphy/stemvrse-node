@@ -245,6 +245,7 @@ io.on("connection", function (socket) {
                 
                     if(data[entry].includes(email)) {
                         console.log("Email is in admin list!    store token in firebase");
+                        email = email.toLowerCase();
                         email = email.replace(/[^a-z0-9]/g, '')
                         token = idToken
                 
@@ -386,7 +387,8 @@ function createAccount(userInfo) {
 
 function addVideo(videoInfo) {
     var db = admin.database();
-    strippedName =  videoInfo.name.replace(/[^a-z0-9]/g, '')
+    name = videoInfo.name.toLowerCase();
+    strippedName = name.replace(/[^a-z0-9]/g, '')
     var ref = db.ref("videos/" + strippedName); 
     console.log("addVideo(" + strippedName + ")");
     updatedVideoData = { 
@@ -400,7 +402,8 @@ function addVideo(videoInfo) {
 
 function deleteVideo(videoName) {
     var db = admin.database();
-    strippedName =  videoInfo.name.replace(/[^a-z0-9]/g, '')
+    name = videoInfo.name.toLowerCase();
+    strippedName = name.replace(/[^a-z0-9]/g, '')
     var ref = db.ref("videos/" + strippedName);
     console.log("deleteVideo(" + strippedName + ")");
     ref.remove();
@@ -417,6 +420,7 @@ function verifyAdmin(err, req, res, next) {
             .then(function(decodedToken) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;
+                email = email.toLowerCase();
                 strippedEmail = email.replace(/[^a-z0-9]/g, '')
                 console.log("uid and email from uath token ->");
                 console.log(uid);
