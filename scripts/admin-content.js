@@ -9,9 +9,9 @@ $(document).ready(function(){
     if (data != null) {
         var data = JSON.parse(data); //process notication array
         console.log(data);
-    // Object.keys(data).forEach(function (video) {
-            name = data.name
-            link = data.link
+    Object.keys(data).forEach(function (video) {
+            name = data[video].name
+            link = data[video].link
             name = name.toLowerCase();
             strippedName =  name.replace(/[^a-z0-9]/g, '')
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
                      
                  '</div>' + 
                  '</div></li>');
-        // });
+        });
     }
     });
 
