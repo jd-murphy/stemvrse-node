@@ -41,7 +41,7 @@ $(document).ready(function(){
     });
 
     
-    $('#displayVideos').on('click','li div div strong div div a.deleteUser', function() {
+    $('#displayVideos').on('click','li div div strong div div a.deleteVideo', function() {
         videoName = this.id.substring(10);
         $("#modalDataDiv").html("You have chosen to DELETE the video: <strong>" + videoName + "</strong><br />Are you sure you want to follow through with this? <br /><strong>This action is irreversible.</strong>");
         $("#decisionModalButton").html("DELETE");
