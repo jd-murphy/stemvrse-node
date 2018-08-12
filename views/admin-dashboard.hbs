@@ -13,7 +13,7 @@
        
 
   
-            <!-- Modal (Delete video modal) -->
+           <!-- Modal (Edit and Delete confirmation) -->
             <div class="modal fade" id="modalDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -39,7 +39,40 @@
 
 
 
-
+  <!-- Modal (Edit User after confirmation) -->
+            <div class="modal fade" id="modalEDIT" tabindex="-1" role="dialog" aria-labelledby="modalEDITLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEDITLabel">Edit Account Info: <strong><span id="modalEDIT-username"></span></strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="modalEDIT-account" class="col-form-label">Account Type:</label>
+                        <input type="text" class="form-control" id="modalEDIT-account">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEDIT-email" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="modalEDIT-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEDIT-phone" class="col-form-label">Phone:</label>
+                        <input type="text" class="form-control" id="modalEDIT-phone">
+                    </div>
+                    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="submitEditModalButton">Save Changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
          
 
 
