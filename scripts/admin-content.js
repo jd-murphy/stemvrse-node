@@ -3,12 +3,13 @@ $(document).ready(function(){
     var socket = io();
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     socket.on('newVideoData', function (data) {
+        console.log("socket.on('newVideoData')");
     
     $("#displayVideos li").remove(); 
     if (data != null) {
         var data = JSON.parse(data); //process notication array
-
-     Object.keys(data).forEach(function (video) {
+        console.log(data);
+    Object.keys(data).forEach(function (video) {
             name = video.name
             link = video.link
             name = name.toLowerCase();
@@ -81,7 +82,7 @@ $(document).ready(function(){
             cleanseNewVideoModal();
         }); 
 
-
+    console.log("Calling   socket.emit('loadVideos')");
     socket.emit('loadVideos');
 });
 

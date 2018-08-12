@@ -278,7 +278,7 @@ io.on("connection", function (socket) {
 
         
     });
-    
+
     socket.on("loadVideos", function (videoInfo) {  
         getVideoDataFromFirebase();
     });
