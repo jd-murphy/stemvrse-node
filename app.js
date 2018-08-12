@@ -278,6 +278,10 @@ io.on("connection", function (socket) {
 
         
     });
+    
+    socket.on("loadVideos", function (videoInfo) {  
+        getVideoDataFromFirebase();
+    });
     socket.on("addVideo", function (videoInfo) {  
         addVideo(videoInfo);
     });
@@ -380,6 +384,25 @@ function createAccount(userInfo) {
     ref.set(updatedUserData);
 }
 
+
+
+
+
+
+function getVideoDataFromFirebase() {
+    var db = admin.database();
+    var ref = db.ref("videos");
+    console.log("getVideoDataFromFirebase()");
+    ref.on("value", function(snapshot) {
+        data = snapshot.val()
+        if (data) {
+            io.emit('newVideoData', JSON.stringify(data));
+        } else {
+            io.emit('newVideoData', null);
+        }
+    });
+}
+        
 
 
         
