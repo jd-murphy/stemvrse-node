@@ -129,7 +129,11 @@ socket.on('onUserData', function (data) {
     $("#displayUserData div").remove(); 
     if (data != null) {
         // var data = JSON.parse(data); //process notication array
-        console.log(data);
+        console.log(data.displayName);
+        console.log(data.email);
+        console.log(data.metadata);
+        console.log(data.metadata.creationTime);
+        console.log(data.metadata.lastSignInTime);
     //  Object.keys(data).forEach(function (user) {
     //      console.log(user.displayName);
     //      console.log(user.email);
