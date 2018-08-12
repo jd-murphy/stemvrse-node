@@ -163,7 +163,7 @@ function addNewClient() {
     cleanseNewUserModal();
     $("#addNewClientModal").modal();
     }
-    function cleanseNewUserModal(){
+function cleanseNewUserModal(){
     $('#addNewClientModal-username').val("");
     $('#addNewClientModal-account').val("");
     $('#addNewClientModal-email').val("");
