@@ -157,6 +157,7 @@ app.post('/admin-dashboard', verifyAdmin, (req, res) => {
 
 app.post('/admin-content', verifyAdmin, (req, res) => {
     res.render('admin-content', {
+        content: true, // load admin-content.js
         admin: true,
         title: 'Admin | Content',
         nav: 'admin-nav'
