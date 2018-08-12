@@ -76,6 +76,7 @@ app.get('/landing', (req, res)=>{
 
 app.get('/home', (req, res) => {
     res.render('home', {
+        home: true,
         title: "Home",
         nav: 'nav'
     })
