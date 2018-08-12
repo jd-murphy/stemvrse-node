@@ -12,8 +12,8 @@ $(document).ready(function(){
     Object.keys(data).forEach(function (video) {
             name = data[video].name
             link = data[video].link
-            name = name.toLowerCase();
-            strippedName =  name.replace(/[^a-z0-9]/g, '')
+            lname = name.toLowerCase();
+            strippedName =  lname.replace(/[^a-z0-9]/g, '')
 
             dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
                                      '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
@@ -30,8 +30,8 @@ $(document).ready(function(){
                             '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                         '</div>' + 
                          '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
-                         '<input type="hidden" name="hiddenName' + name + '" id="hiddenName' + name + '" value="' + name + '">' +
-                         '<input type="hidden" name="hiddenLink' + name + '" id="hiddenLink' + name + '" value="' + link + '">' +
+                         '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
+                         '<input type="hidden" name="hiddenLink' + strippedName + '" id="hiddenLink' + strippedName + '" value="' + link + '">' +
                          
                      
                  '</div>' + 
