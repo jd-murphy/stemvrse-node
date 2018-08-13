@@ -7,7 +7,15 @@ $(document).ready(function(){
     
         $("#displayVideos li").remove(); 
         if (data != null) {
-            alert("Responsive state: " + responsive_state());
+            // alert("Responsive state: " + responsive_state());
+            rs = responsive_state();
+            w = 560;
+            h = 315;
+            if (rs == '767px') {
+                w = 280;
+                h = 157.5;
+            }
+
             var data = JSON.parse(data); //process notication array
             console.log(data);
             Object.keys(data).forEach(function (video) {
@@ -23,13 +31,12 @@ $(document).ready(function(){
                                             '</div>' + 
                                         '</div>'
 
-                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 90%;">' + 
+                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:100%;">' + 
                             '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
                             ' <div>' + 
-                                    // '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
-                                    '<iframe width="100%" height="100%" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                                    '<iframe width="' + w + '" height="' + h + '" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                                 '</div>' + 
                                 '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
                                 '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
