@@ -60,8 +60,9 @@ $(document).ready(function(){
 
     
     //     });
-    $('.favoriteVideo').click(function() {
-
+    $('.favoriteVideo').click(function(e) {
+        console.log("clicked fav button...")
+        e.preventDefault();
         videoName = this.id.substring(13);
         var displayName = this.getAttribute('data-video-display-name');
        
