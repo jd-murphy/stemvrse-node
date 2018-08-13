@@ -257,13 +257,13 @@ io.on("connection", function (socket) {
                         var ref = db.ref("tokens/" + email); 
                         console.log("storing token for " + email);
                         ref.set({"token": token});
-                        // io.emit("validToken")
-                        client.emit("validToken")
+                        socket.emit("validToken")
+                        
                             
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ");
-                        //io.emit("invalidToken")
-                        client.emit("invalidToken")
+                        socket.emit("invalidToken")
+                        
                     }
                 });
             });
@@ -273,8 +273,8 @@ io.on("connection", function (socket) {
         }).catch(function(error) {
             // Handle error
             console.log("error validating admin, rejecting");
-            // io.emit("invalidToken")
-            client.emit("invalidToken")
+            socket.emit("invalidToken")
+            
             
         });
         
