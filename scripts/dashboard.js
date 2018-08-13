@@ -1,7 +1,7 @@
 $(document).ready(function(){
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (dashboard.js)\n\n")
     var socket = io();
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     socket.on('newClientData', function (data) {
         console.log('SOCKET on newClientData!      ( index.html )   ')
         $("#displayData div").remove(); 
@@ -121,7 +121,7 @@ $(document).ready(function(){
         str = str.replace(/\s/g,'');
         $(this).val(str); 
     });
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -153,7 +153,7 @@ socket.on('onUserData', function (user) {
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     socket.emit('loadData');
 });
 
@@ -170,14 +170,3 @@ function cleanseNewUserModal(){
     $('#addNewClientModal-email').val("");
     $('#addNewClientModal-phone').val("");
 }
-
-// function logout() {
-//     firebase.auth().signOut()
-//     .then(function() {
-//         // Sign-out successful.
-//         window.location.replace('/login');
-//     })
-//     .catch(function(error) {
-//         // An error happened
-//     });
-// }

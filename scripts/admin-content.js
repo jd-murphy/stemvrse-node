@@ -1,7 +1,7 @@
 $(document).ready(function(){
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (admin-dashboard.js)\n\n")
     var socket = io();
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     socket.on('newVideoData', function (data) {
         console.log("socket.on('newVideoData')");
     
