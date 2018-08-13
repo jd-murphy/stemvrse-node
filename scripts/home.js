@@ -33,7 +33,7 @@ $(document).ready(function(){
                                             '</div>' + 
                                         '</div>'
 
-                    $('#displayVideos').append('<li class="videosLI"><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
+                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
                             '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
