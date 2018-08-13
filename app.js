@@ -407,10 +407,11 @@ function getVideoDataFromFirebase() {
         console.log("on value, getVideoDataFromFirebase() snapshot")
         data = snapshot.val()
         if (data) {
-            socket.emit('newVideoData', JSON.stringify(data)); // emit only to the socket (single user)
-        } else {
-            socket.emit('newVideoData', null); // emit only to the socket (single user)
-        }
+            io.emit('newVideoData', JSON.stringify(data));
+        } 
+        // else {
+        //     io.emit('newVideoData', null); 
+        // }
     });
 }
 
