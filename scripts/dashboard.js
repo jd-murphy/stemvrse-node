@@ -3,35 +3,35 @@ $(document).ready(function(){
     var socket = io();
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     socket.on('newClientData', function (data) {
-    console.log('SOCKET on newClientData!      ( index.html )   ')
-    $("#displayData div").remove(); 
-    if (data != null) {
+        console.log('SOCKET on newClientData!      ( index.html )   ')
+        $("#displayData div").remove(); 
+        if (data != null) {
 
-        var data = JSON.parse(data); //process notication array
+            var data = JSON.parse(data); //process notication array
 
-        Object.keys(data).forEach(function (username) {
-                
-                dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
-                                        '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
-                                        '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                            '<a class="dropdown-item editUser" href="#editUser' + username + '" id="editUser' + username + '">Edit Client</a>' + 
-                                            '<a class="dropdown-item deleteUser" href="#deleteUser' + username + '" id="deleteUser' + username + '">Delete Client</a>' + 
-                                        '</div>' + 
-                                    '</div>'
+            Object.keys(data).forEach(function (username) {
+                    
+                    dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
+                                            '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-137-cogwheel.png" width="16px" height="16px"></span></a>' + 
+                                            '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
+                                                '<a class="dropdown-item editUser" href="#editUser' + username + '" id="editUser' + username + '">Edit Client</a>' + 
+                                                '<a class="dropdown-item deleteUser" href="#deleteUser' + username + '" id="deleteUser' + username + '">Delete Client</a>' + 
+                                            '</div>' + 
+                                        '</div>'
 
-                $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
-                        '<div class="card-header"><strong>Account: ' + username + dropdownOptions + '</strong></div>' + 
-                        '<div class="card-body">' + 
-                        ' <h4 class="card-title">Account Info</h4>' + 
-                            '<p class="card-text"><strong>User:</strong> ' + username + "<br /><strong>Email:</strong> " + data[username].email + "<br /><strong>Phone:</strong> " + data[username].phone + "<br /><strong>Account:</strong> " + data[username].account + '</p>' + 
-                            '<input type="hidden" name="hiddenEmail' + username + '" id="hiddenEmail' + username + '" value="' + data[username].email + '">' +
-                            '<input type="hidden" name="hiddenPhone' + username + '" id="hiddenPhone' + username + '" value="' + data[username].phone + '">' +
-                            '<input type="hidden" name="hiddenAccount' + username + '" id="hiddenAccount' + username + '" value="' + data[username].account + '">' +
-                        
-                    '</div>' + 
-                    '</div>');
-            });
-        }
+                    $('#displayData').append('<div class="card border-info mb-3" style="max-width: 20rem;">' + 
+                            '<div class="card-header"><strong>Account: ' + username + dropdownOptions + '</strong></div>' + 
+                            '<div class="card-body">' + 
+                            ' <h4 class="card-title">Account Info</h4>' + 
+                                '<p class="card-text"><strong>User:</strong> ' + username + "<br /><strong>Email:</strong> " + data[username].email + "<br /><strong>Phone:</strong> " + data[username].phone + "<br /><strong>Account:</strong> " + data[username].account + '</p>' + 
+                                '<input type="hidden" name="hiddenEmail' + username + '" id="hiddenEmail' + username + '" value="' + data[username].email + '">' +
+                                '<input type="hidden" name="hiddenPhone' + username + '" id="hiddenPhone' + username + '" value="' + data[username].phone + '">' +
+                                '<input type="hidden" name="hiddenAccount' + username + '" id="hiddenAccount' + username + '" value="' + data[username].account + '">' +
+                            
+                        '</div>' + 
+                        '</div>');
+                });
+            }
     });
 
     $('#displayData').on('click','div div strong div div a.editUser', function() {

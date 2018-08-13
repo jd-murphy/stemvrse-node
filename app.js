@@ -409,9 +409,9 @@ function getVideoDataFromFirebase() {
         if (data) {
             io.emit('newVideoData', JSON.stringify(data));
         } 
-        // else {
-        //     io.emit('newVideoData', null); 
-        // }
+        else {
+            io.emit('newVideoData', null); 
+        }
     });
 }
 
