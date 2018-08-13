@@ -23,13 +23,13 @@ $(document).ready(function(){
                                             '</div>' + 
                                         '</div>'
 
-                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 100%;">' + 
+                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 90%;">' + 
                             '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
-                            ' <div width="15rem" height="8.4rem">' + 
+                            ' <div>' + 
                                     // '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
-                                    '<iframe width="auto" height="auto%" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                                    '<iframe width="100%" height="56%" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                                 '</div>' + 
                                 '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
                                 '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
