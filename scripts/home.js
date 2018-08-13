@@ -26,14 +26,14 @@ $(document).ready(function(){
                     strippedName =  lname.replace(/[^a-z0-9]/g, '')
 
                     dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
-                                            '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-49-star-empty.png" width="16px" height="16px"></span></a>' + 
+                                            '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/favorite.png" width="16px" height="16px"></span></a>' + 
                                             '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
                                                 '<a class="dropdown-item favoriteVideo" data-video-display-name="' + name + '" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '">Favorite Video</a>' + 
                                             '</div>' + 
                                         '</div>'
 
                     $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
-                            '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
+                            '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" data-video-display-name="' + name + '" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '">' + '<img id="favButton" src="/assets/favorite.png" width="16px" height="16px"></a>' + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
                             ' <div>' + 
@@ -51,11 +51,22 @@ $(document).ready(function(){
     });
 
     
-    $('#displayVideos').on('click','li div div strong div div a.favoriteVideo', function() {
+    // $('#displayVideos').on('click','li div div strong div div a.favoriteVideo', function() {
+    //     videoName = this.id.substring(13);
+    //     var displayName = this.getAttribute('data-video-display-name');
+       
+    //     console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
+
+
+    
+    //     });
+    $('#favButton').on('click', function() {
         videoName = this.id.substring(13);
         var displayName = this.getAttribute('data-video-display-name');
        
         console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
+
+
     
         });
     
