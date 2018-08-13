@@ -27,7 +27,8 @@ $(document).ready(function(){
                      '<div class="card-body">' + 
                      ' <h4 class="card-title">Video Info</h4>' + 
                         ' <div>' + 
-                            '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                            // '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                            '<iframe width="90%" height="auto" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                         '</div>' + 
                          '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
                          '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
