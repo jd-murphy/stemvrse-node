@@ -11,11 +11,10 @@ $(document).ready(function(){
             rs = responsive_state();
             w = 560;
             h = 315;
-            cardMaxWidth = 650;
+            cardMaxWidth = 675;
             if (rs == '767px') {
                 w = 280;
                 h = 157.5;
-                cardMaxWidth = 600;
             }
 
             var data = JSON.parse(data); //process notication array
