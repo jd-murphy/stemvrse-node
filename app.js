@@ -257,12 +257,12 @@ io.on("connection", function (socket) {
                         var ref = db.ref("tokens/" + email); 
                         console.log("storing token for " + email);
                         ref.set({"token": token});
-                        socket.emit("validToken")
+                        socket.emit("validToken") // emit only to the authenticated user
                         
                             
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ");
-                        socket.emit("invalidToken")
+                        socket.emit("invalidToken") // emit only to the authenticated user
                         
                     }
                 });
@@ -273,7 +273,7 @@ io.on("connection", function (socket) {
         }).catch(function(error) {
             // Handle error
             console.log("error validating admin, rejecting");
-            socket.emit("invalidToken")
+            socket.emit("invalidToken") // emit only to the authenticated user
             
             
         });
@@ -326,7 +326,7 @@ function listAllUsers(nextPageToken) {
       .then(function(listUsersResult) {
         listUsersResult.users.forEach(function(userRecord) {
           console.log("user", userRecord.toJSON());
-          io.emit("onUserData", userRecord.toJSON());
+          io.emit("onUserData", userRecord.toJSON()); // emit to all users
         });
         if (listUsersResult.pageToken) {
           // List next batch of users.
@@ -350,9 +350,9 @@ function getClientDataFromFirebase() {
     ref.on("value", function(snapshot) {
         data = snapshot.val()
         if (data) {
-            io.emit('newClientData', JSON.stringify(data));
+            io.emit('newClientData', JSON.stringify(data)); // emit to all users
         } else {
-            io.emit('newClientData', null);
+            io.emit('newClientData', null); // emit to all users
         }
     });
 }
@@ -407,9 +407,9 @@ function getVideoDataFromFirebase() {
         console.log("on value, getVideoDataFromFirebase() snapshot")
         data = snapshot.val()
         if (data) {
-            io.emit('newVideoData', JSON.stringify(data));
+            io.emit('newVideoData', JSON.stringify(data)); // emit to all users
         } else {
-            io.emit('newVideoData', null);
+            io.emit('newVideoData', null); // emit to all users
         }
     });
 }
