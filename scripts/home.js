@@ -60,8 +60,8 @@ $(document).ready(function(){
 
     
     //     });
-    $('.favoriteVideo').click(function(e) {
-        e.preventDefailt();
+    $('.favoriteVideo').click(function() {
+
         videoName = this.id.substring(13);
         var displayName = this.getAttribute('data-video-display-name');
        
