@@ -26,7 +26,7 @@ $(document).ready(function(){
                      '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                      '<div class="card-body">' + 
                      ' <h4 class="card-title">Video Info</h4>' + 
-                        ' <div>' + 
+                        ' <div width="100%" height="56%">' + 
                             // '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                             '<iframe width="auto" height="auto" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
                         '</div>' + 
