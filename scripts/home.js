@@ -7,38 +7,39 @@ $(document).ready(function(){
     
     $("#displayVideos li").remove(); 
     if (data != null) {
+        alert("Responsive state: " + responsive_state());
         var data = JSON.parse(data); //process notication array
         console.log(data);
-    Object.keys(data).forEach(function (video) {
-            name = data[video].name
-            link = data[video].link
-            lname = name.toLowerCase();
-            strippedName =  lname.replace(/[^a-z0-9]/g, '')
+        Object.keys(data).forEach(function (video) {
+                name = data[video].name
+                link = data[video].link
+                lname = name.toLowerCase();
+                strippedName =  lname.replace(/[^a-z0-9]/g, '')
 
-            dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
-                                     '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-49-star-empty.png" width="16px" height="16px"></span></a>' + 
-                                     '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                         '<a class="dropdown-item favoriteVideo" data-video-display-name="' + name + '" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '">Favorite Video</a>' + 
-                                     '</div>' + 
-                                 '</div>'
+                dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
+                                        '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/glyphicons-49-star-empty.png" width="16px" height="16px"></span></a>' + 
+                                        '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
+                                            '<a class="dropdown-item favoriteVideo" data-video-display-name="' + name + '" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '">Favorite Video</a>' + 
+                                        '</div>' + 
+                                    '</div>'
 
-             $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 100rem;">' + 
-                     '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
-                     '<div class="card-body">' + 
-                     ' <h4 class="card-title">Video Info</h4>' + 
-                     ' <div width="15rem" height="8.4rem">' + 
-                            // '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
-                            '<iframe width="auto" height="auto%" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
-                        '</div>' + 
-                         '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
-                         '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
-                         '<input type="hidden" name="hiddenLink' + strippedName + '" id="hiddenLink' + strippedName + '" value="' + link + '">' +
-                         
-                     
-                 '</div>' + 
-                 '</div></li>');
-        });
-    }
+                $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 100rem;">' + 
+                        '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
+                        '<div class="card-body">' + 
+                        ' <h4 class="card-title">Video Info</h4>' + 
+                        ' <div width="15rem" height="8.4rem">' + 
+                                // '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                                '<iframe width="auto" height="auto%" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                            '</div>' + 
+                            '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
+                            '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
+                            '<input type="hidden" name="hiddenLink' + strippedName + '" id="hiddenLink' + strippedName + '" value="' + link + '">' +
+                            
+                        
+                    '</div>' + 
+                    '</div></li>');
+            });
+        }
     });
 
     
