@@ -33,7 +33,7 @@ $(document).ready(function(){
                                         '</div>'
 
                     $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
-                            '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" data-video-display-name="' + name + '" href="#" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton" src="/assets/favorite.png" width="16px" height="16px"></a>' + '</strong></div>' + 
+                            '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" data-video-display-name="' + name + '" href="#" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" width="16px" height="16px" onclick="favMe();"></a>' + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
                             ' <div>' + 
@@ -60,17 +60,7 @@ $(document).ready(function(){
 
     
     //     });
-    $('.favoriteVideo').click(function(e) {
-        console.log("clicked fav button...")
-        e.preventDefault();
-        videoName = this.id.substring(13);
-        var displayName = this.getAttribute('data-video-display-name');
-       
-        console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
-
-
     
-        });
     
    
 
@@ -110,4 +100,18 @@ function addNewVideo() {
 function cleanseNewVideoModal(){
     $('#addNewVideoModal-name').val("");
     $('#addNewVideoModal-link').val("");
+}
+
+function favMe() {
+    
+    console.log("clicked fav button...")
+    
+    videoName = this.id.substring(13);
+    var displayName = this.getAttribute('data-video-display-name');
+    
+    console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
+
+
+    
+        
 }
