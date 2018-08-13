@@ -11,9 +11,11 @@ $(document).ready(function(){
             rs = responsive_state();
             w = 560;
             h = 315;
+            cardMaxWidth = 650;
             if (rs == '767px') {
                 w = 280;
                 h = 157.5;
+                cardMaxWidth = 325;
             }
 
             var data = JSON.parse(data); //process notication array
@@ -31,7 +33,7 @@ $(document).ready(function(){
                                             '</div>' + 
                                         '</div>'
 
-                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width: 100%;">' + 
+                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
                             '<div class="card-header"><strong>' + name + dropdownOptions + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
