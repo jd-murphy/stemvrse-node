@@ -14,6 +14,27 @@
         .hideMe {
                 display: none;
             }
+
+
+
+
+        .responsive-state {
+                display:none;
+                width: 10000px;
+            }
+
+        @media (max-width: 767px) {
+            .responsive-state {
+                width: 767px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .responsive-state {
+                width: 1024px;
+            }
+        }
+
        
 
     </style>
@@ -59,6 +80,10 @@
           firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
               $('#auth').removeClass('noAuth');
+
+                
+                alert("Responsive state: " + responsive_state());
+
               // User is signed in.
                 var displayName = user.displayName;
                 var email = user.email;
@@ -139,36 +164,43 @@
     </head>
     <body>
 
+
       
+          <div class="responsive-state">
+          </div>
 
 
 
-      <noscript>
-        <h3 style="padding: 5rem;">
-          Sorry, you must have JavaScript enabled in order to access this site. <br />
-          <a href="https://www.enable-javascript.com/" target="_blank">
-          Here are instructions on how to enable JavaScript in your web browser.</a>
-        </h3>
-      </noscript>
+          <noscript>
+            <h3 style="padding: 5rem;">
+              Sorry, you must have JavaScript enabled in order to access this site. <br />
+              <a href="https://www.enable-javascript.com/" target="_blank">
+              Here are instructions on how to enable JavaScript in your web browser.</a>
+            </h3>
+          </noscript>
 
 
-        <div id="auth" class="noAuth">
-          {{#if nav}}
-            {{#if admin}}
-              {{> page/admin-nav}}
-            {{else}}
-              {{> page/nav}}
+
+          <div id="auth" class="noAuth">
+            {{#if nav}}
+              {{#if admin}}
+                {{> page/admin-nav}}
+              {{else}}
+                {{> page/nav}}
+              {{/if}}
             {{/if}}
-          {{/if}}
 
 
 
-            <div class="container" style="padding: 5rem;">
-                  {{{body}}}
-            </div>
-              
 
-        </div>
+                  <div class="container" style="padding: 5rem;">
+                        {{{body}}}
+                  </div>
+                
+
+
+
+          </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -200,7 +232,11 @@
 
     <script>
     
-      
+
+        function responsive_state() {
+            return $('.responsive-state').css('width');
+        }
+              
         
         function logout() {
             firebase.auth().signOut()
