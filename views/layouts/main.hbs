@@ -76,7 +76,7 @@
                     $(document.body).append('<input id="token" value="' +  accessToken + '" type="hidden">')
                    
                     socket.on("validToken", function() {
-                      console.log("on validToken");
+                      console.log("I received -> socket.on 'validToken'");
                        
                   
                          var fourOhFour = document.getElementById('fourOhFourHomeLink');
@@ -93,6 +93,8 @@
                        
                     });
                     socket.on('invalidToken', function() {
+
+                      console.log("I received -> socket.on 'invalidToken'");
 
                       if (window.location.href.includes("/landing")) {
                           window.location.href = "/home";
