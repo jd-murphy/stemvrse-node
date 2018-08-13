@@ -15,7 +15,6 @@ $(document).ready(function(){
             if (rs == '767px') {
                 w = 280;
                 h = 157.5;
-                cardMaxWidth = 325;
             }
 
             var data = JSON.parse(data); //process notication array
