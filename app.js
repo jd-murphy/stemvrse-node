@@ -298,7 +298,9 @@ io.on("connection", function (socket) {
         console.log("calling deleteVideo()")
         deleteVideo(videoInfo);
     });
-    
+    socket.on("getFaves", function(user) {
+        getFaves(user);
+    });
    
 });
 
@@ -350,9 +352,9 @@ function getClientDataFromFirebase() {
     ref.on("value", function(snapshot) {
         data = snapshot.val()
         if (data) {
-            io.emit('newClientData', JSON.stringify(data)); // emit to all users
+            io.emit('newClientData', JSON.stringify(data)); // emit to all users  // possibly security flaw, should emit to only admins
         } else {
-            io.emit('newClientData', null); // emit to all users
+            io.emit('newClientData', null); // emit to all users  // possibly security flaw, should emit to only admins
         }
     });
 }
@@ -445,6 +447,39 @@ function deleteVideo(videoName) {
     ref.remove();
 }
         
+
+
+function getFaves(user) {
+    var db = admin.database();
+    name = user.name.toLowerCase();
+    strippedName = name.replace(/[^a-z0-9]/g, '')
+    var ref = db.ref("favorites/" + strippedName); 
+    ref.on("value", function(snapshot) {
+        console.log("on value, getFaves(" + strippedName + ") snapshot")
+        data = snapshot.val()
+        if (data) {
+            socket.emit('faves', JSON.stringify(data));
+        } 
+        else {
+            socket.emit('faves', null); 
+        }
+    });
+}
+
+
+
+function updateFaves(user, favs) {
+    var db = admin.database();
+    name = user.name.toLowerCase();
+    strippedName = name.replace(/[^a-z0-9]/g, '')
+    var ref = db.ref("favorites/" + strippedName); 
+    console.log("updateFaves(" + name + ")"); 
+    console.log(favs);
+    ref.update(favs);
+}
+        
+
+
 
         
 

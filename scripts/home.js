@@ -25,12 +25,12 @@ $(document).ready(function(){
                     lname = name.toLowerCase();
                     strippedName =  lname.replace(/[^a-z0-9]/g, '')
 
-                    dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
-                                            '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/favorite.png" width="16px" height="16px"></span></a>' + 
-                                            '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
-                                                '<a class="dropdown-item favoriteVideo" data-video-display-name="' + name + '" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '">Favorite Video</a>' + 
-                                            '</div>' + 
-                                        '</div>'
+                    // dropdownOptions =  '<div class="nav-item dropdown" style="float: right;">' + 
+                    //                         '<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="/assets/favorite.png" width="16px" height="16px"></span></a>' + 
+                    //                         '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">' + 
+                    //                             '<a class="dropdown-item favoriteVideo" data-video-display-name="' + name + '" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '">Favorite Video</a>' + 
+                    //                         '</div>' + 
+                    //                     '</div>'
 
                     $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
                             '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px" onclick="faveMe(event,this);"></a>' + '</strong></div>' + 
@@ -50,6 +50,23 @@ $(document).ready(function(){
             }
     });
 
+    socket.on("faves", function(data){
+        console.log("socket.on('faves')");
+    
+        if (data != null) {
+
+            var data = JSON.parse(data); //process notication array
+            console.log(data);
+            faves = []
+            Object.keys(data).forEach(function (fav) {
+                    console.log("fav -> " + fav);
+                    faves.append(fav);
+            });
+            user = $("#email").val()
+            localStorage.setItem(user, JSON.stringify(faves));
+        }
+    });
+
     
   
     
@@ -58,6 +75,9 @@ $(document).ready(function(){
 
     console.log("Calling   socket.emit('loadVideos')");
     socket.emit('loadVideos');
+    user = $("#email").val()
+    console.log("Calling   socket.emit('getFaves')  for user " + user);
+    socket.emit('getFaves', user);
 });
 
 
@@ -99,5 +119,15 @@ function faveMe(e, element) {
     console.log(element.id);
     videoName = element.id.substring(9);
     var displayName = element.getAttribute('data-video-display-name');
-    console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
+    user = $("#email").val();
+    console.log("Adding "  + displayName  + " ("+ videoName + ") to you favorites for user " + user + "!");
+    faves = JSON.parse(localStorage.getItem(user));
+    console.log("Here is the faves array retrieved from localstorage -> ");
+    console.log(faves);
+    if (faves.includes(videoName)) {
+        faves.remove(videoName);
+    } else {
+        faves.append(videoName);
+    }
+    socket.emit("updateFaves", user, favs)
 }
