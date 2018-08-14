@@ -76,8 +76,8 @@ $(document).ready(function(){
     console.log("Calling   socket.emit('loadVideos')");
     socket.emit('loadVideos');
     user = $("#email").val()
-    console.log("Calling   socket.emit('getFaves')  for user  " + user);
-    socket.emit('getFaves', user);
+    // console.log("Calling   socket.emit('getFaves')  for user  " + user);
+    // socket.emit('getFaves', user);
 });
 
 
