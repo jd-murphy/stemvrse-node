@@ -97,7 +97,7 @@ function faveMe(e, element) {
     e.preventDefault();
     console.log("clicked fav button...")
     console.log(element.id);
-    videoName = element.id.substring(13);
+    videoName = element.id.substring(9);
     var displayName = element.getAttribute('data-video-display-name');
     console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
 }
