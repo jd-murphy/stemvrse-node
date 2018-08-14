@@ -3,12 +3,7 @@ $(document).ready(function(){
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (home.js)\n\n")
     var socket = io();
 
-    document.addEventListener("UserAddedToPage", function(e){
-        user = $("#email").val()
-        console.log("Calling   socket.emit('getFaves')  for user  " + user);
-        socket.emit('getFaves', user);
-    })
-   
+    
     socket.on('newVideoData', function (data) {
         console.log("socket.on('newVideoData')");
     

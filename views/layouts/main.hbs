@@ -99,8 +99,10 @@
                   
                     $(document.body).append('<input id="token" value="' +  accessToken + '" type="hidden">')
                     $(document.body).append('<input id="email" value="' +  email + '" type="hidden">')
-                    var event = new CustomEvent("UserAddedToPage");
-                    document.dispatchEvent(event);
+                    
+                    
+                    console.log("Calling   socket.emit('getFaves')  for user  " + email);
+                    socket.emit('getFaves', email);
                    
                     socket.on("validToken", function() {
                       console.log("I received -> socket.on 'validToken'");
