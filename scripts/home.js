@@ -106,10 +106,11 @@ function favMe(id) {
     
     console.log("clicked fav button...")
     card = $('#' + id);
-    var videoName = card.substring(11);
+    var videoName = card.id.substring(11);
+    var videoName2 = id.substring(11);
     var displayName = card.getAttribute('data-video-display-name');
     
-    console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
+    console.log("Adding "  + displayName  + " ("+ videoName + " or " +  videoName2 + ") to your favorites!");
 
 
     
