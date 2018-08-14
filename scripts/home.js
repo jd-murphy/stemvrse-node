@@ -58,7 +58,7 @@ $(document).ready(function(){
         if (data != null) {
             console.log("socket.on('faves)    data -> ");
             console.log(data);
-            
+
             console.log(data["user"]);
             console.log(data["data"]);
             // used to be ->         var data = JSON.parse(data); //process notication array
@@ -66,7 +66,7 @@ $(document).ready(function(){
             faves = []
             Object.keys(data).forEach(function (fav) {
                     console.log("fav -> " + fav);
-                    faves.append(fav);
+                    faves.push(fav);
             });
             user = $("#email").val()
             localStorage.setItem(user, JSON.stringify(faves));
