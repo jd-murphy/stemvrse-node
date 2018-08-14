@@ -309,7 +309,7 @@ io.on("connection", function (socket) {
         console.log("socket on updateFaves, app.js")
         console.log("calling updateFaves(" + user + ", " + faves + ")")
        
-        // updateFaves(user, faves);
+        updateFaves(user, faves);
     });
    
 });
