@@ -124,10 +124,15 @@ function faveMe(e, element) {
     faves = JSON.parse(localStorage.getItem(user));
     console.log("Here is the faves array retrieved from localstorage -> ");
     console.log(faves);
-    if (faves.includes(videoName)) {
-        faves.remove(videoName);
+    if (faves != null) {
+        if (faves.includes(videoName)) {
+            faves.remove(videoName);
+        } else {
+            faves.append(videoName);
+        }
     } else {
+        faves = []
         faves.append(videoName);
     }
-    socket.emit("updateFaves", user, favs)
+    socket.emit("updateFaves", user, faves);
 }
