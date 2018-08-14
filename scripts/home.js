@@ -56,7 +56,7 @@ $(document).ready(function(){
         // console.log("socket.on('faves')");
         
         if (data != null) {
-            console.log("socket.on('faves)    data -> ");
+            console.log("socket.on('faves')    data -> ");
             console.log(data.user);
             console.log(data.data);
             // used to be ->         var data = JSON.parse(data); //process notication array
@@ -112,6 +112,7 @@ $(document).ready(function(){
         } else {
             faves = []
             faves.push(videoName);
+            localStorage.setItem(user, JSON.stringify(faves));
         }
         console.log("faves after ");
         console.log(faves);
