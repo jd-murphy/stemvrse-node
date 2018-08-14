@@ -69,9 +69,11 @@ $(document).ready(function(){
             //         faves.push(data[key]);
             // });
             user = $("#email").val()
-            if (data.user == user) {
+            if ((data.user == user) && (data.data != null)) {
                 faves.push(data.data);
                 localStorage.setItem(user, JSON.stringify(faves));
+            } else {
+                console.log("wrong user or null array...");
             }
 
           
