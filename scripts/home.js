@@ -69,7 +69,7 @@ $(document).ready(function(){
             user = $("#email").val()
             faves = [];
             if ((data.user == user) && (data.data != null)) {
-                faves.push(data.data);
+                faves = data.data;
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 console.log("wrong user or null array...");
@@ -115,6 +115,7 @@ $(document).ready(function(){
                 faves.push(videoName);
             }
         } else {
+            localStorage.clear();
             faves = []
             faves.push(videoName);
             localStorage.setItem(user, JSON.stringify(faves));
