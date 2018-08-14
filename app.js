@@ -301,6 +301,11 @@ io.on("connection", function (socket) {
     socket.on("getFaves", function(user) {
         getFaves(user);
     });
+    socket.on("updateFaves", function(user) {
+        user = data["user"]
+        faves = data["faves"]
+        updateFaves(user, faves);
+    });
    
 });
 
@@ -468,14 +473,14 @@ function getFaves(user) {
 
 
 
-function updateFaves(user, favs) {
+function updateFaves(user, faves) {
     var db = admin.database();
     name = user.name.toLowerCase();
     strippedName = name.replace(/[^a-z0-9]/g, '')
     var ref = db.ref("favorites/" + strippedName); 
     console.log("updateFaves(" + name + ")"); 
-    console.log(favs);
-    ref.update(favs);
+    console.log(faves);
+    ref.update(faves);
 }
         
 
