@@ -299,14 +299,17 @@ io.on("connection", function (socket) {
         deleteVideo(videoInfo);
     });
     socket.on("getFaves", function(user) {
+        console.log("socket on getFaves, app.js")
+        console.log("calling getFaves(" + user + ")")
         getFaves(user);
     });
-    socket.on("updateFaves", function(user) {
-        console.log("socket on updateFaves, app.js")
-        console.log("calling updateFaves(" + user + ", " + faves + ")")
+    socket.on("updateFaves", function(data) {
         user = data["user"]
         faves = data["faves"]
-        updateFaves(user, faves);
+        console.log("socket on updateFaves, app.js")
+        console.log("calling updateFaves(" + user + ", " + faves + ")")
+       
+        // updateFaves(user, faves);
     });
    
 });
