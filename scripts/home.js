@@ -67,7 +67,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#displayVideos').on('click','li div div strong a img a.editUser', function(e) {
+    $('#displayVideos').on('click','li div div strong a img', function(e) {
         // clientUserName = this.id.substring(8);
         // $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
         // $("#decisionModalButton").html("EDIT");
