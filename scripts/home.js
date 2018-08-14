@@ -111,6 +111,7 @@ $(document).ready(function(){
             if (faves.includes(videoName)) {
                 var i = faves.indexOf(videoName);
                 faves.splice(i, 1);
+                localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 faves.push(videoName);
             }
