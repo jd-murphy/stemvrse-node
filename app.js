@@ -486,7 +486,7 @@ function updateFaves(user, faves) {
     var ref = db.ref("favorites/" + strippedEmail); 
     console.log("updateFaves(" + email + ")"); 
     console.log(faves);
-    ref.update(faves);
+    ref.set(faves);
 }
         
 
