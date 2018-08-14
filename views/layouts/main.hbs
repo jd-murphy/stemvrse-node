@@ -99,6 +99,7 @@
                   
                     $(document.body).append('<input id="token" value="' +  accessToken + '" type="hidden">')
                     $(document.body).append('<input id="email" value="' +  email + '" type="hidden">')
+                    socket.emit("userSet");
                    
                     socket.on("validToken", function() {
                       console.log("I received -> socket.on 'validToken'");

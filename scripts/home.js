@@ -48,11 +48,6 @@ $(document).ready(function(){
                         '</div></li>');
                 });
             }
-    }).then(function() {
-        console.log("loading videos finished, calling get faves")
-        user = $("#email").val()
-        console.log("Calling   socket.emit('getFaves')  for user  " + user);
-        socket.emit('getFaves', user);
     });
 
     socket.on("faves", function(data){
@@ -71,6 +66,13 @@ $(document).ready(function(){
             localStorage.setItem(user, JSON.stringify(faves));
         }
     });
+
+    socket.on("userSet", function(){
+        user = $("#email").val()
+        console.log("Calling   socket.emit('getFaves')  for user  " + user);
+        socket.emit('getFaves', user);
+    });
+
 
     $('#displayVideos').on('click','li div div strong a img', function(e) {
         // clientUserName = this.id.substring(8);
