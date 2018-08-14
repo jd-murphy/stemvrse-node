@@ -461,11 +461,11 @@ function deleteVideo(videoName) {
 
 function getFaves(user) {
     var db = admin.database();
-    name = user.name.toLowerCase();
-    strippedName = name.replace(/[^a-z0-9]/g, '')
-    var ref = db.ref("favorites/" + strippedName); 
+    email = user.toLowerCase();
+    strippedEmail = email.replace(/[^a-z0-9]/g, '')
+    var ref = db.ref("favorites/" + strippedEmail); 
     ref.on("value", function(snapshot) {
-        console.log("on value, getFaves(" + strippedName + ") snapshot")
+        console.log("on value, getFaves(" + strippedEmail + ") snapshot")
         data = snapshot.val()
         if (data) {
             socket.emit('faves', JSON.stringify(data));
@@ -481,10 +481,10 @@ function getFaves(user) {
 function updateFaves(user, faves) {
     console.log("hello from update faves...")
     var db = admin.database();
-    name = user.name.toLowerCase();
-    strippedName = name.replace(/[^a-z0-9]/g, '')
-    var ref = db.ref("favorites/" + strippedName); 
-    console.log("updateFaves(" + name + ")"); 
+    email = user.toLowerCase();
+    strippedEmail = email.replace(/[^a-z0-9]/g, '')
+    var ref = db.ref("favorites/" + strippedEmail); 
+    console.log("updateFaves(" + email + ")"); 
     console.log(faves);
     ref.update(faves);
 }
