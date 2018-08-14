@@ -33,7 +33,7 @@ $(document).ready(function(){
                                         '</div>'
 
                     $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
-                            '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px" onclick="favMe.call(this);"></a>' + '</strong></div>' + 
+                            '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px"></a>' + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
                             ' <div>' + 
@@ -51,15 +51,16 @@ $(document).ready(function(){
     });
 
     
-    // $('#displayVideos').on('click','li div div strong div div a.favoriteVideo', function() {
-    //     videoName = this.id.substring(13);
-    //     var displayName = this.getAttribute('data-video-display-name');
+    $('#favoriteVideo').on('click','img', function(e) {
+        console.log("clicked fav button...")
+        e.preventDefault();
+        videoName = this.id.substring(13);
+        
+        var displayName = this.getAttribute('data-video-display-name');
        
-    //     console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
-
-
+        console.log("Adding "  + displayName  + " ("+ videoName + ") to your favorites!");
     
-    //     });
+        });
     
     
    
@@ -100,18 +101,4 @@ function addNewVideo() {
 function cleanseNewVideoModal(){
     $('#addNewVideoModal-name').val("");
     $('#addNewVideoModal-link').val("");
-}
-
-function favMe(element) {
-    console.log("id: " + element.id);
-    console.log("clicked fav button...")
-    var videoName = element.id.substring(11);
-    var videoName2 = id.substring(11);
-    var displayName = element.getAttribute('data-video-display-name');
-    
-    console.log("Adding "  + displayName  + " ("+ videoName + " or " +  videoName2 + ") to your favorites!");
-
-
-    
-        
 }
