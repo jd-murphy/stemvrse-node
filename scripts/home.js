@@ -77,7 +77,7 @@ $(document).ready(function(){
     socket.emit('loadVideos');
     user = $("#email").val()
     console.log("Calling   socket.emit('getFaves')  for user " + user);
-    socket.emit('getFaves', user);
+    // socket.emit('getFaves', user);
 });
 
 
@@ -123,6 +123,7 @@ function faveMe(e, element) {
     console.log("Adding "  + displayName  + " ("+ videoName + ") to you favorites for user " + user + "!");
     faves = JSON.parse(localStorage.getItem(user));
     console.log("Here is the faves array retrieved from localstorage -> ");
+    console.log("faves before ");
     console.log(faves);
     if (faves != null) {
         if (faves.includes(videoName)) {
@@ -134,5 +135,7 @@ function faveMe(e, element) {
         faves = []
         faves.push(videoName);
     }
-    socket.emit("updateFaves", user, faves);
+    console.log("faves after ");
+    console.log(faves);
+    // socket.emit("updateFaves", user, faves);
 }
