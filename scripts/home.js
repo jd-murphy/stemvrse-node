@@ -1,7 +1,14 @@
 $(document).ready(function(){
+
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (home.js)\n\n")
     var socket = io();
-    
+
+    document.addEventListener("UserAddedToPage", function(e){
+        user = $("#email").val()
+        console.log("Calling   socket.emit('getFaves')  for user  " + user);
+        socket.emit('getFaves', user);
+    })
+   
     socket.on('newVideoData', function (data) {
         console.log("socket.on('newVideoData')");
     
@@ -67,23 +74,17 @@ $(document).ready(function(){
         }
     });
 
-    socket.on("userSet", function(){
-        user = $("#email").val()
-        console.log("Calling   socket.emit('getFaves')  for user  " + user);
-        socket.emit('getFaves', user);
-    });
+   
 
 
     $('#displayVideos').on('click','li div div strong a img', function(e) {
-        // clientUserName = this.id.substring(8);
-        // $("#modalDataDiv").html("You have chosen to EDIT the user: <strong>" + clientUserName + "</strong>");
-        // $("#decisionModalButton").html("EDIT");
-        // $("#modalTitle").html("<strong>Edit User: " + clientUserName + "</strong>");
-        // $("#decisionModalButton").removeClass("btn-outline-danger");
-        // $("#decisionModalButton").addClass("btn-outline-success");
-        // document.getElementById('hiddenUsername').value = clientUserName;
-        // $("#modalDialog").modal();
-        
+       
+
+        // user = $("#email").val()
+        // console.log("Calling   socket.emit('getFaves')  for user  " + user);
+        // socket.emit('getFaves', user);
+
+
 
         e.preventDefault();
         console.log("clicked fav button...")
@@ -157,29 +158,3 @@ function cleanseNewVideoModal(){
     $('#addNewVideoModal-name').val("");
     $('#addNewVideoModal-link').val("");
 }
-// function faveMe(e, element, socket) {
-//     e.preventDefault();
-//     console.log("clicked fav button...")
-//     console.log(element.id);
-//     videoName = element.id.substring(9);
-//     var displayName = element.getAttribute('data-video-display-name');
-//     user = $("#email").val();
-//     console.log("Adding "  + displayName  + " ("+ videoName + ") to you favorites for user " + user + "!");
-//     faves = JSON.parse(localStorage.getItem(user));
-//     console.log("Here is the faves array retrieved from localstorage -> ");
-//     console.log("faves before ");
-//     console.log(faves);
-//     if (faves != null) {
-//         if (faves.includes(videoName)) {
-//             faves.remove(videoName);
-//         } else {
-//             faves.push(videoName);
-//         }
-//     } else {
-//         faves = []
-//         faves.push(videoName);
-//     }
-//     console.log("faves after ");
-//     console.log(faves);
-//     socket.emit('updateFaves', {"user": user, "faves": faves});
-// }      //called so -> onclick="faveMe(event,this,socket);"
