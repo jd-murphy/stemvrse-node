@@ -93,7 +93,8 @@ function cleanseNewVideoModal(){
     $('#addNewVideoModal-name').val("");
     $('#addNewVideoModal-link').val("");
 }
-function faveMe(element) {
+function faveMe(e, element) {
+    e.preventDefault();
     console.log("clicked fav button...")
     console.log(element.id);
     videoName = element.id.substring(13);
