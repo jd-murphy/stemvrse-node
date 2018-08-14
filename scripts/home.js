@@ -56,9 +56,9 @@ $(document).ready(function(){
         // console.log("socket.on('faves')");
         
         if (data != null) {
-            console.log("socket.on('faves')    data -> ");
-            console.log(data.user);
-            console.log(data.data);
+            // console.log("socket.on('faves')    data -> ");
+            // console.log(data.user);
+            // console.log(data.data);
             // used to be ->         var data = JSON.parse(data); //process notication array
             
             // faves = []
@@ -70,6 +70,8 @@ $(document).ready(function(){
             faves = [];
             if ((data.user == user) && (data.data != null)) {
                 faves = data.data;
+                console.log("faves -> ")
+                console.log(faves);
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 console.log("wrong user or null array...");
