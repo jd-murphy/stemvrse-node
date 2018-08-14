@@ -310,11 +310,11 @@ io.on("connection", function (socket) {
             data = snapshot.val()
             if (data) {
                 console.log("data exists, data is " + data);
-                socket.emit('faves', data); // used to be JSON.stringify(data)
+                io.emit('faves', { "user": user, "data": data }); // used to be JSON.stringify(data)
             } 
             else {
                 console.log("data is null or undefined, data -> " + data);
-                socket.emit('faves', null); 
+                io.emit('faves', { "user": user, "data": null }); 
             }
         });
     });

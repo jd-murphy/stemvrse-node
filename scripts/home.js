@@ -54,11 +54,15 @@ $(document).ready(function(){
 
     socket.on("faves", function(data){
         console.log("socket.on('faves')");
-    
+        
         if (data != null) {
-
-            // used to be ->         var data = JSON.parse(data); //process notication array
+            console.log("socket.on('faves)    data -> ");
             console.log(data);
+            
+            console.log(data["user"]);
+            console.log(data["data"]);
+            // used to be ->         var data = JSON.parse(data); //process notication array
+            
             faves = []
             Object.keys(data).forEach(function (fav) {
                     console.log("fav -> " + fav);
