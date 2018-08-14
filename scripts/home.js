@@ -48,6 +48,11 @@ $(document).ready(function(){
                         '</div></li>');
                 });
             }
+    }).then(function() {
+        console.log("loading videos finished, calling get faves")
+        user = $("#email").val()
+        console.log("Calling   socket.emit('getFaves')  for user  " + user);
+        socket.emit('getFaves', user);
     });
 
     socket.on("faves", function(data){
@@ -113,18 +118,7 @@ $(document).ready(function(){
     console.log("Calling   socket.emit('loadVideos')");
     socket.emit('loadVideos');
 
-    user = $("#email").val()
-    if (user === undefined) {
-        
-        window.setTimeout(function(){
-            user = $("#email").val()
-            if (user != undefined) {
-                console.log("Calling   socket.emit('getFaves')  for user  " + user);
-                socket.emit('getFaves', user);
-            }
-        }, 400);
-
-    }
+   
    
 });
 
