@@ -309,9 +309,11 @@ io.on("connection", function (socket) {
             console.log("on value, getFaves(" + strippedEmail + ") snapshot")
             data = snapshot.val()
             if (data) {
+                console.log("data exists, data is " + data);
                 socket.emit('faves', JSON.stringify(data));
             } 
             else {
+                console.log("data is null or undefined, data -> " + data);
                 socket.emit('faves', null); 
             }
         });
