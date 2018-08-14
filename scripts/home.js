@@ -57,7 +57,7 @@ $(document).ready(function(){
     
         if (data != null) {
 
-            var data = JSON.parse(data); //process notication array
+            // used to be ->         var data = JSON.parse(data); //process notication array
             console.log(data);
             faves = []
             Object.keys(data).forEach(function (fav) {
