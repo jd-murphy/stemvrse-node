@@ -98,7 +98,12 @@ $(document).ready(function(){
         var displayName = this.getAttribute('data-video-display-name');
         user = $("#email").val();
         console.log("Adding "  + displayName  + " ("+ videoName + ") to you favorites for user " + user + "!");
-        faves = JSON.parse(localStorage.getItem(user));
+        try {
+            faves = JSON.parse(localStorage.getItem(user));
+        } catch (err) {
+            faves = null;
+        }
+        
         console.log("Here is the faves array retrieved from localstorage -> ");
         console.log("faves before ");
         console.log(faves);
