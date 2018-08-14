@@ -302,6 +302,8 @@ io.on("connection", function (socket) {
         getFaves(user);
     });
     socket.on("updateFaves", function(user) {
+        console.log("socket on updateFaves, app.js")
+        console.log("calling updateFaves(" + user + ", " + faves + ")")
         user = data["user"]
         faves = data["faves"]
         updateFaves(user, faves);
@@ -474,6 +476,7 @@ function getFaves(user) {
 
 
 function updateFaves(user, faves) {
+    console.log("hello from update faves...")
     var db = admin.database();
     name = user.name.toLowerCase();
     strippedName = name.replace(/[^a-z0-9]/g, '')
