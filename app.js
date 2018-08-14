@@ -300,8 +300,21 @@ io.on("connection", function (socket) {
     });
     socket.on("getFaves", function(user) {
         console.log("socket on getFaves, app.js")
-        console.log("calling getFaves(" + user + ")")
-        getFaves(user);
+        console.log("getFaves for " + user)
+        var db = admin.database();
+        email = user.toLowerCase();
+        strippedEmail = email.replace(/[^a-z0-9]/g, '')
+        var ref = db.ref("favorites/" + strippedEmail); 
+        ref.on("value", function(snapshot) {
+            console.log("on value, getFaves(" + strippedEmail + ") snapshot")
+            data = snapshot.val()
+            if (data) {
+                socket.emit('faves', JSON.stringify(data));
+            } 
+            else {
+                socket.emit('faves', null); 
+            }
+        });
     });
     socket.on("updateFaves", function(data) {
         user = data["user"]
@@ -459,22 +472,22 @@ function deleteVideo(videoName) {
         
 
 
-function getFaves(user) {
-    var db = admin.database();
-    email = user.toLowerCase();
-    strippedEmail = email.replace(/[^a-z0-9]/g, '')
-    var ref = db.ref("favorites/" + strippedEmail); 
-    ref.on("value", function(snapshot) {
-        console.log("on value, getFaves(" + strippedEmail + ") snapshot")
-        data = snapshot.val()
-        if (data) {
-            socket.emit('faves', JSON.stringify(data));
-        } 
-        else {
-            socket.emit('faves', null); 
-        }
-    });
-}
+// function getFaves(user) {
+//     var db = admin.database();
+//     email = user.toLowerCase();
+//     strippedEmail = email.replace(/[^a-z0-9]/g, '')
+//     var ref = db.ref("favorites/" + strippedEmail); 
+//     ref.on("value", function(snapshot) {
+//         console.log("on value, getFaves(" + strippedEmail + ") snapshot")
+//         data = snapshot.val()
+//         if (data) {
+//             socket.emit('faves', JSON.stringify(data));
+//         } 
+//         else {
+//             socket.emit('faves', null); 
+//         }
+//     });
+// }
 
 
 
