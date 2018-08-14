@@ -53,12 +53,10 @@ $(document).ready(function(){
     });
 
     socket.on("faves", function(data){
-        console.log("socket.on('faves')");
+        // console.log("socket.on('faves')");
         
         if (data != null) {
             console.log("socket.on('faves)    data -> ");
-            console.log(data);
-
             console.log(data.user);
             console.log(data.data);
             // used to be ->         var data = JSON.parse(data); //process notication array
@@ -106,7 +104,8 @@ $(document).ready(function(){
         console.log(faves);
         if (faves != null) {
             if (faves.includes(videoName)) {
-                faves.remove(videoName);
+                var i = faves.indexOf(videoName);
+                faves.splice(i, 1);
             } else {
                 faves.push(videoName);
             }
