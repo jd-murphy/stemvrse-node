@@ -63,15 +63,18 @@ $(document).ready(function(){
             console.log(data.data);
             // used to be ->         var data = JSON.parse(data); //process notication array
             
-            faves = []
-            Object.keys(data).forEach(function (key) {
-                    console.log("fav -> " + data[key]);
-                    faves.push(data[key]);
-            });
-
-            console.log("faves array -> " + faves);
+            // faves = []
+            // Object.keys(data).forEach(function (key) {
+            //         console.log("fav -> " + data[key]);
+            //         faves.push(data[key]);
+            // });
             user = $("#email").val()
-            localStorage.setItem(user, JSON.stringify(faves));
+            if (data.user == user) {
+                faves.push(data.data);
+                localStorage.setItem(user, JSON.stringify(faves));
+            }
+
+          
         }
     });
 
