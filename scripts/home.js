@@ -128,11 +128,11 @@ function faveMe(e, element) {
         if (faves.includes(videoName)) {
             faves.remove(videoName);
         } else {
-            faves.append(videoName);
+            faves.push(videoName);
         }
     } else {
         faves = []
-        faves.append(videoName);
+        faves.push(videoName);
     }
     socket.emit("updateFaves", user, faves);
 }
