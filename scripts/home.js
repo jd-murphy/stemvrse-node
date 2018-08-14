@@ -59,15 +59,17 @@ $(document).ready(function(){
             console.log("socket.on('faves)    data -> ");
             console.log(data);
 
-            console.log(data["user"]);
-            console.log(data["data"]);
+            console.log(data.user);
+            console.log(data.data);
             // used to be ->         var data = JSON.parse(data); //process notication array
             
             faves = []
-            Object.keys(data).forEach(function (fav) {
-                    console.log("fav -> " + fav);
-                    faves.push(fav);
+            Object.keys(data).forEach(function (key) {
+                    console.log("fav -> " + data[key]);
+                    faves.push(data[key]);
             });
+
+            console.log("faves array -> " + faves);
             user = $("#email").val()
             localStorage.setItem(user, JSON.stringify(faves));
         }
