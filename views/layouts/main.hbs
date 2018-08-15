@@ -96,6 +96,7 @@
                     console.log(email);
 
                     var socket = io();
+                    socket.emit('room', email);
 
                     socket.emit('passToken', {"token": accessToken, "email": email});
                   

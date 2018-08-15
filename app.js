@@ -234,6 +234,11 @@ io.on("connection", function (socket) {
     // } catch (err) {
     //     console.log("couldn't get room from handshake..")
     // }
+    socket.on('room', function(room) {
+        strippedRoom = room.replace(/[^a-z0-9]/g, '')
+        console.log("joining room " + strippedRoom)
+        socket.join(strippedRoom);
+    });
     
 
 
