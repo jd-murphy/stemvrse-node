@@ -362,7 +362,7 @@ function setUpFirebase() {
         console.log("firebase initialized!");
 
 
-
+        nextPageToken = null;
         admin.auth().listUsers(1000, nextPageToken)
         .then(function(listUsersResult) {
             listUsersResult.users.forEach(function(userRecord) {
