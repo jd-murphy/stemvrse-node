@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-    $("#noFaves").alert("hide");
-    
+    $("#noFaves").alert("close");
+
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (favorites.js)\n\n")
     var socket = io();
 
