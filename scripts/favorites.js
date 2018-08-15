@@ -7,6 +7,20 @@ $(document).ready(function(){
 
     
     socket.on('newVideoData', function (data) {
+
+
+        var fingerprint = getHashFingerprint(data)
+        var lastFingerprint = localStorage.getItem("lastFingerprint")
+        console.log("lastFingerprint");
+        console.log(lastFingerprint);
+        console.log("fingerprint");
+        console.log(fingerprint);
+        if (lastFingerprint == null || lastFingerprint == undefined) {
+            localStorage.setItem("lastFingerprint", fingerprint)
+        }
+        
+
+
         console.log("socket.on('newVideoData')");
     
         $("#displayVideos li").remove(); 
