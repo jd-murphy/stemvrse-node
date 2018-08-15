@@ -95,7 +95,7 @@
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
                     console.log(email);
 
-                    var socket = io({"room":email});
+                    var socket = io({query:'room=' + email});
 
                     socket.emit('passToken', {"token": accessToken, "email": email});
                   
