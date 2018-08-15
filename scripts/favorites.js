@@ -130,7 +130,10 @@ $(document).ready(function(){
 function filterVideos() {
     console.log("running filterVideos()")
     var videoInput = document.getElementById('filterVideosInput')
-    if (videoInput.value == undefined || videoInput.value.length == 0) {
+    
+    if (!videoInput.value) {
+        console.log("EMPTY INPUT FOR FILTER")
+        console.log("videoInput is " + videoInput.value)
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
         videos = $("#displayVideos li").val();
@@ -146,6 +149,8 @@ function filterVideos() {
             // }
         }
     } else {
+        console.log("videoInput is " + videoInput.value)
+
         var typedName = videoInput.value.toLowerCase();
 
         var divs = document.querySelectorAll('[data-descriptor=video-li]');
