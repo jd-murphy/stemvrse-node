@@ -147,7 +147,7 @@ function filterVideos() {
             hideMe.parentNode.classList.add("hideMe");
         }   
     }
-    if (typedName == "") {
+    if (typedName == undefined) {
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
         for (var i = 0; i < faves.length; i++) {
