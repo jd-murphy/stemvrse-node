@@ -133,17 +133,19 @@ function filterVideos() {
     var typedName = videoInput.value.toLowerCase();
 
     var divs = document.querySelectorAll('[data-descriptor=video-li]');
-    for (var i = 0; i < divs.length; i++) {
+    if (typedName != "") {
+        for (var i = 0; i < divs.length; i++) {
 
-        videoName = divs[i].getAttribute('data-video-name').toLowerCase();
-        divID = divs[i].getAttribute('id');
-        hideMe = document.getElementById(divID);
-        if (videoName.includes(typedName)) {
-            console.log(videoName);
-            hideMe.parentNode.classList.remove("hideMe");
-            
-        } else {
-            hideMe.parentNode.classList.add("hideMe");
-        }   
+            videoName = divs[i].getAttribute('data-video-name').toLowerCase();
+            divID = divs[i].getAttribute('id');
+            hideMe = document.getElementById(divID);
+            if (videoName.includes(typedName)) {
+                console.log(videoName);
+                hideMe.parentNode.classList.remove("hideMe");
+                
+            } else {
+                hideMe.parentNode.classList.add("hideMe");
+            }   
+        }
     }
  }
