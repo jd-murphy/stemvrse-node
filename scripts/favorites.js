@@ -131,28 +131,23 @@ function filterVideos() {
     console.log("running filterVideos()")
     var videoInput = document.getElementById('filterVideosInput')
     
-    if (!videoInput.value) {
+    if (!videoInput.value || videoInput.value.replace(/\s+/g, '') == "") {
         console.log("EMPTY INPUT FOR FILTER")
         console.log("videoInput is " + videoInput.value)
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
-        videos = $("#displayVideos li").val();
+        videos = $("#displayVideos li div").val();
+        console.log("All videos -> ")
+        
         for (var i = 0; i < videos.length; i++) {
-            if (!faves.includes(videos[i])) {
+            console.log(videos[i].id)
+            if (!faves.includes(videos[i].id)) {
                 $('#' + videos[i]).parent().addClass("hideMe");
             }
-            // var img = $('#favButton' + faves[i]).attr('src'); // favorited video
-            // if (img == "/assets/favorited.png") {
-            //     $('#' + faves[i]).parent().removeClass("hideMe");
-            // } else {
-            //     $('#' + faves[i]).parent().addClass("hideMe");
-            // }
         }
     } else {
-        console.log("videoInput is " + videoInput.value)
 
         var typedName = videoInput.value.toLowerCase();
-
         var divs = document.querySelectorAll('[data-descriptor=video-li]');
         
         for (var i = 0; i < divs.length; i++) {
