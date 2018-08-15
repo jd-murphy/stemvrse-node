@@ -579,7 +579,7 @@ function setUpSocketIONamespace(user) {
     var nspFound = false;
     Object.keys(io.nsps).forEach(function(k) {
         console.log(io.nsps[k])
-        if (user in io.nsps[k]) {
+        if (user in io.nsps[k].name) {
             nspFound = true;
         }
     });
