@@ -68,7 +68,6 @@ $(document).ready(function(){
                 $("#noFaves").addClass("hidden");
             } else {
                 console.log("wrong user or null array...");
-                $("#noFaves").removeClass("hidden");
             }
 
           
