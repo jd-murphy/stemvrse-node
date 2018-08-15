@@ -99,7 +99,7 @@
                     socket.emit('room', email);
                 
 
-                    socket.emit('passToken', {"token": accessToken, "email": email});
+                    socket.emit('passToken', {"token": accessToken, "email": email, "room": email});
                   
                     $(document.body).append('<input id="token" value="' +  accessToken + '" type="hidden">')
                     $(document.body).append('<input id="email" value="' +  email + '" type="hidden">')

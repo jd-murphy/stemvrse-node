@@ -255,6 +255,7 @@ io.on("connection", function (socket) {
 
         idToken = data["token"]
         room = data["room"]
+        room = room.replace(/[^a-z0-9]/g, '')
 
         admin.auth().verifyIdToken(idToken)
         .then(function(decodedToken) {
@@ -286,6 +287,7 @@ io.on("connection", function (socket) {
                         ref.set({"token": token});
                         // socket.emit("validToken") // emit only to the authenticated user
                         io.to(room).emit("validToken")
+                        console.log("\n\nSUCCESS!!!\n\n")
                             
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ");
