@@ -576,8 +576,11 @@ function isAccountHolder(req, res, next) {
 function setUpSocketIONamespace(user) {
 
     console.log("hello from setUpSocketIONamespace() the user is " + user);
-    Object.keys(io.nsps).forEach(function(nsp) {
-       console.log("Namespace: " + nsp);
-    });
+    if (user in Object.keys(io.nsps)){
+        console.log("namepspace exists for " + user)
+    } else {
+        console.log("namepspace does not exist for " + user)
+    }
+
     
 }
