@@ -73,7 +73,7 @@ $(document).ready(function(){
                 console.log("faves -> ")
                 console.log(faves);
                 for (var i = 0; i < faves.length; i++) {
-                    $('#favButton' + faves[i]).attr('src', "/assets/favorited.png")
+                    $('#favButton' + faves[i]).attr('src', "/assets/favorited.png") // favorited video
                 }
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
@@ -95,21 +95,18 @@ $(document).ready(function(){
         videoName = this.id.substring(9);
         var displayName = this.getAttribute('data-video-display-name');
         user = $("#email").val();
-        console.log("Adding "  + displayName  + " ("+ videoName + ") to you favorites for user " + user + "!");
+        console.log("Adding "  + videoName + " to favorites for " + user);
         try {
             faves = JSON.parse(localStorage.getItem(user));
         } catch (err) {
             faves = null;
         }
-        
-        console.log("Here is the faves array retrieved from localstorage -> ");
-        console.log("faves before ");
-        console.log(faves);
+
         if (faves != null) {
             if (faves.includes(videoName)) {
                 var i = faves.indexOf(videoName);
                 faves.splice(i, 1);
-                $('#favButton' + videoName).attr('src', "/assets/favorite.png")
+                $('#favButton' + videoName).attr('src', "/assets/favorite.png") // unfavorited video
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 faves.push(videoName);
@@ -120,7 +117,7 @@ $(document).ready(function(){
             faves.push(videoName);
             localStorage.setItem(user, JSON.stringify(faves));
         }
-        console.log("faves after ");
+        console.log("faves");
         console.log(faves);
         socket.emit('updateFaves', {"user": user, "faves": faves});
     });
