@@ -65,6 +65,8 @@ $(document).ready(function(){
                     faveCount++;
                 }
                 if (faveCount > 0) {
+                    $("#noFaves").addClass("hidden");
+                } else {
                     $("#noFaves").removeClass("hidden");
                 }
                 localStorage.setItem(user, JSON.stringify(faves));
