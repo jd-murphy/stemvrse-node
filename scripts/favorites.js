@@ -141,10 +141,9 @@ function filterVideos() {
         if (videoName.includes(typedName)) {
             console.log(videoName);
             hideMe.parentNode.classList.remove("hideMe");
+            
         } else {
             hideMe.parentNode.classList.add("hideMe");
-        }
-
-        
+        }   
     }
  }
