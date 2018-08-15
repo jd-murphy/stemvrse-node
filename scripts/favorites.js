@@ -144,6 +144,7 @@ function filterVideos() {
             // videoName = divs[i].getAttribute('data-video-name').toLowerCase();
             divID = divs[i].getAttribute('id');
             // video = document.getElementById(divID);
+            hideMe = document.getElementById(divID);
             if (faves.includes(divID)) {
                 console.log("fave: " + divID);
                 hideMe.parentNode.classList.remove("hideMe");
