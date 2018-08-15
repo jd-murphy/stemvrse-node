@@ -362,28 +362,7 @@ function setUpFirebase() {
         console.log("firebase initialized!");
 
 
-        nextPageToken = null;
-        admin.auth().listUsers(1000, nextPageToken)
-        .then(function(listUsersResult) {
-            listUsersResult.users.forEach(function(userRecord) {
-            console.log("user", userRecord.toJSON());
-            
-
-                    setUpSocketIONamespace(userRecord.toJSON());
-            
-
-
-
-
-            });
-            if (listUsersResult.pageToken) {
-            // List next batch of users.
-            listAllUsers(listUsersResult.pageToken)
-            }
-        })
-        .catch(function(error) {
-            console.log("Error listing users:", error);
-        });
+      listAllUsers();
 
 }
 
@@ -395,6 +374,7 @@ function listAllUsers(nextPageToken) {
       .then(function(listUsersResult) {
         listUsersResult.users.forEach(function(userRecord) {
           console.log("user", userRecord.toJSON());
+          setUpSocketIONamespace(userRecord.toJSON());
           io.emit("onUserData", userRecord.toJSON()); // emit to all users
         });
         if (listUsersResult.pageToken) {
@@ -594,5 +574,10 @@ function isAccountHolder(req, res, next) {
 
 
 function setUpSocketIONamespace(user) {
+
     console.log("hello from setUpSocketIONamespace() the user is " + user);
+    Object.keys(io.nsps).forEach(function(nsp) {
+       console.log("Namespace: " + nsp);
+    });
+    
 }
