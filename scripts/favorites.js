@@ -130,24 +130,7 @@ $(document).ready(function(){
 function filterVideos() {
     console.log("running filterVideos()")
     var videoInput = document.getElementById('filterVideosInput')
-    var typedName = videoInput.value.toLowerCase();
-
-    var divs = document.querySelectorAll('[data-descriptor=video-li]');
-    
-    for (var i = 0; i < divs.length; i++) {
-
-        videoName = divs[i].getAttribute('data-video-name').toLowerCase();
-        divID = divs[i].getAttribute('id');
-        hideMe = document.getElementById(divID);
-        if (videoName.includes(typedName)) {
-            console.log(videoName);
-            hideMe.parentNode.classList.remove("hideMe");
-            
-        } else {
-            hideMe.parentNode.classList.add("hideMe");
-        }   
-    }
-    if (typedName == undefined) {
+    if (videoInput.value == undefined || videoInput.value.length == 0) {
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
         for (var i = 0; i < faves.length; i++) {
@@ -158,6 +141,23 @@ function filterVideos() {
                 $('#' + faves[i]).parent().addClass("hideMe");
             }
         }
-    }
+    } else {
+        var typedName = videoInput.value.toLowerCase();
+
+        var divs = document.querySelectorAll('[data-descriptor=video-li]');
+        
+        for (var i = 0; i < divs.length; i++) {
     
+            videoName = divs[i].getAttribute('data-video-name').toLowerCase();
+            divID = divs[i].getAttribute('id');
+            hideMe = document.getElementById(divID);
+            if (videoName.includes(typedName)) {
+                console.log(videoName);
+                hideMe.parentNode.classList.remove("hideMe");
+                
+            } else {
+                hideMe.parentNode.classList.add("hideMe");
+            }   
+        }
+    }
  }
