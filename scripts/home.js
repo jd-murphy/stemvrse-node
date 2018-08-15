@@ -72,6 +72,9 @@ $(document).ready(function(){
                 faves = data.data;
                 console.log("faves -> ")
                 console.log(faves);
+                for (var i = 0; i < faves.length; i++) {
+                    $('#favButton' + faves[i]).attr('src', "/assets/favorited.png")
+                }
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 console.log("wrong user or null array...");
@@ -85,13 +88,6 @@ $(document).ready(function(){
 
 
     $('#displayVideos').on('click','li div div strong a img', function(e) {
-       
-
-        // user = $("#email").val()
-        // console.log("Calling   socket.emit('getFaves')  for user  " + user);
-        // socket.emit('getFaves', user);
-
-
 
         e.preventDefault();
         console.log("clicked fav button...")
@@ -113,6 +109,7 @@ $(document).ready(function(){
             if (faves.includes(videoName)) {
                 var i = faves.indexOf(videoName);
                 faves.splice(i, 1);
+                $('#favButton' + videoName).attr('src', "/assets/favorite.png")
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 faves.push(videoName);
