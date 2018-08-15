@@ -136,14 +136,21 @@ function filterVideos() {
         console.log("videoInput is " + videoInput.value)
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
-        videos = $("#displayVideos li div").val();
-        console.log("All videos -> ")
+        var typedName = videoInput.value.toLowerCase();
+        var divs = document.querySelectorAll('[data-descriptor=video-li]');
         
-        for (var i = 0; i < videos.length; i++) {
-            console.log(videos[i].id)
-            if (!faves.includes(videos[i].id)) {
-                $('#' + videos[i]).parent().addClass("hideMe");
-            }
+        for (var i = 0; i < divs.length; i++) {
+    
+            // videoName = divs[i].getAttribute('data-video-name').toLowerCase();
+            divID = divs[i].getAttribute('id');
+            video = document.getElementById(divID);
+            if (faves.includes(video)) {
+                console.log("fave: " + divID);
+                hideMe.parentNode.classList.remove("hideMe");
+                
+            } else {
+                hideMe.parentNode.classList.add("hideMe");
+            }   
         }
     } else {
 
