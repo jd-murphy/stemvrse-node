@@ -151,10 +151,12 @@ function filterVideos() {
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
         for (var i = 0; i < faves.length; i++) {
-            $('#favButton' + faves[i]).attr('src', "/assets/favorited.png") // favorited video
-            $('#' + faves[i]).parent().removeClass("hideMe");
-            $('#favButton' + faves[i]).attr('src', "/assets/favorite.png") // favorited video
-            $('#' + faves[i]).parent().addClass("hideMe");
+            var img = $('#favButton' + faves[i]).attr('src'); // favorited video
+            if (img == "/assets/favorited.png") {
+                $('#' + faves[i]).parent().removeClass("hideMe");
+            } else {
+                $('#' + faves[i]).parent().addClass("hideMe");
+            }
         }
     }
     
