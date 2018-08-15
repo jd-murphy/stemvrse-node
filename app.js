@@ -225,15 +225,6 @@ app.use(function(err, req, res, next) {      // check if user is admin or not be
 
 io.on("connection", function (socket) {
 
-    
-    // try {
-    //     var room = socket.handshake.query.room;
-    //     strippedRoom = room.replace(/[^a-z0-9]/g, '')
-    //     console.log("Joining room " + strippedRoom);
-    //     socket.join(strippedRoom);
-    // } catch (err) {
-    //     console.log("couldn't get room from handshake..")
-    // }
     socket.on('room', function(room) {
         strippedRoom = room.replace(/[^a-z0-9]/g, '')
         console.log("joining room " + strippedRoom)
