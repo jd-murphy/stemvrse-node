@@ -94,7 +94,9 @@
 
                     console.log("User is authenticated and logged in. Here is the user Email (main.hbs) -> ");
                     console.log(email);
-                    var socket = io();
+
+                    var socket = io({"room":email});
+
                     socket.emit('passToken', {"token": accessToken, "email": email});
                   
                     $(document.body).append('<input id="token" value="' +  accessToken + '" type="hidden">')

@@ -224,6 +224,13 @@ app.use(function(err, req, res, next) {      // check if user is admin or not be
 
 
 io.on("connection", function (socket) {
+
+    var room = socket.handshake['query']['room'];
+    strippedRoom = room.replace(/[^a-z0-9]/g, '')
+    console.log("Joining room " + strippedRoom);
+    socket.join(strippedRoom);
+
+
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
         getClientDataFromFirebase();
@@ -303,7 +310,20 @@ io.on("connection", function (socket) {
     socket.on("loadVideos", function (videoInfo) {
         console.log("socket on loadVideos, app.js")
         console.log("calling getVideoDataFromFirebase()")  
-        getVideoDataFromFirebase();
+        // getVideoDataFromFirebase();
+        var db = admin.database();
+        var ref = db.ref("videos");
+        console.log("getVideoDataFromFirebase()");
+        ref.on("value", function(snapshot) {
+            console.log("on value, getVideoDataFromFirebase() snapshot")
+            data = snapshot.val()
+            if (data) {
+                io.emit('newVideoData', JSON.stringify(data));
+            } 
+            else {
+                io.emit('newVideoData', null); 
+            }
+        });
     });
     socket.on("addVideo", function (videoInfo) {  
         console.log("socket on addVideo, app.js")
@@ -374,7 +394,7 @@ function listAllUsers(nextPageToken) {
       .then(function(listUsersResult) {
         listUsersResult.users.forEach(function(userRecord) {
         //   console.log("user", userRecord.toJSON());                      // commented out for debugging
-          setUpSocketIONamespace(userRecord.toJSON());
+        //   setUpSocketIONamespace(userRecord.toJSON());
           io.emit("onUserData", userRecord.toJSON()); // emit to all users
         });
         if (listUsersResult.pageToken) {
@@ -448,21 +468,21 @@ function createAccount(userInfo) {
 
 
 
-function getVideoDataFromFirebase() {
-    var db = admin.database();
-    var ref = db.ref("videos");
-    console.log("getVideoDataFromFirebase()");
-    ref.on("value", function(snapshot) {
-        console.log("on value, getVideoDataFromFirebase() snapshot")
-        data = snapshot.val()
-        if (data) {
-            io.emit('newVideoData', JSON.stringify(data));
-        } 
-        else {
-            io.emit('newVideoData', null); 
-        }
-    });
-}
+// function getVideoDataFromFirebase() {
+//     var db = admin.database();
+//     var ref = db.ref("videos");
+//     console.log("getVideoDataFromFirebase()");
+//     ref.on("value", function(snapshot) {
+//         console.log("on value, getVideoDataFromFirebase() snapshot")
+//         data = snapshot.val()
+//         if (data) {
+//             io.emit('newVideoData', JSON.stringify(data));
+//         } 
+//         else {
+//             io.emit('newVideoData', null); 
+//         }
+//     });
+// }
 
 
 
@@ -573,22 +593,23 @@ function isAccountHolder(req, res, next) {
 
 
 
-function setUpSocketIONamespace(user) {
-    strippedEmail = user.email.replace(/[^a-z0-9]/g, '')
-    console.log("hello from setUpSocketIONamespace() the user's stripped email is " + strippedEmail);
-    var nspFound = false;
-    Object.keys(io.nsps).forEach(function(k) {
-        console.log(io.nsps[k].name)
+// function setUpSocketIONamespace(user) {
+//     strippedEmail = user.email.replace(/[^a-z0-9]/g, '')
+//     console.log("hello from setUpSocketIONamespace() the user's stripped email is " + strippedEmail);
+//     var nspFound = false;
+//     Object.keys(io.nsps).forEach(function(k) {
+//         console.log(io.nsps[k].name)
         
-        if (strippedEmail == io.nsps[k].name) {
-            nspFound = true;
-        }
-    });
-    if (nspFound) {
-        console.log("Namespace FOUND for user " + strippedEmail)
-    } else {
-        console.log("Namespace NOT FOUND for user " + strippedEmail)
-    }
+//         if (strippedEmail == io.nsps[k].name) {
+//             nspFound = true;
+//         }
+//     });
+//     if (nspFound) {
+//         console.log("Namespace FOUND for user " + strippedEmail)
+//     } else {
+//         console.log("Namespace NOT FOUND for user " + strippedEmail)
+
+//     }
 
     
-}
+// }
