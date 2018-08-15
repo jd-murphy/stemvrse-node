@@ -63,32 +63,8 @@ app.use('/scripts/', express.static('./scripts'));
 
 
 
-admin.auth().listUsers(1000, nextPageToken)
-    .then(function(listUsersResult) {
-        listUsersResult.users.forEach(function(userRecord) {
-        console.log("user", userRecord.toJSON());
-        
-
-                setUpSocketIONamespace(userRecord.toJSON());
-        
 
 
-
-
-        });
-        if (listUsersResult.pageToken) {
-        // List next batch of users.
-        listAllUsers(listUsersResult.pageToken)
-        }
-    })
-    .catch(function(error) {
-        console.log("Error listing users:", error);
-    });
-
-
-
-
-    
 
 
 app.get('/', (req, res) => {     
@@ -378,13 +354,38 @@ server.listen(PORT, () => {
 
 
 function setUpFirebase() {
-    console.log("setUpFirebase()")
-            admin.initializeApp({
-                credential: admin.credential.cert(JSON.parse(serviceAccount)),
-                databaseURL: "https://stemvrse-node.firebaseio.com"
+        console.log("setUpFirebase()")
+        admin.initializeApp({
+            credential: admin.credential.cert(JSON.parse(serviceAccount)),
+            databaseURL: "https://stemvrse-node.firebaseio.com"
+        });
+        console.log("firebase initialized!");
+
+
+
+        admin.auth().listUsers(1000, nextPageToken)
+        .then(function(listUsersResult) {
+            listUsersResult.users.forEach(function(userRecord) {
+            console.log("user", userRecord.toJSON());
+            
+
+                    setUpSocketIONamespace(userRecord.toJSON());
+            
+
+
+
+
             });
-            console.log("firebase initialized!");
-        }
+            if (listUsersResult.pageToken) {
+            // List next batch of users.
+            listAllUsers(listUsersResult.pageToken)
+            }
+        })
+        .catch(function(error) {
+            console.log("Error listing users:", error);
+        });
+
+}
 
 
 
