@@ -18,50 +18,47 @@ $(document).ready(function(){
         if (lastFingerprint == null || lastFingerprint == undefined) {
             localStorage.setItem("lastFingerprint", fingerprint)
         }
-        if (lastFingerprint != fingerprint) {
+        
 
-            console.log("socket.on('newVideoData'), new data verified through fingerprint");
+
+        console.log("socket.on('newVideoData')");
     
-            $("#displayVideos li").remove(); 
-            if (data != null) {
-                // alert("Responsive state: " + responsive_state());
-                rs = responsive_state();
-                w = 560;
-                h = 315;
-                cardMaxWidth = 675;
-                if (rs == '767px') {
-                    w = 280;
-                    h = 157.5;
-                }
-    
-                var data = JSON.parse(data); //process notication array
-                console.log(data);
-                Object.keys(data).forEach(function (video) {
-                        name = data[video].name
-                        link = data[video].link
-                        lname = name.toLowerCase();
-                        strippedName =  lname.replace(/[^a-z0-9]/g, '');
-    
-                        $('#displayVideos').append('<li class="hideMe"><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
-                                '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px"></a>' + '</strong></div>' + 
-                                '<div class="card-body">' + 
-                                ' <h4 class="card-title">Video Info</h4>' + 
-                                ' <div>' + 
-                                        '<iframe width="' + w + '" height="' + h + '" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
-                                    '</div>' + 
-                                    '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
-                                    '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
-                                    '<input type="hidden" name="hiddenLink' + strippedName + '" id="hiddenLink' + strippedName + '" value="' + link + '">' +
-                                    
+        $("#displayVideos li").remove(); 
+        if (data != null) {
+            // alert("Responsive state: " + responsive_state());
+            rs = responsive_state();
+            w = 560;
+            h = 315;
+            cardMaxWidth = 675;
+            if (rs == '767px') {
+                w = 280;
+                h = 157.5;
+            }
+
+            var data = JSON.parse(data); //process notication array
+            console.log(data);
+            Object.keys(data).forEach(function (video) {
+                    name = data[video].name
+                    link = data[video].link
+                    lname = name.toLowerCase();
+                    strippedName =  lname.replace(/[^a-z0-9]/g, '');
+
+                    $('#displayVideos').append('<li class="hideMe"><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
+                            '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px"></a>' + '</strong></div>' + 
+                            '<div class="card-body">' + 
+                            ' <h4 class="card-title">Video Info</h4>' + 
+                            ' <div>' + 
+                                    '<iframe width="' + w + '" height="' + h + '" src="' + link + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + 
+                                '</div>' + 
+                                '<p class="card-text"><strong>Name:</strong> ' + name + "<br /><strong>Link:</strong> " + link  + 
+                                '<input type="hidden" name="hiddenName' + strippedName + '" id="hiddenName' + strippedName + '" value="' + name + '">' +
+                                '<input type="hidden" name="hiddenLink' + strippedName + '" id="hiddenLink' + strippedName + '" value="' + link + '">' +
                                 
-                            '</div>' + 
-                            '</div></li>');
-                    });
-                }
-        }
-
-
-       
+                            
+                        '</div>' + 
+                        '</div></li>');
+                });
+            }
     });
 
     socket.on("faves", function(data){
