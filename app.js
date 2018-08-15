@@ -207,6 +207,50 @@ app.use(function(err, req, res, next) {      // check if user is admin or not be
 
 
 
+
+
+
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
+  admin.auth().listUsers(1000, nextPageToken)
+    .then(function(listUsersResult) {
+        listUsersResult.users.forEach(function(userRecord) {
+        console.log("user", userRecord.toJSON());
+        
+
+                setUpSocketIONamespace(userRecord.toJSON());
+        
+
+
+
+
+        });
+        if (listUsersResult.pageToken) {
+        // List next batch of users.
+        listAllUsers(listUsersResult.pageToken)
+        }
+    })
+    .catch(function(error) {
+        console.log("Error listing users:", error);
+    });
+
+
+
+
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 io.on("connection", function (socket) {
     socket.on("loadData", function (notification_request) {
         console.log("loadData event from socket.io!");
@@ -475,24 +519,6 @@ function deleteVideo(videoName) {
         
 
 
-// function getFaves(user) {
-//     var db = admin.database();
-//     email = user.toLowerCase();
-//     strippedEmail = email.replace(/[^a-z0-9]/g, '')
-//     var ref = db.ref("favorites/" + strippedEmail); 
-//     ref.on("value", function(snapshot) {
-//         console.log("on value, getFaves(" + strippedEmail + ") snapshot")
-//         data = snapshot.val()
-//         if (data) {
-//             socket.emit('faves', JSON.stringify(data));
-//         } 
-//         else {
-//             socket.emit('faves', null); 
-//         }
-//     });
-// }
-
-
 
 function updateFaves(user, faves) {
     console.log("hello from update faves...")
@@ -566,4 +592,10 @@ function isAccountHolder(req, res, next) {
     console.log('For testing and development assume user is Account Holder and return true.')
     return next(); // simply assume user is admin for testing now
 
+}
+
+
+
+function setUpSocketIONamespace(user) {
+    console.log("hello from setUpSocketIONamespace() the user is " + user);
 }
