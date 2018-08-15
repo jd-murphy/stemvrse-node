@@ -58,20 +58,17 @@ $(document).ready(function(){
                 faves = data.data;
                 console.log("faves -> ")
                 console.log(faves);
-                var faveCount = 0;
+
                 for (var i = 0; i < faves.length; i++) {
                     $('#favButton' + faves[i]).attr('src', "/assets/favorited.png") // favorited video
                     $('#' + faves[i]).parent().removeClass("hideMe");
-                    faveCount++;
                 }
-                if (faveCount > 0) {
-                    $("#noFaves").addClass("hidden");
-                } else {
-                    $("#noFaves").removeClass("hidden");
-                }
+               
                 localStorage.setItem(user, JSON.stringify(faves));
+                $("#noFaves").addClass("hidden");
             } else {
                 console.log("wrong user or null array...");
+                $("#noFaves").removeClass("hidden");
             }
 
           
