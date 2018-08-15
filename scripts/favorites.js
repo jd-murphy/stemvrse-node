@@ -133,13 +133,17 @@ function filterVideos() {
     if (videoInput.value == undefined || videoInput.value.length == 0) {
         user = $("#email").val();
         faves = JSON.parse(localStorage.getItem(user))
-        for (var i = 0; i < faves.length; i++) {
-            var img = $('#favButton' + faves[i]).attr('src'); // favorited video
-            if (img == "/assets/favorited.png") {
-                $('#' + faves[i]).parent().removeClass("hideMe");
-            } else {
-                $('#' + faves[i]).parent().addClass("hideMe");
+        videos = $("#displayVideos li").val();
+        for (var i = 0; i < videos.length; i++) {
+            if (!faves.includes(videos[i])) {
+                $('#' + videos[i]).parent().addClass("hideMe");
             }
+            // var img = $('#favButton' + faves[i]).attr('src'); // favorited video
+            // if (img == "/assets/favorited.png") {
+            //     $('#' + faves[i]).parent().removeClass("hideMe");
+            // } else {
+            //     $('#' + faves[i]).parent().addClass("hideMe");
+            // }
         }
     } else {
         var typedName = videoInput.value.toLowerCase();
