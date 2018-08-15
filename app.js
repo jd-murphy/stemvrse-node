@@ -340,7 +340,12 @@ io.on("connection", function (socket) {
         console.log("calling deleteVideo()")
         deleteVideo(videoInfo);
     });
-    socket.on("getFaves", function(user) {
+    socket.on("getFaves", function(data) {
+
+        user = data["email"]
+        room = data["room"]
+        room = room.replace(/[^a-z0-9]/g, '')
+
         console.log("socket on getFaves, app.js")
         console.log("getFaves for " + user)
         var db = admin.database();
