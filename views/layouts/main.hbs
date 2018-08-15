@@ -97,8 +97,7 @@
 
                     var socket = io();
                     socket.emit('room', email);
-                    console.log("socket.rooms")
-                    console.log(socket.rooms)
+                
 
                     socket.emit('passToken', {"token": accessToken, "email": email});
                   
@@ -107,7 +106,8 @@
                     
                     
                     console.log("Calling   socket.emit('getFaves')  for user  " + email);
-                    socket.emit('getFaves', email);
+                    //socket.emit('getFaves', email);
+                    socket.emit('getFaves', {"email": email, "room": email});
                    
                     socket.on("validToken", function() {
                       console.log("I received -> socket.on 'validToken'");
