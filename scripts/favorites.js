@@ -65,7 +65,7 @@ $(document).ready(function(){
                 }
                
                 localStorage.setItem(user, JSON.stringify(faves));
-                $("#noFaves").addClass("hidden");
+                $("#noFaves").hide();
             } else {
                 console.log("wrong user or null array...");
             }
