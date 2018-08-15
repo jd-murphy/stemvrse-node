@@ -373,7 +373,7 @@ function listAllUsers(nextPageToken) {
     admin.auth().listUsers(1000, nextPageToken)
       .then(function(listUsersResult) {
         listUsersResult.users.forEach(function(userRecord) {
-          console.log("user", userRecord.toJSON());
+        //   console.log("user", userRecord.toJSON());                      // commented out for debugging
           setUpSocketIONamespace(userRecord.toJSON());
           io.emit("onUserData", userRecord.toJSON()); // emit to all users
         });
@@ -585,9 +585,9 @@ function setUpSocketIONamespace(user) {
         }
     });
     if (nspFound) {
-        console.log("Namespace FOUND for user " + user)
+        console.log("Namespace FOUND for user " + strippedEmail)
     } else {
-        console.log("Namespace NOT FOUND for user " + user)
+        console.log("Namespace NOT FOUND for user " + strippedEmail)
     }
 
     
