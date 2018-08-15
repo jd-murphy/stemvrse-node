@@ -84,6 +84,7 @@ app.get('/home', (req, res) => {
 
 app.get('/favorites', (req, res) => {
     res.render('favorites', {
+        favorites: true,
         title: "Favorites",
         nav: 'nav'
     })

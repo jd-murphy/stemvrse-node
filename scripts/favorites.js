@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (home.js)\n\n")
+    console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (favorites.js)\n\n")
     var socket = io();
 
     
@@ -27,7 +27,7 @@ $(document).ready(function(){
                     lname = name.toLowerCase();
                     strippedName =  lname.replace(/[^a-z0-9]/g, '');
 
-                    $('#displayVideos').append('<li><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
+                    $('#displayVideos').append('<li><div class="card border-info mb-3 hideMe" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
                             '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px"></a>' + '</strong></div>' + 
                             '<div class="card-body">' + 
                             ' <h4 class="card-title">Video Info</h4>' + 
@@ -49,7 +49,7 @@ $(document).ready(function(){
         console.log("socket.on('faves')");
         
         if (data != null) {
-        
+           
             user = $("#email").val()
             faves = [];
             if ((data.user == user) && (data.data != null)) {
@@ -58,10 +58,12 @@ $(document).ready(function(){
                 console.log(faves);
                 for (var i = 0; i < faves.length; i++) {
                     $('#favButton' + faves[i]).attr('src', "/assets/favorited.png") // favorited video
+                    $('#' + faves[i]).classList.remove("hideMe");
                 }
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
                 console.log("wrong user or null array...");
+                $("#noFaves").alert();
             }
 
           
@@ -142,4 +144,3 @@ function filterVideos() {
         
     }
  }
-
