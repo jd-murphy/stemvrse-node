@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $("#noFaves").alert("close");
+    
 
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (favorites.js)\n\n")
     var socket = io();
@@ -65,7 +65,7 @@ $(document).ready(function(){
                     faveCount++;
                 }
                 if (faveCount > 0) {
-                    $("#noFaves").alert();
+                    $("#noFaves").removeClass("hidden");
                 }
                 localStorage.setItem(user, JSON.stringify(faves));
             } else {
