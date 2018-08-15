@@ -61,6 +61,36 @@ app.use('/scripts/', express.static('./scripts'));
 
 
 
+
+
+admin.auth().listUsers(1000, nextPageToken)
+    .then(function(listUsersResult) {
+        listUsersResult.users.forEach(function(userRecord) {
+        console.log("user", userRecord.toJSON());
+        
+
+                setUpSocketIONamespace(userRecord.toJSON());
+        
+
+
+
+
+        });
+        if (listUsersResult.pageToken) {
+        // List next batch of users.
+        listAllUsers(listUsersResult.pageToken)
+        }
+    })
+    .catch(function(error) {
+        console.log("Error listing users:", error);
+    });
+
+
+
+
+    
+
+
 app.get('/', (req, res) => {     
     res.sendFile('login.html',{root: __dirname});
 });
@@ -213,40 +243,6 @@ app.use(function(err, req, res, next) {      // check if user is admin or not be
 
 
 
-  ////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////
-  admin.auth().listUsers(1000, nextPageToken)
-    .then(function(listUsersResult) {
-        listUsersResult.users.forEach(function(userRecord) {
-        console.log("user", userRecord.toJSON());
-        
-
-                setUpSocketIONamespace(userRecord.toJSON());
-        
-
-
-
-
-        });
-        if (listUsersResult.pageToken) {
-        // List next batch of users.
-        listAllUsers(listUsersResult.pageToken)
-        }
-    })
-    .catch(function(error) {
-        console.log("Error listing users:", error);
-    });
-
-
-
-
-
-
-
-  ////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////
 
 
 
