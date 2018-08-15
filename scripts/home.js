@@ -53,7 +53,7 @@ $(document).ready(function(){
     });
 
     socket.on("faves", function(data){
-        // console.log("socket.on('faves')");
+        console.log("socket.on('faves')");
         
         if (data != null) {
             // console.log("socket.on('faves')    data -> ");
