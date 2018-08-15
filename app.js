@@ -578,8 +578,9 @@ function setUpSocketIONamespace(user) {
     console.log("hello from setUpSocketIONamespace() the user is " + user);
     var nspFound = false;
     Object.keys(io.nsps).forEach(function(k) {
-        console.log(io.nsps[k])
-        if (user in io.nsps[k].name) {
+        console.log(io.nsps[k].name)
+        strippedEmail = user.email.replace(/[^a-z0-9]/g, '')
+        if (strippedEmail in io.nsps[k].name) {
             nspFound = true;
         }
     });
