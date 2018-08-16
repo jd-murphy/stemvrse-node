@@ -43,8 +43,8 @@ $(document).ready(function(){
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 15; }))
                 .on("click", function() {
-                    console.log("clicked the circle!")
-                    $(this).attr("d").path.pointRadius += 10;
+                    console.log("clicked the circle!    data -> ")
+                    console.log($(this).attr("data"))
                 });
 
 
