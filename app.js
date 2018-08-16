@@ -356,7 +356,7 @@ io.on("connection", function (socket) {
         console.log("email");
         console.log(email);
         email = String(email).replace(/[^a-z0-9]/g, '')
-        console.log("email");
+        console.log("stripped email");
         console.log(email);
         console.log("============================");
 
@@ -365,6 +365,8 @@ io.on("connection", function (socket) {
         var db = admin.database();
         email = String(email).toLowerCase();
         strippedEmail = String(email).replace(/[^a-z0-9]/g, '')
+        console.log("stripped lowercase email");
+        console.log(strippedEmail);
         var ref = db.ref("favorites/" + strippedEmail); 
         ref.on("value", function(snapshot) {
             console.log("on value, getFaves(" + strippedEmail + ") snapshot")
