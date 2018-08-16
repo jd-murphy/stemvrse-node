@@ -355,10 +355,6 @@ io.on("connection", function (socket) {
         
         console.log("email");
         console.log(email);
-        email = String(email).replace(/[^a-z0-9]/g, '')
-        console.log("stripped email");
-        console.log(email);
-        console.log("============================");
 
         console.log("socket on getFaves, app.js")
         console.log("getFaves for " + email)
