@@ -358,7 +358,7 @@ io.on("connection", function (socket) {
         console.log("socket on getFaves, app.js")
         console.log("getFaves for " + user)
         var db = admin.database();
-        email = user.toLowerCase();
+        email = String(user).toLowerCase();
         strippedEmail = String(email).replace(/[^a-z0-9]/g, '')
         var ref = db.ref("favorites/" + strippedEmail); 
         ref.on("value", function(snapshot) {
