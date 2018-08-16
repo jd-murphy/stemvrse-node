@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(document).arrive("#email", {onceOnly: true}, function() {
         console.log("\n\n#email has arrived!!!!\n\n")
         // 'this' refers to the newly created element
-        var email = $(this);
+        var email = $(this).val();
 
         var socket = io();
         socket.emit('room', email);
