@@ -46,11 +46,11 @@ $(document).ready(function(){
                 .attr("d", path.pointRadius(function(d) { return 15; }))
                 .on("mouseover", function() {
                     d3.select(this).style("fill", "magenta");
-                    d3.select(this).attr("radius", 25);
+                    d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
                 })
                 .on("mouseout", function() {
                     d3.select(this).style("fill", "#0fdbff");
-                    d3.select(this).attr("radius", 15);
+                    d3.select(this).attr("d", path.pointRadius(function(d) { return 15; }));
                 });
 
 
