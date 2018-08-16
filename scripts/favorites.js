@@ -50,7 +50,7 @@ $(document).ready(function(){
                             '</div></li>');
                     });
                 }
-        });
+        }, filterVideos());
 
         socket.on("faves", function(data){
             console.log("socket.on('faves')");
