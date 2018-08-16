@@ -107,7 +107,7 @@
                     
                     
                     //console.log("Calling   socket.emit('getFaves')  for user  " + email);
-                    //socket.emit('getFaves', email);
+                    socket.emit('getFaves', email);
                     //socket.emit('getFaves', {"room": email});
                    
                     socket.on("validToken", function() {
