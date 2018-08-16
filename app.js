@@ -233,10 +233,12 @@ io.on("connection", function (socket) {
     
 
 
-    socket.on("loadData", function (notification_request) {
+    socket.on("loadData", function (data) {
+        room = data["room"]
+        room = room.replace(/[^a-z0-9]/g, '')
         console.log("loadData event from socket.io!");
-        getClientDataFromFirebase();
-        listAllUsers();
+        getClientDataFromFirebase(room);
+        listAllUsers(room);
     });
     socket.on("deleteAccount", function (username) {  
         console.log("username is " + username)
@@ -287,7 +289,7 @@ io.on("connection", function (socket) {
                         ref.set({"token": token});
                         // socket.emit("validToken") // emit only to the authenticated user
                         io.to(room).emit("validToken")
-                        console.log("\n\nSUCCESS!!!\n\n")
+        
                             
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ");
@@ -312,9 +314,13 @@ io.on("connection", function (socket) {
         
     });
 
-    socket.on("loadVideos", function (videoInfo) {
+    socket.on("loadVideos", function (data) {
         console.log("socket on loadVideos, app.js")
-        console.log("calling getVideoDataFromFirebase()")  
+        console.log("calling getVideoDataFromFirebase()") 
+
+        room = data["room"]
+        room = room.replace(/[^a-z0-9]/g, '')
+
         // getVideoDataFromFirebase();
         var db = admin.database();
         var ref = db.ref("videos");
@@ -323,10 +329,10 @@ io.on("connection", function (socket) {
             console.log("on value, getVideoDataFromFirebase() snapshot")
             data = snapshot.val()
             if (data) {
-                io.emit('newVideoData', JSON.stringify(data));
+                io.to(room).emit('newVideoData', JSON.stringify(data)); //need to test this to make sure the on value retains the room...
             } 
             else {
-                io.emit('newVideoData', null); 
+                io.to(room).emit('newVideoData', null); //need to test this to make sure the on value retains the room...
             }
         });
     });
@@ -342,9 +348,9 @@ io.on("connection", function (socket) {
     });
     socket.on("getFaves", function(data) {
 
-        user = data["email"]
-        room = data["room"]
-        room = room.replace(/[^a-z0-9]/g, '')
+        
+        user = data["room"]
+        room = user.replace(/[^a-z0-9]/g, '')
 
         console.log("socket on getFaves, app.js")
         console.log("getFaves for " + user)
@@ -357,11 +363,11 @@ io.on("connection", function (socket) {
             data = snapshot.val()
             if (data) {
                 console.log("data exists, data is " + data);
-                io.emit('faves', { "user": user, "data": data }); // used to be JSON.stringify(data)
+                io.to(room).emit('faves', { "user": user, "data": data }); 
             } 
             else {
                 console.log("data is null or undefined, data -> " + data);
-                io.emit('faves', { "user": user, "data": null }); 
+                io.to(room).emit('faves', { "user": user, "data": null }); 
             }
         });
     });
@@ -405,7 +411,12 @@ function listAllUsers(nextPageToken) {
         listUsersResult.users.forEach(function(userRecord) {
         //   console.log("user", userRecord.toJSON());                      // commented out for debugging
         //   setUpSocketIONamespace(userRecord.toJSON());
-          io.emit("onUserData", userRecord.toJSON()); // emit to all users
+
+
+                        io.emit("onUserData", userRecord.toJSON()); // emit to all users...
+                        //io.to("admin").emit("onUserData", userRecord.toJSON());   // something like this to emit only to admin
+
+
         });
         if (listUsersResult.pageToken) {
           // List next batch of users.
@@ -418,20 +429,20 @@ function listAllUsers(nextPageToken) {
 }
 
   
-        
 
 
 
-function getClientDataFromFirebase() {
+
+function getClientDataFromFirebase(room) {
     var db = admin.database();
     var ref = db.ref("clients");
     console.log("getClientDataFromFirebase()");
     ref.on("value", function(snapshot) {
         data = snapshot.val()
         if (data) {
-            io.emit('newClientData', JSON.stringify(data)); // emit to all users  // possibly security flaw, should emit to only admins
+            io.to(room).emit('newClientData', JSON.stringify(data)); 
         } else {
-            io.emit('newClientData', null); // emit to all users  // possibly security flaw, should emit to only admins
+            io.to(room).emit('newClientData', null);
         }
     });
 }
