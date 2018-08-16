@@ -31,6 +31,7 @@ $(document).ready(function(){
                 .datum(graticule.outline)
                 .attr("class", "foreground")
                 .attr("d", path);
+
             svg.append("g")
                 .selectAll("path")
                 .data(topojson.feature(world, world.objects.countries).features)
@@ -44,8 +45,8 @@ $(document).ready(function(){
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 15; }))
                 .on("click", function() {
-                    console.log("clicked the circle!    data -> ")
-                    console.log($(this).attr("data-metadata"))
+                    console.log("clicked the circle!")
+                    d3.select(this).style("fill", "magenta");
                 });
 
 
