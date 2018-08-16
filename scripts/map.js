@@ -13,6 +13,8 @@ $(document).ready(function(){
         const myProjection = d3.geoNaturalEarth1()
         const path = d3.geoPath().projection(myProjection)
         const graticule = d3.geoGraticule()
+        var coordinates = projection([-112.0785,33.46764]);
+   
 
         function drawMap(err, world) {
             if (err) throw err
@@ -20,15 +22,20 @@ $(document).ready(function(){
             //   .datum(graticule)
             //   .attr("class", "graticule")
             //   .attr("d", path);
+            svg.append("circle")
+                .attr("cx", coordinates[0])
+                .attr("cy", coordinates[1])
+                .attr("r", 5)
+                .style("fill", "red");
             svg.append("path")
-              .datum(graticule.outline)
-              .attr("class", "foreground")
-              .attr("d", path);
+                .datum(graticule.outline)
+                .attr("class", "foreground")
+                .attr("d", path);
             svg.append("g")
-              .selectAll("path")
-              .data(topojson.feature(world, world.objects.countries).features)
-              .enter().append("path")
-              .attr("d", path);
+                .selectAll("path")
+                .data(topojson.feature(world, world.objects.countries).features)
+                .enter().append("path")
+                .attr("d", path);
           }
        
 
