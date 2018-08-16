@@ -43,16 +43,14 @@ $(document).ready(function(){
                 .data(videoCoord.features)
                 .enter().append("path")
                 .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return 15; }))
+                .attr("d", path.pointRadius(function(d) { return 10; }))
                 .on("mouseover", function() {
-                    console.log("clicked the circle!")
                     d3.select(this).style("fill", "magenta");
-                    d3.select(this).style("radius", radius += 10);
+                    d3.select(this).attr("r", 20);
                 })
                 .on("mouseout", function() {
-                    console.log("clicked the circle!")
                     d3.select(this).style("fill", "#0fdbff");
-                    d3.select(this).style("radius", radius -= 10);
+                    d3.select(this).attr("r", 10);
                 });
 
 
