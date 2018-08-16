@@ -351,9 +351,14 @@ io.on("connection", function (socket) {
     });
     socket.on("getFaves", function(data) {
 
-        
+        console.log("============================");
         user = data["room"]
+        console.log("user = data['room']");
+        console.log(user);
         room = String(user).replace(/[^a-z0-9]/g, '')
+        console.log("room");
+        console.log(room);
+        console.log("============================");
 
         console.log("socket on getFaves, app.js")
         console.log("getFaves for " + user)
