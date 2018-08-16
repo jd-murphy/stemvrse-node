@@ -226,7 +226,7 @@ app.use(function(err, req, res, next) {      // check if user is admin or not be
 io.on("connection", function (socket) {
 
     socket.on('room', function(room) {
-        
+
         strippedRoom = String(room).replace(/[^a-z0-9]/g, '')
         console.log("joining room " + strippedRoom)
         socket.join(strippedRoom);
@@ -236,7 +236,7 @@ io.on("connection", function (socket) {
 
     socket.on("loadData", function (data) {
         room = data["room"]
-        room = room.replace(/[^a-z0-9]/g, '')
+        room = String(room).replace(/[^a-z0-9]/g, '')
         console.log("loadData event from socket.io!");
         getClientDataFromFirebase(room);
         listAllUsers(room);
@@ -258,7 +258,7 @@ io.on("connection", function (socket) {
 
         idToken = data["token"]
         room = data["room"]
-        room = room.replace(/[^a-z0-9]/g, '')
+        room = String(room).replace(/[^a-z0-9]/g, '')
 
         admin.auth().verifyIdToken(idToken)
         .then(function(decodedToken) {
@@ -278,7 +278,7 @@ io.on("connection", function (socket) {
                     if(data[entry].includes(email)) {
                         console.log("Email is in admin list!    store token in firebase");
                         email = email.toLowerCase();
-                        email = email.replace(/[^a-z0-9]/g, '')
+                        email = String(email).replace(/[^a-z0-9]/g, '')
                         token = idToken
                 
                         console.log(email)
@@ -320,7 +320,7 @@ io.on("connection", function (socket) {
         console.log("calling getVideoDataFromFirebase()") 
 
         room = data["room"]
-        room = room.replace(/[^a-z0-9]/g, '')
+        room = String(room).replace(/[^a-z0-9]/g, '')
 
         // getVideoDataFromFirebase();
         var db = admin.database();
@@ -351,13 +351,13 @@ io.on("connection", function (socket) {
 
         
         user = data["room"]
-        room = user.replace(/[^a-z0-9]/g, '')
+        room = String(user).replace(/[^a-z0-9]/g, '')
 
         console.log("socket on getFaves, app.js")
         console.log("getFaves for " + user)
         var db = admin.database();
         email = user.toLowerCase();
-        strippedEmail = email.replace(/[^a-z0-9]/g, '')
+        strippedEmail = String(email).replace(/[^a-z0-9]/g, '')
         var ref = db.ref("favorites/" + strippedEmail); 
         ref.on("value", function(snapshot) {
             console.log("on value, getFaves(" + strippedEmail + ") snapshot")
@@ -514,7 +514,7 @@ function createAccount(userInfo) {
 function addVideo(videoInfo) {
     var db = admin.database();
     name = videoInfo.name.toLowerCase();
-    strippedName = name.replace(/[^a-z0-9]/g, '')
+    strippedName = String(name).replace(/[^a-z0-9]/g, '')
     var ref = db.ref("videos/" + strippedName); 
     console.log("addVideo(" + strippedName + ")");
     updatedVideoData = { 
@@ -530,7 +530,7 @@ function deleteVideo(videoName) {
     console.log("calling deleteVideo() from app.js")
     var db = admin.database();
     name = videoName.toLowerCase();
-    strippedName = name.replace(/[^a-z0-9]/g, '')
+    strippedName = String(name).replace(/[^a-z0-9]/g, '')
     var ref = db.ref("videos/" + strippedName);
     console.log("deleteVideo(" + strippedName + ")");
     ref.remove();
@@ -543,7 +543,7 @@ function updateFaves(user, faves) {
     console.log("hello from update faves...")
     var db = admin.database();
     email = user.toLowerCase();
-    strippedEmail = email.replace(/[^a-z0-9]/g, '')
+    strippedEmail = String(email).replace(/[^a-z0-9]/g, '')
     var ref = db.ref("favorites/" + strippedEmail); 
     console.log("updateFaves(" + email + ")"); 
     console.log(faves);
@@ -564,7 +564,7 @@ function verifyAdmin(err, req, res, next) {
                 var uid = decodedToken.uid;
                 var email = decodedToken.email;
                 email = email.toLowerCase();
-                strippedEmail = email.replace(/[^a-z0-9]/g, '')
+                strippedEmail = String(email).replace(/[^a-z0-9]/g, '')
                 console.log("uid and email from uath token ->");
                 console.log(uid);
                 console.log(email);
