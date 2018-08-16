@@ -649,9 +649,9 @@ new CronJob('*/30 * * * * *', function() {  // 30 sec interval
     console.log("Running cron job to print out socket io rooms...")
     
     for (room in io.sockets.adapter.rooms) {
-        console.log(" Listing clients for the room: " + room)
+        console.log(" Listing clients for the room: " + room.name)
 
-        var clients = io.sockets.adapter.rooms['Room Name'].sockets;   
+        var clients = io.sockets.adapter.rooms[room.name].sockets;   
 
             //to get the number of clients
         var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
