@@ -41,7 +41,10 @@ $(document).ready(function(){
                 .data(videoCoord.features)
                 .enter().append("path")
                 .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return 15; }));
+                .attr("d", path.pointRadius(function(d) { return 15; }))
+                .on("click", function() {
+                    this.pointRadius += 10;
+                });
 
 
           }
