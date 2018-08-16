@@ -44,9 +44,15 @@ $(document).ready(function(){
                 .enter().append("path")
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 15; }))
-                .on("click", function() {
+                .on("mouseover", function() {
                     console.log("clicked the circle!")
                     d3.select(this).style("fill", "magenta");
+                    d3.select(this).style("radius", radius += 10);
+                })
+                .on("mouseout", function() {
+                    console.log("clicked the circle!")
+                    d3.select(this).style("fill", "#0fdbff");
+                    d3.select(this).style("radius", radius -= 10);
                 });
 
 
