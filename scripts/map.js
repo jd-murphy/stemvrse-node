@@ -38,10 +38,10 @@ $(document).ready(function(){
                 .attr("d", path);
 
             svg.selectAll(".symbol")
-                .data(videoCoord.features.sort(function(a, b) { return b.properties.population - a.properties.population; }))
+                .data(videoCoord.features)
                 .enter().append("path")
                 .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return radius(d.properties.population); }));
+                .attr("d", path.pointRadius(function(d) { return radius(5); }));
 
 
           }
