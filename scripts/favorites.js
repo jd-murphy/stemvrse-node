@@ -124,6 +124,7 @@ $(document).ready(function(){
 
         console.log("Calling   socket.emit('loadVideos')");
         socket.emit('loadVideos', {"room": email});
+        socket.emit('getFaves', {"room": email});
 
     });   
    
