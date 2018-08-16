@@ -373,11 +373,11 @@ io.on("connection", function (socket) {
             data = snapshot.val()
             if (data) {
                 console.log("data exists, data is " + data);
-                socket.emit('faves', { "user": strippedEmail, "data": data }); 
+                io.to(strippedEmail).emit('faves', { "user": strippedEmail, "data": data }); 
             } 
             else {
                 console.log("data is null or undefined, data -> " + data);
-                socket.emit('faves', { "user": strippedEmail, "data": null }); 
+                io.to(strippedEmail).emit('faves', { "user": strippedEmail, "data": null }); 
             }
         });
     });
