@@ -47,6 +47,7 @@ $(document).ready(function(){
                             '</div></li>');
                     });
                 }
+            socket.emit('getFaves', email);
         });
 
         socket.on("faves", function(data){
