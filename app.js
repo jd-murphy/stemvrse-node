@@ -330,10 +330,12 @@ io.on("connection", function (socket) {
             console.log("on value, getVideoDataFromFirebase() snapshot")
             data = snapshot.val()
             if (data) {
-                io.to(room).emit('newVideoData', JSON.stringify(data)); //need to test this to make sure the on value retains the room...
+                //io.to(room).emit('newVideoData', JSON.stringify(data)); //need to test this to make sure the on value retains the room...
+                io.emit('newVideoData', JSON.stringify(data));
             } 
             else {
-                io.to(room).emit('newVideoData', null); //need to test this to make sure the on value retains the room...
+                //io.to(room).emit('newVideoData', null); //need to test this to make sure the on value retains the room...
+                io.emit('newVideoData', null);
             }
         });
     });
