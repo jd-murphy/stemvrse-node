@@ -13,25 +13,19 @@ $(document).ready(function(){
         const myProjection = d3.geoNaturalEarth1()
         const path = d3.geoPath().projection(myProjection)
         const graticule = d3.geoGraticule()
-        var nyc = {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-74.0060, 40.7128]
-            },
-            "properties": {
-              "name": "New York City"
-            }
-          }
+       
        
    
+        queue()
+            .defer(d3.json, "https://unpkg.com/world-atlas@1.1.4/world/110m.json")
+            .defer(d3.json, "../assets/videoCoords.json")
+            .await(drawMap);
 
-        function drawMap(err, world) {
+
+        function drawMap(err, world, videoCoord) {
             if (err) throw err
+
             
-            svg.append("path")
-              .datum(nyc)
-              .attr("d", path);
            
             svg.append("path")
                 .datum(graticule.outline)
@@ -42,11 +36,19 @@ $(document).ready(function(){
                 .data(topojson.feature(world, world.objects.countries).features)
                 .enter().append("path")
                 .attr("d", path);
+
+            svg.selectAll(".symbol")
+                .data(videoCoord.features.sort(function(a, b) { return b.properties.population - a.properties.population; }))
+                .enter().append("path")
+                .attr("class", "symbol")
+                .attr("d", path.pointRadius(function(d) { return radius(d.properties.population); }));
+
+
           }
        
 
        
-          d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json", drawMap)
+        //   d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json", drawMap)
        
         
     
