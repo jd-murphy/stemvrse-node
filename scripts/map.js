@@ -46,14 +46,16 @@ $(document).ready(function(){
                 .attr("padding", 5)
                 .attr("d", path.pointRadius(function(d) { return 10; }))
                 .on("mouseover", function() {
-                    d3.select(this).lower();
                     d3.select(this).style("fill", "magenta");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
                 })
                 .on("mouseout", function() {
                     d3.select(this).style("fill", "#0fdbff");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 10; }));
-                });
+                })
+                .force('collision', d3.forceCollide().radius(function(d) {
+                    return d.radius
+                  }));
 
 
           }
