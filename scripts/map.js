@@ -44,7 +44,7 @@ $(document).ready(function(){
                 .attr("d", path.pointRadius(function(d) { return 15; }))
                 .on("click", function() {
                     console.log("clicked the circle!")
-                    this.pointRadius += 10;
+                    this.attr("d") += 10;
                 });
 
 
