@@ -290,14 +290,12 @@ io.on("connection", function (socket) {
                         var ref = db.ref("tokens/" + email); 
                         console.log("storing token for " + email);
                         ref.set({"token": token});
-                        // socket.emit("validToken") // emit only to the authenticated user
-                        io.to(room).emit("validToken")
+                        io.to(room).emit("validToken") // emit only to the authenticated user
         
                             
                     } else {
                         console.log("POOOOOOOO email is not valid admin email! ");
-                        // socket.emit("invalidToken") // emit only to the authenticated user
-                        io.to(room).emit("invalidToken")
+                        io.to(room).emit("invalidToken") // emit only to the authenticated user
                     }
                 });
             });
@@ -307,8 +305,7 @@ io.on("connection", function (socket) {
         }).catch(function(error) {
             // Handle error
             console.log("error validating admin, rejecting");
-            // socket.emit("invalidToken") // emit only to the authenticated user
-            io.to(room).emit("invalidToken")
+            io.to(room).emit("invalidToken") // emit only to the authenticated user
             
         });
         
