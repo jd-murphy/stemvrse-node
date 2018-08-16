@@ -97,7 +97,7 @@ $(document).ready(function(){
                 faves = null;
             }
 
-            if (faves != null) {
+            if (faves != null || faves != undefined) {
                 if (faves.includes(videoName)) {
                     var i = faves.indexOf(videoName);
                     faves.splice(i, 1);
@@ -105,6 +105,8 @@ $(document).ready(function(){
                     localStorage.setItem(user, JSON.stringify(faves));
                 } else {
                     faves.push(videoName);
+                    $('#favButton' + videoName).attr('src', "/assets/favorited.png") // favorited video
+                    localStorage.setItem(user, JSON.stringify(faves));
                 }
             } else {
                 localStorage.clear();
