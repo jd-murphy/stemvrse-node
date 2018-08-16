@@ -50,7 +50,8 @@ $(document).ready(function(){
                             '</div></li>');
                     });
                 }
-        }, filterVideos());
+            socket.emit('getFaves', email);
+        });
 
         socket.on("faves", function(data){
             console.log("socket.on('faves')");
