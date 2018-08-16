@@ -13,7 +13,7 @@ $(document).ready(function(){
         const myProjection = d3.geoNaturalEarth1()
         const path = d3.geoPath().projection(myProjection)
         const graticule = d3.geoGraticule()
-        var coordinates = projection([-112.0785,33.46764]);
+        var coordinates = path([-112.0785,33.46764]);
    
 
         function drawMap(err, world) {
