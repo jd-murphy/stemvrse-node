@@ -34,6 +34,7 @@ $(document).ready(function(){
             svg.append("g")
                 .selectAll("path")
                 .data(topojson.feature(world, world.objects.countries).features)
+                .attr("data-metadata", topojson.feature(world, world.objects.countries).feature)
                 .enter().append("path")
                 .attr("d", path);
 
@@ -44,7 +45,7 @@ $(document).ready(function(){
                 .attr("d", path.pointRadius(function(d) { return 15; }))
                 .on("click", function() {
                     console.log("clicked the circle!    data -> ")
-                    console.log($(this).attr("id"))
+                    console.log($(this).attr("data-metadata"))
                 });
 
 
