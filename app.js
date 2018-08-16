@@ -371,11 +371,11 @@ io.on("connection", function (socket) {
             data = snapshot.val()
             if (data) {
                 console.log("data exists, data is " + data);
-                socket.emit('faves', { "user": user, "data": data }); 
+                socket.emit('faves', { "user": strippedEmail, "data": data }); 
             } 
             else {
                 console.log("data is null or undefined, data -> " + data);
-                socket.emit('faves', { "user": user, "data": null }); 
+                socket.emit('faves', { "user": strippedEmail, "data": null }); 
             }
         });
     });
