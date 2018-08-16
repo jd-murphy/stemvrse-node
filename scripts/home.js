@@ -56,6 +56,14 @@ $(document).ready(function(){
             
                 user = $("#email").val()
                 faves = [];
+                console.log("data.user")
+                console.log(data.user)
+                console.log("user")
+                console.log(user)
+                console.log("data.data")
+                console.log(data.data)
+                
+
                 if ((data.user == user) && (data.data != null)) {
                     faves = data.data;
                     console.log("faves -> ")
