@@ -349,21 +349,21 @@ io.on("connection", function (socket) {
         console.log("calling deleteVideo()")
         deleteVideo(videoInfo);
     });
-    socket.on("getFaves", function(data) {
+    socket.on("getFaves", function(email) {
 
         console.log("============================");
-        user = data["room"]
-        console.log("user = data['room']");
-        console.log(user);
-        room = String(user).replace(/[^a-z0-9]/g, '')
-        console.log("room");
-        console.log(room);
+        
+        console.log("email");
+        console.log(email);
+        email = String(email).replace(/[^a-z0-9]/g, '')
+        console.log("email");
+        console.log(email);
         console.log("============================");
 
         console.log("socket on getFaves, app.js")
-        console.log("getFaves for " + user)
+        console.log("getFaves for " + email)
         var db = admin.database();
-        email = String(user).toLowerCase();
+        email = String(email).toLowerCase();
         strippedEmail = String(email).replace(/[^a-z0-9]/g, '')
         var ref = db.ref("favorites/" + strippedEmail); 
         ref.on("value", function(snapshot) {
