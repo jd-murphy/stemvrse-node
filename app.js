@@ -100,6 +100,7 @@ app.get('/favorites', (req, res) => {
 
 app.get('/where-in-the-world', (req, res) => {
     res.render('where-in-the-world', {
+        map: true,
         title: "Where in the World",
         nav: 'nav'
     })

@@ -34,6 +34,22 @@
             }
         }
 
+
+
+        path {
+                fill: lightgray;
+                stroke: #000;
+            }
+        .graticule {
+                fill: none;
+                stroke: #ccc;
+                stroke-width: .5px;
+            }
+        .foreground {
+                fill: none;
+                stroke: #333;
+                stroke-width: 1.5px;
+            }
        
 
     </style>
@@ -238,6 +254,12 @@
     {{#if favorites}}
       <script>console.log("Loading favorites.js -> ")</script>
       <script src="../../scripts/favorites.js"></script>
+    {{/if}}
+    {{#if map}}
+        <script>console.log("Loading map.js & co. -> ")</script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
+        <script src="../../scripts/map.js"></script>
     {{/if}}
 
     
