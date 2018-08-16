@@ -45,6 +45,7 @@ $(document).ready(function(){
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 10; }))
                 .on("mouseover", function() {
+                    d3.select(this).raise();
                     d3.select(this).style("fill", "magenta");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
                 })
