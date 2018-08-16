@@ -4,6 +4,7 @@ $(document).ready(function(){
         console.log("\n\n#email has arrived!!!!\n\n")
         // 'this' refers to the newly created element
         var email = $(this);
+        console.log(email);
 
         var socket = io();
         socket.emit('room', email);
