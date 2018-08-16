@@ -23,7 +23,6 @@ var handlebars = require('express-handlebars').create({
   });
 
 
-var CronJob = require('cron').CronJob;
   
 
 
@@ -644,33 +643,3 @@ function isAccountHolder(req, res, next) {
     
 // }
 
-
-new CronJob('*/30 * * * * *', function() {  // 30 sec interval
-    console.log("Running cron job to print out socket io rooms...")
-    
-    for (room in io.sockets.adapter.rooms) {
-        console.log(" Listing clients for the room: " + room.name)
-
-        var clients = io.sockets.adapter.rooms[room.name].sockets;   
-
-            //to get the number of clients
-        var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
-
-            for (var clientId in clients ) {
-
-                //this is the socket of each client in the room.
-                var clientSocket = io.sockets.connected[clientId];
-
-                //you can do whatever you need with this
-                // clientSocket.emit('new event', "Updates");
-                console.log("clientSocket: " + clientSocket + "     room: " + room)
-
-            }
-
-    }
-
-
-
-
-
-  }, null, true, 'America/Los_Angeles');
