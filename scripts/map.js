@@ -43,14 +43,14 @@ $(document).ready(function(){
                 .data(videoCoord.features)
                 .enter().append("path")
                 .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return 15; }))
+                .attr("d", path.pointRadius(function(d) { return 10; }))
                 .on("mouseover", function() {
                     d3.select(this).style("fill", "magenta");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
                 })
                 .on("mouseout", function() {
                     d3.select(this).style("fill", "#0fdbff");
-                    d3.select(this).attr("d", path.pointRadius(function(d) { return 15; }));
+                    d3.select(this).attr("d", path.pointRadius(function(d) { return 10; }));
                 });
 
 
