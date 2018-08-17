@@ -59,8 +59,11 @@ $(document).ready(function(){
                     var center = d.geometry.coordinates;
                     svg.selectAll(".symbol").each(function (c) {
                         neighborCenter = c.geometry.coordinates;
-                        console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
-                        console.log("Distance apart: ")
+                        // console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
+                        xDiff = Math.abs(center[0] - neighborCenter[0]);
+                        yDiff = Math.abs(center[1] - neighborCenter[1]);
+
+                        console.log("Distance apart:   x: " + xDiff + "    y: " + yDiff);
 
 
 
