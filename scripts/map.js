@@ -83,7 +83,7 @@ $(document).ready(function(){
 
                     var xPosition = x;
                     if (xPosition > 800) {
-                        xPosition -= 245;
+                        xPosition -= 210;
                     }
                     var yPosition = y;
                     if (yPosition > 500) {
