@@ -46,7 +46,25 @@ $(document).ready(function(){
                 .on("mouseover", function(d) {
                     d3.select(this).style("fill", "#00d8ff");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
-                    var nearby = getNearby(d);
+                    var nearby = [];
+                    var center = d.geometry.coordinates;
+                
+                    svg.selectAll(".symbol").each(function (c) {
+                        neighborCenter = c.geometry.coordinates;
+                        // console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
+                        xDiff = Math.abs(center[0] - neighborCenter[0]);
+                        yDiff = Math.abs(center[1] - neighborCenter[1]);
+                
+                        
+                        if (xDiff < 10 && yDiff < 10) {
+                            // console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
+                            nearby.push({"name": c.properties.name, "displayName": c.properties.displayName })
+                        }
+                
+                
+                    }); 
+                    console.log("nearby")
+                    console.log(nearby)
                     nearbyLI = ""
                     for (result in nearby) {
                         var li = '<div class="nearbyLI" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>'
@@ -69,26 +87,26 @@ $(document).ready(function(){
 
                 })
                 .on("click", function(d) {
-                    // var nearby = [];
-                    // var center = d.geometry.coordinates;
-
-                    // svg.selectAll(".symbol").each(function (c) {
-                    //     neighborCenter = c.geometry.coordinates;
-                    //     // console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
-                    //     xDiff = Math.abs(center[0] - neighborCenter[0]);
-                    //     yDiff = Math.abs(center[1] - neighborCenter[1]);
-
+                    var nearby = [];
+                    var center = d.geometry.coordinates;
+                
+                    svg.selectAll(".symbol").each(function (c) {
+                        neighborCenter = c.geometry.coordinates;
+                        // console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
+                        xDiff = Math.abs(center[0] - neighborCenter[0]);
+                        yDiff = Math.abs(center[1] - neighborCenter[1]);
+                
                         
-                    //     if (xDiff < 10 && yDiff < 10) {
-                    //         // console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
-                    //         nearby.push({"name": c.properties.name, "displayName": c.properties.displayName })
-                    //     }
-
-
-                    // }); 
-                    // console.log("nearby")
-                    // console.log(nearby)
-                    var nearby = getNearby(d);
+                        if (xDiff < 10 && yDiff < 10) {
+                            // console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
+                            nearby.push({"name": c.properties.name, "displayName": c.properties.displayName })
+                        }
+                
+                
+                    }); 
+                    console.log("nearby")
+                    console.log(nearby)
+                    
                     $("#results div").remove();
                     for (result in nearby) {
                         $("#results").append('<div class="nearbyResults" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>')
@@ -118,27 +136,3 @@ $(document).ready(function(){
     }); 
    
 });
-
-
-function getNearby(d){
-    var nearby = [];
-    var center = d.geometry.coordinates;
-
-    svg.selectAll(".symbol").each(function (c) {
-        neighborCenter = c.geometry.coordinates;
-        // console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
-        xDiff = Math.abs(center[0] - neighborCenter[0]);
-        yDiff = Math.abs(center[1] - neighborCenter[1]);
-
-        
-        if (xDiff < 10 && yDiff < 10) {
-            // console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
-            nearby.push({"name": c.properties.name, "displayName": c.properties.displayName })
-        }
-
-
-    }); 
-    console.log("nearby")
-    console.log(nearby)
-    return nearby;
-}
