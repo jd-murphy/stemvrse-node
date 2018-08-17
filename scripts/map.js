@@ -86,7 +86,7 @@ $(document).ready(function(){
 
 
 					d3.select("#tooltip")
-						.style("left", (xPosition + 15) + "px")
+						.style("left", (xPosition + 5) + "px")
 						.style("top", yPosition + "px")
 						// .text("testing text...");
 
