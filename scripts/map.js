@@ -43,7 +43,7 @@ $(document).ready(function(){
                 .enter().append("path")
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 20; }))
-                .on("mouseover", function(d) {
+                .on("mouseover", function(event, d) {
                     d3.select(this).style("fill", "#00d8ff");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
                     var nearby = [];
@@ -73,7 +73,7 @@ $(document).ready(function(){
                     var popup = '<div id="popup"><ul style="list-style: none; padding-left: 0;">' + nearbyLI + '</ul></div>'
                     
                     $(document.body).append(popup);
-                    $("#popup").css({ top: d.clientY, left: d.clientX});
+                    $("#popup").css({ top: event.clientY, left: event.clientX});
 
                     // console.log("here's the d");
                     // console.log(d);
