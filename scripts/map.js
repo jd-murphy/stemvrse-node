@@ -77,7 +77,7 @@ $(document).ready(function(){
                     
                     $(".nearbyLI").remove();
                     $("#popup ul").append(nearbyLI);
-                    $("#popup").css({ position: absolute, top: x + "px", left: y + "px"});
+                    $("#popup").css({ "position": "absolute", "top": x + "px", "left": y + "px"});
                     $("#popup").removeClass("hideMe")
 
                     // console.log("here's the d");
