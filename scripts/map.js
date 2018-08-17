@@ -88,19 +88,12 @@ $(document).ready(function(){
 					d3.select("#tooltip")
 						.style("left", xPosition + "px")
 						.style("top", yPosition + "px")
-						.select("#value")
-						.text("testing text...");
+						// .text("testing text...");
 
 
 					d3.select("#tooltip").classed("hidden", false);
 
 
-
-                    // <div id="popup" class="hideMe"><ul style="list-style: none; padding-left: 0;"></ul></div>
-                    // $(".nearbyLI").remove();
-                    // $("#popup ul").append(c);
-                    // $("#popup").css({ "position": "aboslute", "top": (y + 10) + "px", "left": (x + 10) + "px"});
-                    // $("#popup").removeClass("hideMe")
 
                     // console.log("here's the d");
                     // console.log(d);
