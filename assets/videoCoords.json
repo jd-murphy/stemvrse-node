@@ -9,7 +9,7 @@
     {"type":"Feature","id":"10","geometry":{"type":"Point","coordinates":[-95.089905,29.558810]},"properties":{"displayName":"NASA Lab","name":"nasalab","link":"https://www.youtube.com/embed/CQvGTO08AxE?rel=0"}},
     {"type":"Feature","id":"11","geometry":{"type":"Point","coordinates":[-96.411091,30.626883]},"properties":{"displayName":"Puppies at Aggieland Humane Society","name":"puppiesataggielandhumanesociety","link":"https://www.youtube.com/embed/94bh0196mvs?rel=0"}},
     {"type":"Feature","id":"12","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"displayName":"Stingray Poor Knights Islands New Zealand","name":"stingraypoorknightsislandsnewzealand","link":"https://www.youtube.com/embed/4RizIoJd8Lo?rel=0"}},
-    {"type":"Feature","id":"13","geometry":{"type":"Point","coordinates":[-135.895708,58.450403]},"properties":{"displayName":"Comal River","name":"glacierbay","link":"no link at this time"}}
+    {"type":"Feature","id":"13","geometry":{"type":"Point","coordinates":[-135.895708,58.450403]},"properties":{"displayName":"Glacier Bay","name":"glacierbay","link":"no link at this time"}}
     ]}
 
     
