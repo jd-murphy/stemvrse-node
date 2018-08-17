@@ -134,7 +134,7 @@ $(document).ready(function(){
                     console.log("nearby")
                     console.log(nearby)
                     
-                    // $("#displayVideos li").addClass("hideMe");
+                    $("#displayVideos li").addClass("hideMe");
                     for (result in nearby) {
                         // $("#displayVideos").append('<div class="nearbyResults" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>')
                         console.log("Finding and showing ->  " + nearby[result].name)
