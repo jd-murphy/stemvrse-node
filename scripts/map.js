@@ -140,6 +140,8 @@ $(document).ready(function(){
                         console.log("Finding and showing ->  " + nearby[result].name)
                         var video = document.getElementById(nearby[result].name);
                         var li = video.parentNode
+                        console.log("li.classList")
+                        console.log(li.classList)
                         li.classList.remove("hideMe");
                     }
                     
