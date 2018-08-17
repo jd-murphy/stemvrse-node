@@ -44,14 +44,14 @@ $(document).ready(function(){
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 20; }))
                 .on("mouseover", function(d) {
-                    d3.select(this).style("fill", "#0092ac");
+                    d3.select(this).style("fill", "#00d8ff");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
             
                     console.log("here's the d");
                     console.log(d);
                 })
                 .on("mouseout", function() {
-                    d3.select(this).style("fill", "#0fdbff");
+                    d3.select(this).style("fill", "#16d7f9");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
                 })
                 .on("click", function(d) {
@@ -66,19 +66,20 @@ $(document).ready(function(){
 
                         
                         if (xDiff < 10 && yDiff < 10) {
-                            console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
+                            // console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
                             nearby.push(c.properties.name)
                         }
 
 
-                        // nearby.push(    );
-                    }); // each
+                    }); 
                     console.log("nearby")
                     console.log(nearby)
+                    $("#results div").remove();
+                    for (result in nearby) {
+                        $("#results").append('<div class="nearbyResults" id="' + result + '">' + result + '</div>')
+                    }
                     
-                    // if (nearby.length)
-                    //     alert("These shapes are within click radius: " + nearby.join(", "));
-                    // else alert("No shapes within click radius.");
+                    
                     
                 });
 
