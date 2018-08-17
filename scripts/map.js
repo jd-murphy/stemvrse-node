@@ -85,7 +85,10 @@ $(document).ready(function(){
                     if (xPosition > 800) {
                         xPosition -= 220;
                     }
-					var yPosition = y;
+                    var yPosition = y;
+                    if (yPosition > 500) {
+                        yPosition -= 50;
+                    }
 
 
 					d3.select("#tooltip")
