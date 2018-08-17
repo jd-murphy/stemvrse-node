@@ -76,7 +76,7 @@ $(document).ready(function(){
                     console.log(nearby)
                     $("#results div").remove();
                     for (result in nearby) {
-                        $("#results").append('<div class="nearbyResults" id="' + result + '">' + result + '</div>')
+                        $("#results").append('<div class="nearbyResults" id="' + nearby[result] + '">' + nearby[result] + '</div>')
                     }
                     
                     
