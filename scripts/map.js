@@ -74,10 +74,11 @@ $(document).ready(function(){
                         var li = '<div class="nearbyLI" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>'
                         nearbyLI += li;
                     }
-                    var popup = '<div id="popup"><ul style="list-style: none; padding-left: 0;">' + nearbyLI + '</ul></div>'
                     
-                    $(d).append(popup);
-                    // $("#popup").css({ top: d.clientY, left: d.clientX});
+                    
+                    $("#popup ul").append(nearbyLI);
+                    $("#popup").css({ top: x, left: y});
+                    $("#popup").removeClass("hideMe")
 
                     // console.log("here's the d");
                     // console.log(d);
@@ -85,8 +86,8 @@ $(document).ready(function(){
                 .on("mouseout", function() {
                     d3.select(this).style("fill", "#16d7f9");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
-                    var element = $("#popup");
-                    element.parentNode.removeChild(element);
+              
+                    $("#popup").addClass("hideMe")
 
 
                 })
