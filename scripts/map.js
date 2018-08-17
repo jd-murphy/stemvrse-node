@@ -38,25 +38,21 @@ $(document).ready(function(){
                 .enter().append("path")
                 .attr("d", path);
 
-            var nodes = svg.selectAll(".symbol")
+            svg.selectAll(".symbol")
                 .data(videoCoord.features)
                 .enter().append("path")
                 .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return 10; }))
+                .attr("d", path.pointRadius(function(d) { return 20; }))
                 .on("mouseover", function() {
                     d3.select(this).style("fill", "magenta");
-                    d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
+                    d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
                 })
                 .on("mouseout", function() {
                     d3.select(this).style("fill", "#0fdbff");
-                    d3.select(this).attr("d", path.pointRadius(function(d) { return 10; }));
+                    d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
                 });
 
-            var simulation = d3.forceSimulation(nodes)
-                .force('collision', d3.forceCollide().radius(function(d) {
-                    return d.radius
-                  }));
-
+           
 
           }
        
