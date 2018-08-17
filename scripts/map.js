@@ -43,10 +43,10 @@ $(document).ready(function(){
                 .enter().append("path")
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 20; }))
-                .on("mouseover", function() {
+                .on("mouseover", function(d) {
                     d3.select(this).style("fill", "#0092ac");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
-                    console.log(d3.select(this).data);
+                    console.log(d.properties.name);
                 })
                 .on("mouseout", function() {
                     d3.select(this).style("fill", "#0fdbff");
