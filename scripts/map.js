@@ -139,10 +139,11 @@ $(document).ready(function(){
                         // $("#displayVideos").append('<div class="nearbyResults" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>')
                         console.log("Finding and showing ->  " + nearby[result].name)
                         var video = document.getElementById(nearby[result].name);
-                        var li = video.parentNode
-                        console.log("li.classList")
-                        console.log(li.classList)
-                        li.classList.remove("hideMe");
+
+                        // var li = video.parentNode
+                        console.log("video.classList")
+                        console.log(video.classList)
+                        video.classList.remove("hideMe");
                     }
                     
                     
