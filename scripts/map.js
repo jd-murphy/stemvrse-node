@@ -44,6 +44,8 @@ $(document).ready(function(){
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 20; }))
                 .on("mouseover", function(d) {
+                    var c = getCoords();
+                    console.log("Coords of mouse ->     x: " + c.x + "   y: " + c.y);
                     
                     d3.select(this).style("fill", "#00d8ff");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
@@ -137,3 +139,8 @@ $(document).ready(function(){
     }); 
    
 });
+
+
+function getCoords(e) {
+    return { x: e.clientX, y: e.clientY };
+}
