@@ -82,6 +82,9 @@ $(document).ready(function(){
                     $("#tooltip ul").append(nearbyLI);
 
                     var xPosition = x;
+                    if (xPosition > 800) {
+                        xPosition -= 220;
+                    }
 					var yPosition = y;
 
 
