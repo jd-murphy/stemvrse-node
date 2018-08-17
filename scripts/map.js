@@ -44,10 +44,10 @@ $(document).ready(function(){
                 .attr("class", "symbol")
                 .attr("d", path.pointRadius(function(d) { return 20; }))
                 .on("mouseover", function(d) {
-                    // var x = d3.event.pageX;
-                    // var y = d3.event.pageY;
-                    var x = d3.mouse(this)[0];
-                    var y = d3.mouse(this)[1];
+                    var x = d3.event.pageX;
+                    var y = d3.event.pageY;
+                    // var x = d3.mouse(this)[0];
+                    // var y = d3.mouse(this)[1];
                     console.log("Coords of mouse ->     x: " + x + "   y: " + y);
                  
                     
@@ -81,7 +81,7 @@ $(document).ready(function(){
                     
                     $(".nearbyLI").remove();
                     $("#popup ul").append(nearbyLI);
-                    $("#popup").css({ "position": "aboslute", "top": center[0], "left": center[1]});
+                    $("#popup").css({ "position": "aboslute", "top": (y + 10) + "px", "left": (x + 10) + "px"});
                     $("#popup").removeClass("hideMe")
 
                     // console.log("here's the d");
