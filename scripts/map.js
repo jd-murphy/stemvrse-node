@@ -57,18 +57,24 @@ $(document).ready(function(){
                 .on("click", function(d) {
                     var nearby = [];
                     var center = d.geometry.coordinates;
+
                     svg.selectAll(".symbol").each(function (c) {
                         neighborCenter = c.geometry.coordinates;
                         // console.log("clicked center: " + center + "    neighbor center: " + neighborCenter);
                         xDiff = Math.abs(center[0] - neighborCenter[0]);
                         yDiff = Math.abs(center[1] - neighborCenter[1]);
 
-                        console.log("Distance apart:   x: " + xDiff + "    y: " + yDiff);
-
+                        
+                        if (xDiff < 10 && yDiff < 10) {
+                            console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
+                            nearby.push(c.properties.name)
+                        }
 
 
                         // nearby.push(    );
                     }); // each
+                    console.log("nearby")
+                    console.log(nearby)
                     
                     // if (nearby.length)
                     //     alert("These shapes are within click radius: " + nearby.join(", "));
