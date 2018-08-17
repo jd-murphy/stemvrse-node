@@ -13,7 +13,7 @@ $(document).ready(function(){
         const myProjection = d3.geoNaturalEarth1()
         const path = d3.geoPath().projection(myProjection)
         const graticule = d3.geoGraticule()
-       
+        var detectionRadius = 25;
        
    
         queue()
