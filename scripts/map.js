@@ -143,7 +143,7 @@ $(document).ready(function(){
                         var li = video.parentNode
                         console.log("li.classList")
                         console.log(li.classList)
-                        video.classList.remove("hideMe");
+                        li.classList.remove("hideMe");
                     }
                     
                     
