@@ -17,7 +17,7 @@ $(document).ready(function(){
        
    
         queue()
-            .defer(d3.json, "https://unpkg.com/world-atlas@1.1.4/world/110m.json")
+            .defer(d3.json, "https://unpkg.com/world-atlas@1.1.4/world/110m.json") //https://github.com/topojson/world-atlas#world/110m.json
             .defer(d3.json, "../assets/videoCoords.json")
             .await(drawMap);
 
@@ -138,7 +138,8 @@ $(document).ready(function(){
                     for (result in nearby) {
                         // $("#displayVideos").append('<div class="nearbyResults" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>')
                         console.log("Finding and showing ->  " + nearby[result].name)
-                        $('#' + nearby[result].name).parent().removeClass("hideMe");
+                        var li = $('#' + nearby[result].name).parent();
+                        li.removeClass("hideMe");
                     }
                     
                     
