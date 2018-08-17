@@ -25,7 +25,7 @@ $(document).ready(function(){
         function drawMap(err, world, videoCoord) {
             if (err) throw err
 
-            
+            var pt = svg.createSVGPoint();
            
             svg.append("path")
                 .datum(graticule.outline)
@@ -49,6 +49,9 @@ $(document).ready(function(){
                     var x = d3.mouse(this)[0];
                     var y = d3.mouse(this)[1];
                     console.log("Coords of mouse ->     x: " + x + "   y: " + y);
+                    pt.x = x;
+                    pt.y = y;
+                    var svgP = pt.matrixTransform(svg.getScreenCTM().inverse());
                     
                     d3.select(this).style("fill", "#00d8ff");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 23; }));
@@ -79,7 +82,7 @@ $(document).ready(function(){
                     
                     $(".nearbyLI").remove();
                     $("#popup ul").append(nearbyLI);
-                    $("#popup").css({ "position": "aboslute", "top": y + "px", "left": x + "px"});
+                    $("#popup").css({ "position": "aboslute", "top": svgP.y + "px", "left": svgP.x + "px"});
                     $("#popup").removeClass("hideMe")
 
                     // console.log("here's the d");
