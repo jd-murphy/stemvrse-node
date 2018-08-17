@@ -78,11 +78,29 @@ $(document).ready(function(){
                         var li = '<div class="nearbyLI" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>'
                         nearbyLI += li;
                     }
-                    
                     $(".nearbyLI").remove();
-                    $("#popup ul").append(nearbyLI);
-                    $("#popup").css({ "position": "aboslute", "top": (y + 10) + "px", "left": (x + 10) + "px"});
-                    $("#popup").removeClass("hideMe")
+                    $("#tooltip ul").append(nearbyLI);
+
+                    var xPosition = x;
+					var yPosition = y;
+
+
+					d3.select("#tooltip")
+						.style("left", xPosition + "px")
+						.style("top", yPosition + "px")
+						.select("#value")
+						.text("testing text...");
+
+
+					d3.select("#tooltip").classed("hidden", false);
+
+
+
+                    // <div id="popup" class="hideMe"><ul style="list-style: none; padding-left: 0;"></ul></div>
+                    // $(".nearbyLI").remove();
+                    // $("#popup ul").append(c);
+                    // $("#popup").css({ "position": "aboslute", "top": (y + 10) + "px", "left": (x + 10) + "px"});
+                    // $("#popup").removeClass("hideMe")
 
                     // console.log("here's the d");
                     // console.log(d);
@@ -91,7 +109,8 @@ $(document).ready(function(){
                     d3.select(this).style("fill", "#16d7f9");
                     d3.select(this).attr("d", path.pointRadius(function(d) { return 20; }));
               
-                    $("#popup").addClass("hideMe")
+                    // $("#popup").addClass("hideMe")
+                    d3.select("#tooltip").classed("hidden", true);
 
 
                 })
