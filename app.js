@@ -1,4 +1,6 @@
-// stemvrse node app 
+// STEMVRSE Node.js Web App 
+// Author: Jordan Murphy
+// 2018
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
