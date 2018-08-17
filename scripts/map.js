@@ -75,7 +75,7 @@ $(document).ready(function(){
                     console.log(nearby)
                     nearbyLI = ""
                     for (result in nearby) {
-                        var li = '<div class="nearbyLI" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>'
+                        var li = '<div class="nearbyLI" id="popup' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>'
                         nearbyLI += li;
                     }
                     $(".nearbyLI").remove();
