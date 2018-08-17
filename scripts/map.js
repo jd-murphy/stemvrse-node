@@ -67,7 +67,7 @@ $(document).ready(function(){
                         
                         if (xDiff < 10 && yDiff < 10) {
                             // console.log("Distance apart for closest neighbors  x: " + xDiff + "   y: " + yDiff);
-                            nearby.push(c.properties.name)
+                            nearby.push({"name": c.properties.name, "displayName": c.properties.displayName })
                         }
 
 
@@ -76,7 +76,7 @@ $(document).ready(function(){
                     console.log(nearby)
                     $("#results div").remove();
                     for (result in nearby) {
-                        $("#results").append('<div class="nearbyResults" id="' + nearby[result] + '">' + nearby[result] + '</div>')
+                        $("#results").append('<div class="nearbyResults" id="' + nearby[result].name + '"><strong>' + nearby[result].displayName + '</strong></div>')
                     }
                     
                     

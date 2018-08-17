@@ -1,15 +1,15 @@
 {"type":"FeatureCollection","features":[
-    {"type":"Feature","id":"01","geometry":{"type":"Point","coordinates":[-98.122693,29.707378]},"properties":{"name":"comalriver","link":"https://www.youtube.com/embed/4B6neVaZRqc?rel=0"}},
-    {"type":"Feature","id":"02","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"name":"dive","link":"https://www.youtube.com/embed/dP5YPBYvMoE?rel=0"}},
-    {"type":"Feature","id":"04","geometry":{"type":"Point","coordinates":[-95.346151,29.762744]},"properties":{"name":"divetrainingstill","link":"https://www.youtube.com/embed/w_kOjEO_hNI?rel=0"}},
-    {"type":"Feature","id":"05","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"name":"divinginthepoorknightsinnewzealand","link":"https://www.youtube.com/embed/KDKC6y9ICe4?rel=0"}},
-    {"type":"Feature","id":"06","geometry":{"type":"Point","coordinates":[175.879351,-37.105524]},"properties":{"name":"dotterelsonopouterebeachinnewzealand","link":"https://www.youtube.com/embed/4oiwtXp7If0?rel=0"}},
-    {"type":"Feature","id":"08","geometry":{"type":"Point","coordinates":[-96.411091,30.626883]},"properties":{"name":"kittensataggielandhumanesociety","link":"https://www.youtube.com/embed/WwFzm4y6HUc?rel=0"}},
-    {"type":"Feature","id":"09","geometry":{"type":"Point","coordinates":[-95.089905,29.558810]},"properties":{"name":"nasa","link":"https://www.youtube.com/embed/yw2DqVGJzdY?rel=0"}},
-    {"type":"Feature","id":"10","geometry":{"type":"Point","coordinates":[-95.089905,29.558810]},"properties":{"name":"nasalab","link":"https://www.youtube.com/embed/CQvGTO08AxE?rel=0"}},
-    {"type":"Feature","id":"11","geometry":{"type":"Point","coordinates":[-96.411091,30.626883]},"properties":{"name":"puppiesataggielandhumanesociety","link":"https://www.youtube.com/embed/94bh0196mvs?rel=0"}},
-    {"type":"Feature","id":"12","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"name":"stingraypoorknightsislandsnewzealand","link":"https://www.youtube.com/embed/4RizIoJd8Lo?rel=0"}},
-    {"type":"Feature","id":"13","geometry":{"type":"Point","coordinates":[-135.895708,58.450403]},"properties":{"name":"glacierbay","link":"no link at this time"}}
+    {"type":"Feature","id":"01","geometry":{"type":"Point","coordinates":[-98.122693,29.707378]},"properties":{"displayName":"Comal River","name":"comalriver","link":"https://www.youtube.com/embed/4B6neVaZRqc?rel=0"}},
+    {"type":"Feature","id":"02","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"displayName":"Dive","name":"dive","link":"https://www.youtube.com/embed/dP5YPBYvMoE?rel=0"}},
+    {"type":"Feature","id":"04","geometry":{"type":"Point","coordinates":[-95.346151,29.762744]},"properties":{"displayName":"Dive Training Still","name":"divetrainingstill","link":"https://www.youtube.com/embed/w_kOjEO_hNI?rel=0"}},
+    {"type":"Feature","id":"05","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"displayName":"Diving in the Poor Knights in New Zealand","name":"divinginthepoorknightsinnewzealand","link":"https://www.youtube.com/embed/KDKC6y9ICe4?rel=0"}},
+    {"type":"Feature","id":"06","geometry":{"type":"Point","coordinates":[175.879351,-37.105524]},"properties":{"displayName":"Dotterels on Opoutere Beach in New Zealand","name":"dotterelsonopouterebeachinnewzealand","link":"https://www.youtube.com/embed/4oiwtXp7If0?rel=0"}},
+    {"type":"Feature","id":"08","geometry":{"type":"Point","coordinates":[-96.411091,30.626883]},"properties":{"displayName":"Kittens at Aggieland Humane Society","name":"kittensataggielandhumanesociety","link":"https://www.youtube.com/embed/WwFzm4y6HUc?rel=0"}},
+    {"type":"Feature","id":"09","geometry":{"type":"Point","coordinates":[-95.089905,29.558810]},"properties":{"displayName":"NASA","name":"nasa","link":"https://www.youtube.com/embed/yw2DqVGJzdY?rel=0"}},
+    {"type":"Feature","id":"10","geometry":{"type":"Point","coordinates":[-95.089905,29.558810]},"properties":{"displayName":"NASA Lab","name":"nasalab","link":"https://www.youtube.com/embed/CQvGTO08AxE?rel=0"}},
+    {"type":"Feature","id":"11","geometry":{"type":"Point","coordinates":[-96.411091,30.626883]},"properties":{"displayName":"Puppies at Aggieland Humane Society","name":"puppiesataggielandhumanesociety","link":"https://www.youtube.com/embed/94bh0196mvs?rel=0"}},
+    {"type":"Feature","id":"12","geometry":{"type":"Point","coordinates":[174.735505,-35.472041]},"properties":{"displayName":"Stingray Poor Knights Islands New Zealand","name":"stingraypoorknightsislandsnewzealand","link":"https://www.youtube.com/embed/4RizIoJd8Lo?rel=0"}},
+    {"type":"Feature","id":"13","geometry":{"type":"Point","coordinates":[-135.895708,58.450403]},"properties":{"displayName":"Comal River","name":"glacierbay","link":"no link at this time"}}
     ]}
 
     
