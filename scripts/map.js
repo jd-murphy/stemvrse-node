@@ -83,11 +83,11 @@ $(document).ready(function(){
 
                     var xPosition = x;
                     if (xPosition > 800) {
-                        xPosition -= 235;
+                        xPosition -= 245;
                     }
                     var yPosition = y;
                     if (yPosition > 500) {
-                        yPosition -= 50;
+                        yPosition -= 100;
                     }
 
 
