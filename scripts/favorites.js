@@ -37,7 +37,7 @@ $(document).ready(function(){
                         strippedName =  lname.replace(/[^a-z0-9]/g, '');
 
                         $('#displayVideos').append('<li class="hideMe"><div class="card border-info mb-3" id="' + strippedName + '" data-descriptor="video-li" data-video-name="' + name + '" style="max-width:' + cardMaxWidth + ';">' + 
-                                '<div class="card-header"><strong>' + name + '<a class="favoriteVideo" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px"></a>' + '</strong></div>' + 
+                                '<div class="card-header"><strong><a href="/videos/' + strippedName + '">' + name + '</a><a class="favoriteVideo" href="#favoriteVideo' + strippedName + '" id="favoriteVideo' + strippedName + '" style="float: right;">' + '<img id="favButton' + strippedName + '" src="/assets/favorite.png" data-video-display-name="' + name + '" width="16px" height="16px"></a>' + '</strong></div>' + 
                                 '<div class="card-body">' + 
                                 ' <h4 class="card-title">Video Info</h4>' + 
                                 ' <div>' + 
