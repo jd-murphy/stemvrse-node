@@ -47,7 +47,7 @@ $(document).ready(function(){
     
 
 
-        $('#displayVideos').on('click','li div div strong a img', function(e) {
+        $('.favButton').on('click', function(e) {
 
             e.preventDefault();
             console.log("clicked fav button...")
