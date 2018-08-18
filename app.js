@@ -122,6 +122,23 @@ app.get('/faqs', (req, res) => {
 });
 
 
+app.get('/video/:name', (req, res) => {
+    var video = req.params.name;
+    data = getSingleVideo(video);
+    
+    console.log("data for video " + video);
+    console.log(data);
+
+    res.render('video', {
+        title: "Video",
+        nav: 'nav',
+        videoName: video,
+        videoDisplayName: data.name,
+        link: data.link
+    })
+});
+
+
 
 
 
@@ -495,21 +512,21 @@ function createAccount(userInfo) {
 
 
 
-// function getVideoDataFromFirebase() {
-//     var db = admin.database();
-//     var ref = db.ref("videos");
-//     console.log("getVideoDataFromFirebase()");
-//     ref.on("value", function(snapshot) {
-//         console.log("on value, getVideoDataFromFirebase() snapshot")
-//         data = snapshot.val()
-//         if (data) {
-//             io.emit('newVideoData', JSON.stringify(data));
-//         } 
-//         else {
-//             io.emit('newVideoData', null); 
-//         }
-//     });
-// }
+function getSingleVideo(videoName) {
+    var db = admin.database();
+    var ref = db.ref("videos/" + videoName);
+    console.log("getSingleVideo()");
+    ref.once("value", function(snapshot) {
+        console.log("on value, getSingleVideo() snapshot")
+        data = snapshot.val()
+        if (data) {
+            return JSON.stringify(data);
+        } 
+        else {
+            return null;
+        }
+    });
+}
 
 
 
