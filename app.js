@@ -146,7 +146,11 @@ app.get('/videos/:name', (req, res) => {
                 video: true // script - load video.js
 
             })
-        } 
+        } else {
+            res.render('admin-404-notice', {
+                title: "Error: 404"
+            });
+        }
     });
     
    
