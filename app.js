@@ -141,8 +141,8 @@ app.get('/video/:name', (req, res) => {
                 title: "Video",
                 nav: 'nav',
                 videoName: video,
-                videoDisplayName: data.name,
-                link: data.link
+                videoDisplayName: data["name"],
+                link: data["link"]
             })
         } 
     });
