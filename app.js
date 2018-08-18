@@ -405,7 +405,7 @@ function setUpFirebase() {
         console.log("firebase initialized!");
 
 
-      listAllUsers();
+        listAllUsers();
 
 }
 
@@ -416,12 +416,11 @@ function listAllUsers(nextPageToken) {
     admin.auth().listUsers(1000, nextPageToken)
       .then(function(listUsersResult) {
         listUsersResult.users.forEach(function(userRecord) {
-        //   console.log("user", userRecord.toJSON());                      // commented out for debugging
-        //   setUpSocketIONamespace(userRecord.toJSON());
-
-
-                        io.emit("onUserData", userRecord.toJSON()); // emit to all users...
-                        //io.to("admin").emit("onUserData", userRecord.toJSON());   // something like this to emit only to admin
+          
+           
+                console.log("user", userRecord.toJSON()); 
+                io.emit("onUserData", userRecord.toJSON()); // emit to all users...
+                //io.to("admin").emit("onUserData", userRecord.toJSON());   // something like this to emit only to admin
 
 
         });
