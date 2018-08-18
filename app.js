@@ -114,6 +114,13 @@ app.get('/researchers', (req, res) => {
     })
 });
 
+app.get('/faq', (req, res) => { // in case user manually type in faq in address bar
+    res.render('faqs', {
+        title: "FAQs",
+        nav: 'nav'
+    })
+});
+
 app.get('/faqs', (req, res) => {
     res.render('faqs', {
         title: "FAQs",
