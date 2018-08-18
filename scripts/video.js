@@ -47,7 +47,7 @@ $(document).ready(function(){
     
 
 
-        $('.favButton').on('click', function(e) {
+        $('.favButton').click(function(e) {
 
             e.preventDefault();
             console.log("clicked fav button...")
