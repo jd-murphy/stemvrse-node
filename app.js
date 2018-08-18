@@ -124,6 +124,8 @@ app.get('/faqs', (req, res) => {
 
 app.get('/video/:name', (req, res) => {
     var video = req.params.name;
+    console.log("video -> ")
+    console.log(video)
     
     var db = admin.database();
     var ref = db.ref("videos/" + video);
