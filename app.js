@@ -85,7 +85,7 @@ app.get('/landing', (req, res)=>{
 
 app.get('/home', (req, res) => {
     res.render('home', {
-        home: true,
+        home: true,  // script - load home.js
         title: "Home",
         nav: 'nav'
     })
@@ -93,7 +93,7 @@ app.get('/home', (req, res) => {
 
 app.get('/favorites', (req, res) => {
     res.render('favorites', {
-        favorites: true,
+        favorites: true,  // script - load favorites.js
         title: "Favorites",
         nav: 'nav'
     })
@@ -101,7 +101,7 @@ app.get('/favorites', (req, res) => {
 
 app.get('/where-in-the-world', (req, res) => {
     res.render('where-in-the-world', {
-        map: true,
+        map: true,  // script - load map.js
         title: "Where in the World",
         nav: 'nav'
     })
@@ -142,7 +142,9 @@ app.get('/videos/:name', (req, res) => {
                 nav: 'nav',
                 videoName: video,
                 videoDisplayName: data["name"],
-                link: data["link"]
+                link: data["link"],
+                video: true // script - load video.js
+
             })
         } 
     });
@@ -191,7 +193,7 @@ app.post('/admin-home', verifyAdmin, (req, res) => {
 
 app.post('/admin-dashboard', verifyAdmin, (req, res) => {
     res.render('admin-dashboard', {
-        dashboard: true, // load dashboard.js
+        dashboard: true, // script - load dashboard.js
         admin: true,
         title: 'Admin | Dashboard',
         nav: 'admin-nav'
@@ -200,7 +202,7 @@ app.post('/admin-dashboard', verifyAdmin, (req, res) => {
 
 app.post('/admin-content', verifyAdmin, (req, res) => {
     res.render('admin-content', {
-        content: true, // load admin-content.js
+        content: true, // script - load admin-content.js
         admin: true,
         title: 'Admin | Content',
         nav: 'admin-nav'
