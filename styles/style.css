@@ -1,3 +1,6 @@
+/* STEM-VRSE Node.js Web App 
+Author: Jordan Murphy - 2018 */
+
 .noAuth {
     display: none !important;
 }
@@ -8,22 +11,24 @@
 
 
 
+
 .responsive-state {
     display:none;
     width: 10000px;
 }
 
 @media (max-width: 767px) {
-.responsive-state {
-    width: 767px;
-}
+    .responsive-state {
+        width: 767px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-.responsive-state {
-    width: 1024px;
+    .responsive-state {
+        width: 1024px;
+    }
 }
-}
+
 
 
 
@@ -47,6 +52,8 @@ path {
     stroke: #013842;
 }
 
+
+
 .nearbyResults {
     border: 1px solid gray;
     padding: .5rem;
@@ -56,6 +63,8 @@ path {
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+
+
 
 #tooltip {
     position: absolute;
@@ -77,6 +86,8 @@ path {
 #tooltip.hidden {
     display: none;
 }
+
+
 
 .question {
     padding-top: 2rem;
