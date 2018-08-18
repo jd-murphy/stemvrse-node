@@ -122,7 +122,7 @@ app.get('/faqs', (req, res) => {
 });
 
 
-app.get('/video/:name', (req, res) => {
+app.get('/videos/:name', (req, res) => {
     var video = req.params.name;
     console.log("video -> ")
     console.log(video)
@@ -133,7 +133,7 @@ app.get('/video/:name', (req, res) => {
         console.log("on value, get Single Video snapshot")
         data = snapshot.val()
         if (data) {
-            data =  JSON.stringify(data);
+            // data =  JSON.stringify(data);
             console.log("data for video " + video);
             console.log(data);
 
