@@ -124,18 +124,30 @@ app.get('/faqs', (req, res) => {
 
 app.get('/video/:name', (req, res) => {
     var video = req.params.name;
-    data = getSingleVideo(video);
     
-    console.log("data for video " + video);
-    console.log(data);
+    var db = admin.database();
+    var ref = db.ref("videos/" + video);
+    ref.once("value", function(snapshot) {
+        console.log("on value, get Single Video snapshot")
+        data = snapshot.val()
+        if (data) {
+            data =  JSON.stringify(data);
+            console.log("data for video " + video);
+            console.log(data);
 
-    res.render('video', {
-        title: "Video",
-        nav: 'nav',
-        videoName: video,
-        videoDisplayName: data.name,
-        link: data.link
-    })
+            res.render('video', {
+                title: "Video",
+                nav: 'nav',
+                videoName: video,
+                videoDisplayName: data.name,
+                link: data.link
+            })
+        } 
+    });
+    
+   
+
+   
 });
 
 
@@ -511,22 +523,6 @@ function createAccount(userInfo) {
 
 
 
-
-function getSingleVideo(videoName) {
-    var db = admin.database();
-    var ref = db.ref("videos/" + videoName);
-    console.log("getSingleVideo()");
-    ref.once("value", function(snapshot) {
-        console.log("on value, getSingleVideo() snapshot")
-        data = snapshot.val()
-        if (data) {
-            return JSON.stringify(data);
-        } 
-        else {
-            return null;
-        }
-    });
-}
 
 
 
