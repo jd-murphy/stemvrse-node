@@ -635,30 +635,7 @@ function isAccountHolder(req, res, next) {
 
     console.log('Authenticating Account Holder status.')
     console.log('For testing and development assume user is Account Holder and return true.')
-    return next(); // simply assume user is admin for testing now
+    return next(); // simply assume user isAccountHolder for testing now
 
 }
-
-
-
-// function setUpSocketIONamespace(user) {
-//     strippedEmail = user.email.replace(/[^a-z0-9]/g, '')
-//     console.log("hello from setUpSocketIONamespace() the user's stripped email is " + strippedEmail);
-//     var nspFound = false;
-//     Object.keys(io.nsps).forEach(function(k) {
-//         console.log(io.nsps[k].name)
-        
-//         if (strippedEmail == io.nsps[k].name) {
-//             nspFound = true;
-//         }
-//     });
-//     if (nspFound) {
-//         console.log("Namespace FOUND for user " + strippedEmail)
-//     } else {
-//         console.log("Namespace NOT FOUND for user " + strippedEmail)
-
-//     }
-
-    
-// }
 
