@@ -1,3 +1,5 @@
+// STEM-VRSE Node.js Web App 
+// Author: Jordan Murphy - 2018
 $(document).ready(function(){
     console.log("\n\nTHE SCRIPT WAS LOADED!!!!   (favorites.js)\n\n")
     $(document).arrive("#email", {onceOnly: true}, function() {
