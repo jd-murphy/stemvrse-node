@@ -83,6 +83,9 @@ $(document).ready(function(){
         });
 
         
+        var features = $.getJSON("/assets/videoCoords.json", function(data) {
+            console.log("here is the json -> " + data);
+        });
         
         var mymap = L.map('mapid').setView([51.505, -0.09], 13);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
