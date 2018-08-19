@@ -83,11 +83,11 @@ $(document).ready(function(){
         });
 
         
-        $.getJSON("/assets/videoCoords.json", function(features) {
+        $.getJSON("/assets/videoCoords.json", function(data) {
             console.log("here is the json -> ");
-            for (feature in features) {
-                console.log(features[feature].properties.name)
-                console.log(features[feature].geometry.coordinates)
+            for (feature in data.features) {
+                console.log(data.features[feature].properties.name)
+                console.log(data.features[feature].geometry.coordinates)
             }
         });
         
