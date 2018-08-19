@@ -146,6 +146,7 @@ app.get('/videos/:name', (req, res) => {
             console.log("data for video " + video);
             console.log(data);
 
+            videoName = video;
 
             res.render('video', {
                 title: "Video",
@@ -154,9 +155,9 @@ app.get('/videos/:name', (req, res) => {
                 videoDisplayName: data["name"],
                 link: data["link"],
                 video: true, // script - load video.js
-                content: function(video) {
-                    console.log("partial for " + JSON.stringify(video));
-                    return JSON.stringify(video);
+                content: function() {
+                    console.log("partial for " + videoName);
+                    return videoName;
                 }
             })
         } else {
