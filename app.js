@@ -155,6 +155,7 @@ app.get('/videos/:name', (req, res) => {
                 link: data["link"],
                 video: true, // script - load video.js
                 content: function(video) {
+                    console.log("partial for " + video);
                     return video;
                 }
             })
