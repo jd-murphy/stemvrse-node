@@ -146,14 +146,15 @@ app.get('/videos/:name', (req, res) => {
             console.log("data for video " + video);
             console.log(data);
 
+
             res.render('video', {
                 title: "Video",
                 nav: 'nav',
                 videoName: video,
                 videoDisplayName: data["name"],
                 link: data["link"],
-                video: true // script - load video.js
-
+                video: true, // script - load video.js
+                content: video
             })
         } else {
             res.render('admin-404-notice', {
