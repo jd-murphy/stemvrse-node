@@ -156,7 +156,7 @@ app.get('/videos/:name', (req, res) => {
                 video: true, // script - load video.js
                 content: function(video) {
                     console.log("partial for " + video);
-                    return video;
+                    return video.toString();
                 }
             })
         } else {
