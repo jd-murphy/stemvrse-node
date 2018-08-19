@@ -154,7 +154,9 @@ app.get('/videos/:name', (req, res) => {
                 videoDisplayName: data["name"],
                 link: data["link"],
                 video: true, // script - load video.js
-                content: {"name": video}
+                content: function() {
+                    return video;
+                }
             })
         } else {
             res.render('admin-404-notice', {
