@@ -82,7 +82,7 @@ $(document).ready(function(){
             socket.emit('updateFaves', {"user": user, "faves": faves});
         });
 
-        
+        var lat, lng;
         $.getJSON("/assets/videoCoords.json", function(data) {
             console.log("here is the json -> ");
             for (feature in data.features) {
