@@ -154,7 +154,7 @@ app.get('/videos/:name', (req, res) => {
                 videoDisplayName: data["name"],
                 link: data["link"],
                 video: true, // script - load video.js
-                content: function() {
+                content: function(video) {
                     return video;
                 }
             })
