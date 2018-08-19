@@ -83,8 +83,13 @@ $(document).ready(function(){
         });
 
         
-        var features = $.getJSON("/assets/videoCoords.json", function(data) {
-            console.log("here is the json -> " + data);
+        $.getJSON("/assets/videoCoords.json", function(data) {
+            var features = JSON.parse(data)
+            console.log("here is the json -> ");
+            for (feature in features) {
+                console.log(feature.properties.name)
+                console.log(feature.geometry.coordinates)
+            }
         });
         
         var mymap = L.map('mapid').setView([51.505, -0.09], 13);
