@@ -90,12 +90,17 @@ $(document).ready(function(){
                 console.log(data.features[feature].properties.name)
                 console.log(data.features[feature].geometry.coordinates)
                 name = data.features[feature].properties.name;
-                lat = data.features[feature].geometry.coordinates[1];
-                lng = data.features[feature].geometry.coordinates[0];
-                console.log("lat")
-                console.log(lat)
-                console.log("lng")
-                console.log(lng)
+                var video = $("#videoDiv").attr("data-video-name");
+                if (name == video) {
+                    lat = data.features[feature].geometry.coordinates[1];
+                    lng = data.features[feature].geometry.coordinates[0];
+                    console.log("lat")
+                    console.log(lat)
+                    console.log("lng")
+                    console.log(lng)
+                }
+                
+               
             }
             var mymap = L.map('mapid').setView([lat, lng], 13);
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
