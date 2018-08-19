@@ -101,4 +101,7 @@ path {
 
 
 
-#mapid { height: 315px; }
+#mapid { 
+    height: 315px; 
+    padding-top: 32px;
+}
