@@ -91,6 +91,10 @@ $(document).ready(function(){
                 name = data.features[feature].properties.name;
                 lat = data.features[feature].geometry.coordinates[1];
                 lng = data.features[feature].geometry.coordinates[0];
+                console.log("lat")
+                console.log(lat)
+                console.log("lng")
+                console.log(lng)
             }
         });
         
