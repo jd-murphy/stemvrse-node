@@ -88,10 +88,13 @@ $(document).ready(function(){
             for (feature in data.features) {
                 console.log(data.features[feature].properties.name)
                 console.log(data.features[feature].geometry.coordinates)
+                name = data.features[feature].properties.name;
+                lat = data.features[feature].geometry.coordinates[1];
+                lng = data.features[feature].geometry.coordinates[0];
             }
         });
         
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        var mymap = L.map('mapid').setView([lat, lng], 13);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
