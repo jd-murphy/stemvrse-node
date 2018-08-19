@@ -104,3 +104,8 @@ path {
 #mapid { 
     height: 315px; 
 }
+
+
+.videoContentDiv {
+    padding: 2rem;
+}
