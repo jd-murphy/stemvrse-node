@@ -83,14 +83,19 @@ $(document).ready(function(){
         });
 
         
+        
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
     
         
         
     
 
-        // console.log("Calling   socket.emit('loadVideos')");
-        // socket.emit('getSingleVideo', {"room": email});
-        // socket.emit('getFaves', email);
+   
+        
+
+
+
+        
     }); 
    
 });
