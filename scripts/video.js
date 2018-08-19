@@ -86,8 +86,8 @@ $(document).ready(function(){
         $.getJSON("/assets/videoCoords.json", function(features) {
             console.log("here is the json -> ");
             for (feature in features) {
-                console.log(feature.properties.name)
-                console.log(feature.geometry.coordinates)
+                console.log(features[feature].properties.name)
+                console.log(features[feature].geometry.coordinates)
             }
         });
         
